@@ -8,9 +8,11 @@
 import Foundation
 import FBSDKLoginKit
 
+public typealias GAFacebookUserData = [String : Any]
+
 public enum GAFacebookResult
 {
-    case success(GAFacebookProfile)
+    case success(GAFacebookProfile, GAFacebookUserData)
     case error(Error)
     case missingPermissions
     case unknownError
@@ -122,18 +124,18 @@ extension GASocialLogin
                 
                 guard let strongSelf = self else { return }
                 
-                guard let userData = result as? [String : String] else { strongSelf.handelError(for: error, with: completion) ; return }
+                guard let userData = result as? GAFacebookUserData else { strongSelf.handelError(for: error, with: completion) ; return }
                 
                 strongSelf.generateFacebookProfile(with: loginResult, from: userData, with: completion)
             }
         }
         
-        private func generateFacebookProfile(with loginResult: FBSDKLoginManagerLoginResult, from userData: [String : String], with completion: @escaping GAFacebookCompletion)
+        private func generateFacebookProfile(with loginResult: FBSDKLoginManagerLoginResult, from userData: GAFacebookUserData, with completion: @escaping GAFacebookCompletion)
         {
-            let facebookId  = userData[FacebookKeys.id.description]
-            let email       = userData[FacebookKeys.email.description]
-            let firstName   = userData[FacebookKeys.firstName.description]
-            let lastName    = userData[FacebookKeys.lastName.description]
+            let facebookId  = userData[FacebookKeys.id.description] as? String
+            let email       = userData[FacebookKeys.email.description] as? String
+            let firstName   = userData[FacebookKeys.firstName.description] as? String
+            let lastName    = userData[FacebookKeys.lastName.description] as? String
             
             let facebookToken = loginResult.token.tokenString as String
             
@@ -143,7 +145,7 @@ extension GASocialLogin
             
             currentFacebookProfile = profile
             
-            completion(.success(profile))
+            completion(.success(profile, userData))
         }
         
         private func handelError(for error: Error?, with completion: @escaping GAFacebookCompletion)

@@ -30,10 +30,17 @@ class FacebookViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
               
                 switch result {
-                case .success(let user):
+                case .success(let user, let userData):
                     
                     self?.resultLabel.text = "user.email: \(user.email ?? "") \nuser.facebookId: \(user.facebookId ?? "") \nuser.facebookToken: \(user.facebookToken ?? "")"
+                    print("FacebookViewController userData: \(userData)")
+                    
+                case .cancelled:
+                    
+                    self?.resultLabel.text = "cancelled"
+                    
                 default:
+                    
                     self?.resultLabel.text = "error"
                     
                 }
@@ -41,5 +48,37 @@ class FacebookViewController: UIViewController {
 
         }
     }
+    
+    @IBAction func customFieldsAndPermissionsLoginDidTap(_ sender: Any)
+    {
+        let fields = "cover,picture.type(large),id,name,first_name,last_name,gender,birthday,email,location,hometown"
+        
+        let permissions = ["email","public_profile"]
+        
+        GASocialLogin.GAFacebookLoginService.shard.loginUser(byPermissions: permissions, byFields: fields, from: self) {  (result) in
+            
+            DispatchQueue.main.async { [weak self] in
+                
+                switch result {
+                case .success(let user, let userData):
+                    
+                    self?.resultLabel.text = "user.email: \(user.email ?? "") \nuser.facebookId: \(user.facebookId ?? "") \nuser.facebookToken: \(user.facebookToken ?? "")"
+                    print("FacebookViewController userData: \(userData)")
+                    
+                case .cancelled:
+                    
+                    self?.resultLabel.text = "cancelled"
+                    
+                default:
+                    
+                    self?.resultLabel.text = "error"
+                    
+                }
+            }
+            
+        }
+    }
+    
+    
 }
 

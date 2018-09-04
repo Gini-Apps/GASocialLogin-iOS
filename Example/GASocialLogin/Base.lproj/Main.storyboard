@@ -100,12 +100,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5L-Q5-6Xj">
+                                <rect key="frame" x="18" y="366" width="339" height="30"/>
+                                <state key="normal" title="login with facebook customFieldsAndPermissions"/>
+                                <connections>
+                                    <action selector="customFieldsAndPermissionsLoginDidTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZAr-Js-CRk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="uKD-L2-gpE" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="NWj-9g-DD9"/>
                             <constraint firstItem="cNo-wY-oMd" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="30" id="XBQ-UR-ncH"/>
+                            <constraint firstItem="o5L-Q5-6Xj" firstAttribute="top" secondItem="uKD-L2-gpE" secondAttribute="bottom" constant="18" id="c94-e8-9E5"/>
                             <constraint firstItem="uKD-L2-gpE" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="rVP-D8-OpH"/>
+                            <constraint firstItem="o5L-Q5-6Xj" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="rvW-DN-N5W"/>
                             <constraint firstItem="cNo-wY-oMd" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="30" id="weu-zE-52Q"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cNo-wY-oMd" secondAttribute="trailing" constant="30" id="zYu-ty-3ka"/>
                         </constraints>
