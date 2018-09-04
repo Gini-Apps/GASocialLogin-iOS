@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "summary": "A short description of GASocialLogin.",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/idoMeirov/GASocialLogin",
+  "homepage": "https://github.com/shay-somech/GASocialLogin",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,40 @@
     "idoMeirov": "idom@gini-apps.com"
   },
   "source": {
-    "git": "https://github.com/idoMeirov/GASocialLogin.git",
+    "git": "https://github.com/shay-somech/GASocialLogin.git",
     "tag": "0.1.0"
   },
+  "swift_version": "4.1",
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
-  "source_files": "GASocialLogin/Classes/**/*"
+  "frameworks": "UIKit",
+  "default_subspecs": "Core",
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": "GASocialLogin/Core/**/*"
+    },
+    {
+      "name": "Facebook",
+      "source_files": "GASocialLogin/Facebook/**/*",
+      "dependencies": {
+        "GASocialLogin/Core": [
+
+        ],
+        "FBSDKLoginKit": [
+          "~> 4.36.0"
+        ]
+      }
+    },
+    {
+      "name": "Google",
+      "source_files": "GASocialLogin/Google/**/*",
+      "dependencies": {
+        "GASocialLogin/Core": [
+
+        ]
+      }
+    }
+  ]
 }

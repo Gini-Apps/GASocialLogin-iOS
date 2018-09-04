@@ -21,16 +21,43 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/idoMeirov/GASocialLogin'
+  s.homepage         = 'https://github.com/shay-somech/GASocialLogin'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'idoMeirov' => 'idom@gini-apps.com' }
-  s.source           = { :git => 'https://github.com/idoMeirov/GASocialLogin.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/shay-somech/GASocialLogin.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.swift_version    = '4.1'
+  s.ios.deployment_target = '9.0'
+  
+  s.frameworks = 'UIKit'
 
-  s.source_files = 'GASocialLogin/Classes/**/*'
+  s.default_subspec = 'Core'
+  #s.source_files = 'GASocialLogin/Classes/**/*'
+  
+  s.subspec 'Core' do |spec|
+      
+      spec.source_files = 'GASocialLogin/Core/**/*'
+  
+  end
+  
+  s.subspec 'Facebook' do |spec|
+      
+      spec.source_files = 'GASocialLogin/Facebook/**/*'
+      
+      spec.dependency 'GASocialLogin/Core'
+      spec.dependency 'FBSDKLoginKit', '~> 4.36.0'
+
+  end
+  
+  s.subspec 'Google' do |spec|
+      
+      spec.source_files = 'GASocialLogin/Google/**/*'
+      
+      spec.dependency 'GASocialLogin/Core'
+      
+  end
   
   # s.resource_bundles = {
   #   'GASocialLogin' => ['GASocialLogin/Assets/*.png']

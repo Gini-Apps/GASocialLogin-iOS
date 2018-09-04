@@ -1,16 +1,35 @@
 PODS:
-  - GASocialLogin (0.1.0)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
+  - FBSDKCoreKit (4.36.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.36.0):
+    - FBSDKCoreKit
+  - GASocialLogin/Core (0.1.0)
+  - GASocialLogin/Facebook (0.1.0):
+    - FBSDKLoginKit (~> 4.36.0)
+    - GASocialLogin/Core
+  - GASocialLogin/Google (0.1.0):
+    - GASocialLogin/Core
 
 DEPENDENCIES:
-  - GASocialLogin (from `../`)
+  - GASocialLogin/Facebook (from `../`)
+  - GASocialLogin/Google (from `../`)
 
 EXTERNAL SOURCES:
   GASocialLogin:
     :path: ../
 
 SPEC CHECKSUMS:
-  GASocialLogin: 0bf79be57e44abaf6053b6ed13429916da9cadfb
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  FBSDKCoreKit: 3b8e6570eedb443f9fc4af196a7bf39f18e3a3d8
+  FBSDKLoginKit: 8bccb6064708ab2f4251a7fc4e3b6d8d00ad91ba
+  GASocialLogin: ddd78137457ec963a1f06da784225228e037715a
 
-PODFILE CHECKSUM: d955674a5b491b808576e6bb1cd4d037a08e88e6
+PODFILE CHECKSUM: ad42fd97ec2d1df26d96b0136fe0952bf1cb7692
 
 COCOAPODS: 1.4.0
