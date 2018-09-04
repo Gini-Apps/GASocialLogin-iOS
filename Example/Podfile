@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'GASocialLogin_Example' do
+  pod 'GASocialLogin', :path => '../'
+
+  target 'GASocialLogin_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

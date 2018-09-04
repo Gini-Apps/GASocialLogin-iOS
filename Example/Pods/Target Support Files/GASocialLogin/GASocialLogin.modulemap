@@ -1,0 +1,6 @@
+framework module GASocialLogin {
+  umbrella header "GASocialLogin-umbrella.h"
+
+  export *
+  module * { export * }
+}

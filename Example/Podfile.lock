@@ -1,0 +1,16 @@
+PODS:
+  - GASocialLogin (0.1.0)
+
+DEPENDENCIES:
+  - GASocialLogin (from `../`)
+
+EXTERNAL SOURCES:
+  GASocialLogin:
+    :path: ../
+
+SPEC CHECKSUMS:
+  GASocialLogin: 0bf79be57e44abaf6053b6ed13429916da9cadfb
+
+PODFILE CHECKSUM: d955674a5b491b808576e6bb1cd4d037a08e88e6
+
+COCOAPODS: 1.4.0
