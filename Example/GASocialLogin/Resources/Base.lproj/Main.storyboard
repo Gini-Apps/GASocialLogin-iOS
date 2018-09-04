@@ -107,12 +107,21 @@
                                     <action selector="customFieldsAndPermissionsLoginDidTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZAr-Js-CRk"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9a-j7-2Gg">
+                                <rect key="frame" x="145.5" y="428" width="83" height="30"/>
+                                <state key="normal" title="permissions"/>
+                                <connections>
+                                    <action selector="permissionsDidTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qAz-tK-eKv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="s9a-j7-2Gg" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="NCu-72-ZMv"/>
                             <constraint firstItem="uKD-L2-gpE" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="NWj-9g-DD9"/>
                             <constraint firstItem="cNo-wY-oMd" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="30" id="XBQ-UR-ncH"/>
                             <constraint firstItem="o5L-Q5-6Xj" firstAttribute="top" secondItem="uKD-L2-gpE" secondAttribute="bottom" constant="18" id="c94-e8-9E5"/>
+                            <constraint firstItem="s9a-j7-2Gg" firstAttribute="top" secondItem="o5L-Q5-6Xj" secondAttribute="bottom" constant="32" id="dlI-j1-yyZ"/>
                             <constraint firstItem="uKD-L2-gpE" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="rVP-D8-OpH"/>
                             <constraint firstItem="o5L-Q5-6Xj" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="rvW-DN-N5W"/>
                             <constraint firstItem="cNo-wY-oMd" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="30" id="weu-zE-52Q"/>

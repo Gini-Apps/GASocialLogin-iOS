@@ -1,5 +1,5 @@
 //
-//  GAGoogleLoginService.swift
+//  GAFacebookLoginService.swift
 //  GASocialLogin
 //
 //  Created by ido meirov on 04/09/2018.
@@ -9,6 +9,7 @@ import Foundation
 import FBSDKLoginKit
 
 public typealias GAFacebookUserData = [String : Any]
+public typealias GAFacebookToken    = FBSDKAccessToken
 
 public enum GAFacebookResult
 {
@@ -37,6 +38,7 @@ extension GASocialLogin
         // MARK: - Properties
         public static var shard                         = GAFacebookLoginService()
         public private(set) var currentFacebookProfile  : GAFacebookProfile?
+        
         
         public let loginManager : FBSDKLoginManager = {
             
@@ -71,7 +73,7 @@ extension GASocialLogin
         }
         
         
-        // MARK: - Public API HandleApplication
+        // MARK: - Public API Application Handler
         public func handleApplication(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
         {
             let sourceApplicationValue = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String
@@ -106,7 +108,7 @@ extension GASocialLogin
                 }
             }
         }
-        
+
         /// MARK: - Private
         private func getUserInfo(byFields fields: String, loginResult: FBSDKLoginManagerLoginResult, completion: @escaping GAFacebookCompletion)
         {
@@ -116,6 +118,8 @@ extension GASocialLogin
                 completion(.unknownError)
                 return
             }
+            
+            updateLastLoginToken(FBSDKAccessToken.current())
             
             let params = ["fields" : fields]
             let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: params)
@@ -154,6 +158,51 @@ extension GASocialLogin
             guard let error = error else { completion(.unknownError) ; return }
             completion(.error(error))
         }
+    }
+}
 
+// MARK: - Login Token
+extension GASocialLogin.GAFacebookLoginService
+{
+    // MARK: - Enum
+    private enum UserDefaultsKeys: String, CustomStringConvertible
+    {
+        case token = "come.GASocialLogin.GAFacebookLoginService.token"
+        
+        var description : String { return rawValue }
+    }
+    
+    // MARK: - Properties
+    public var logInToken: GAFacebookToken?
+    {
+        guard let currentToken  = FBSDKAccessToken.current() else { return lastLogInToken }
+        
+        return currentToken
+    }
+    
+    public var lastLogInToken: GAFacebookToken?
+    {
+        guard let data = UserDefaults.standard.data(forKey: UserDefaultsKeys.token.description) else { return nil }
+        let object = NSKeyedUnarchiver.unarchiveObject(with: data)
+        return  object as? GAFacebookToken
+    }
+    
+    public var currentTokenPermissions: Set<String>?
+    {
+        guard let currentToken  = FBSDKAccessToken.current()                else { return nil }
+        guard let permissions   = currentToken.permissions as? Set<String>  else { return nil }
+        return  permissions
+    }
+    
+    // MARK: - Method
+    private func updateLastLoginToken(_ token: GAFacebookToken)
+    {
+        let userDefaults = UserDefaults.standard
+        
+        let data = NSKeyedArchiver.archivedData(withRootObject: token)
+        
+        userDefaults.set(data, forKey: UserDefaultsKeys.token.description)
+        
+        userDefaults.synchronize()
     }
 }
