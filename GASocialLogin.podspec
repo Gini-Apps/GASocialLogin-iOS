@@ -55,6 +55,15 @@ TODO: Add long description of the pod here.
       
       spec.source_files = 'GASocialLogin/Google/**/*'
       
+      spec.resources =
+      'GASocialLogin/Assets/Google/GoogleSignIn.bundle'
+      
+      spec.preserve_paths      = 'GASocialLogin/ExternalVendors/Google/*.framework'
+      spec.vendored_frameworks = 'GASocialLogin/ExternalVendors/Google/GoogleSignIn.framework',
+      'GASocialLogin/ExternalVendors/Google/GoogleSignInDependencies.framework'
+      
+      spec.frameworks = 'UIKit', 'LocalAuthentication', 'SafariServices', 'SystemConfiguration'
+      
       spec.dependency 'GASocialLogin/Core'
       
   end

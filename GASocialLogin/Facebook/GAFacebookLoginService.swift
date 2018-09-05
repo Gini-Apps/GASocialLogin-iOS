@@ -38,6 +38,7 @@ extension GASocialLogin
         // MARK: - Properties
         public static var shard                         = GAFacebookLoginService()
         public private(set) var currentFacebookProfile  : GAFacebookProfile?
+        public var saveLastLoginToken                   : Bool
         
         
         public let loginManager : FBSDKLoginManager = {
@@ -69,6 +70,7 @@ extension GASocialLogin
         // MARK: - Object life cycle
         public override init()
         {
+            self.saveLastLoginToken = false
             super.init()
         }
         
@@ -195,8 +197,23 @@ extension GASocialLogin.GAFacebookLoginService
     }
     
     // MARK: - Method
+    public func cleanLastLogInToken()
+    {
+        let userDefaults = UserDefaults.standard
+        
+        userDefaults.set(nil, forKey: UserDefaultsKeys.token.description)
+        
+        userDefaults.synchronize()
+    }
+    
     private func updateLastLoginToken(_ token: GAFacebookToken)
     {
+        guard saveLastLoginToken else
+        {
+            cleanLastLogInToken()
+            return
+        }
+        
         let userDefaults = UserDefaults.standard
         
         let data = NSKeyedArchiver.archivedData(withRootObject: token)

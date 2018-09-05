@@ -41,6 +41,18 @@
     {
       "name": "Google",
       "source_files": "GASocialLogin/Google/**/*",
+      "resources": "GASocialLogin/Assets/Google/GoogleSignIn.bundle",
+      "preserve_paths": "GASocialLogin/ExternalVendors/Google/*.framework",
+      "vendored_frameworks": [
+        "GASocialLogin/ExternalVendors/Google/GoogleSignIn.framework",
+        "GASocialLogin/ExternalVendors/Google/GoogleSignInDependencies.framework"
+      ],
+      "frameworks": [
+        "UIKit",
+        "LocalAuthentication",
+        "SafariServices",
+        "SystemConfiguration"
+      ],
       "dependencies": {
         "GASocialLogin/Core": [
 

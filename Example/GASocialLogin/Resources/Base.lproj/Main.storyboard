@@ -45,6 +45,30 @@
                                             <segue destination="vXZ-lx-hvc" kind="show" id="fAe-zm-1bn"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="63" id="xAu-J9-4I6">
+                                        <rect key="frame" x="0.0" y="63" width="375" height="63"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xAu-J9-4I6" id="g5S-qr-J5p">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="62.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOB-UL-KhY">
+                                                    <rect key="frame" x="16" y="21" width="343" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="MOB-UL-KhY" firstAttribute="centerY" secondItem="g5S-qr-J5p" secondAttribute="centerY" id="Az7-6D-C0m"/>
+                                                <constraint firstItem="MOB-UL-KhY" firstAttribute="leading" secondItem="g5S-qr-J5p" secondAttribute="leadingMargin" id="j4l-LQ-Gnd"/>
+                                                <constraint firstItem="MOB-UL-KhY" firstAttribute="trailing" secondItem="g5S-qr-J5p" secondAttribute="trailingMargin" id="kuP-cY-muG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="2OF-SF-n5x" kind="show" id="JWM-ug-Mb3"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -58,6 +82,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eq4-k1-RHI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-359.19999999999999" y="-39.130434782608695"/>
+        </scene>
+        <!--Google View Controller-->
+        <scene sceneID="C3Z-GR-eew">
+            <objects>
+                <viewController id="2OF-SF-n5x" customClass="GoogleViewController" customModule="GASocialLogin_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="stG-eJ-CYT"/>
+                        <viewControllerLayoutGuide type="bottom" id="TVQ-ia-ql0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GqJ-gM-Ax3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWF-3h-hle">
+                                <rect key="frame" x="124.5" y="318.5" width="126" height="30"/>
+                                <state key="normal" title="Log in with google"/>
+                                <connections>
+                                    <action selector="loginDidTap:" destination="2OF-SF-n5x" eventType="touchUpInside" id="wEf-wh-WsP"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93V-fM-tB0">
+                                <rect key="frame" x="30" y="94" width="48" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="93V-fM-tB0" secondAttribute="trailing" id="3V3-Fa-mB1"/>
+                            <constraint firstItem="AWF-3h-hle" firstAttribute="centerY" secondItem="GqJ-gM-Ax3" secondAttribute="centerY" id="CCN-gb-VhK"/>
+                            <constraint firstItem="93V-fM-tB0" firstAttribute="leading" secondItem="GqJ-gM-Ax3" secondAttribute="leading" constant="30" id="LQ3-e7-gQt"/>
+                            <constraint firstItem="93V-fM-tB0" firstAttribute="top" secondItem="stG-eJ-CYT" secondAttribute="bottom" constant="30" id="Q1a-oM-QRv"/>
+                            <constraint firstItem="AWF-3h-hle" firstAttribute="centerX" secondItem="GqJ-gM-Ax3" secondAttribute="centerX" id="dVn-JN-Ocj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="resultLabel" destination="93V-fM-tB0" id="6Ly-ct-e3n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="chY-Ok-4O3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-350" y="696"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NND-O3-3s5">
@@ -95,7 +162,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNo-wY-oMd">
-                                <rect key="frame" x="46" y="94" width="283" height="20.5"/>
+                                <rect key="frame" x="30" y="94" width="48" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -124,8 +191,8 @@
                             <constraint firstItem="s9a-j7-2Gg" firstAttribute="top" secondItem="o5L-Q5-6Xj" secondAttribute="bottom" constant="32" id="dlI-j1-yyZ"/>
                             <constraint firstItem="uKD-L2-gpE" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="rVP-D8-OpH"/>
                             <constraint firstItem="o5L-Q5-6Xj" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="rvW-DN-N5W"/>
-                            <constraint firstItem="cNo-wY-oMd" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="30" id="weu-zE-52Q"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="cNo-wY-oMd" secondAttribute="trailing" constant="30" id="zYu-ty-3ka"/>
+                            <constraint firstItem="cNo-wY-oMd" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="30" id="weu-zE-52Q"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cNo-wY-oMd" secondAttribute="trailing" constant="30" id="zYu-ty-3ka"/>
                         </constraints>
                     </view>
                     <connections>
