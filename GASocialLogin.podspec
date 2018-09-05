@@ -55,7 +55,12 @@ TODO: Add long description of the pod here.
       
       spec.source_files = 'GASocialLogin/Google/**/*'
       
-      spec.resources =
+      spec.pod_target_xcconfig = {
+          'OTHER_SWIFT_FLAGS' => '$(inherited) -DSYNCSERVER_GOOGLE_SIGNIN',
+          'OTHER_LDFLAGS' => '$(inherited) -ObjC'
+      }
+      
+      spec.resource =
       'GASocialLogin/Assets/Google/GoogleSignIn.bundle'
       
       spec.preserve_paths      = 'GASocialLogin/ExternalVendors/Google/*.framework'

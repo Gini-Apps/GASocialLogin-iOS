@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		27D5F850213F938F00B70AB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27D5F84F213F938F00B70AB2 /* GoogleService-Info.plist */; };
 		27D5F854213F967C00B70AB2 /* GoogleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D5F853213F967C00B70AB2 /* GoogleViewController.swift */; };
+		27D5F85B213FB1E800B70AB2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5F855213FAA1D00B70AB2 /* libz.tbd */; };
 		300F3FD10F36724F62A6B552 /* Pods_GASocialLogin_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE54AF8AFD1992997B649DB4 /* Pods_GASocialLogin_Example.framework */; };
 		46578441346D9BE47BA23418 /* Pods_GASocialLogin_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3366260920DDF3573083C2DD /* Pods_GASocialLogin_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -59,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27D5F85B213FB1E800B70AB2 /* libz.tbd in Frameworks */,
 				300F3FD10F36724F62A6B552 /* Pods_GASocialLogin_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

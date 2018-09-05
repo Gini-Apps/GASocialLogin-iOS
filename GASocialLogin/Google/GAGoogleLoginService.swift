@@ -34,12 +34,6 @@ extension GASocialLogin
         public var currentGoogleUser            : GAGoogleUser?
         
         public static var clientIdentifier     : String = ""
-        {
-            didSet
-            {
-                GIDSignIn.sharedInstance().clientID = clientIdentifier
-            }
-        }
         
         public static var shard = GAGoogleLoginService()
         

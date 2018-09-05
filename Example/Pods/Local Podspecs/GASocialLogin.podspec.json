@@ -41,6 +41,10 @@
     {
       "name": "Google",
       "source_files": "GASocialLogin/Google/**/*",
+      "pod_target_xcconfig": {
+        "OTHER_SWIFT_FLAGS": "$(inherited) -DSYNCSERVER_GOOGLE_SIGNIN",
+        "OTHER_LDFLAGS": "$(inherited) -ObjC"
+      },
       "resources": "GASocialLogin/Assets/Google/GoogleSignIn.bundle",
       "preserve_paths": "GASocialLogin/ExternalVendors/Google/*.framework",
       "vendored_frameworks": [
