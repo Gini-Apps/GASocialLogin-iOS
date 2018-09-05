@@ -43,8 +43,8 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-  pod 'GABiometricAuthentication/Facebook'
-  pod 'GABiometricAuthentication/Google'
+  pod 'GASocialLogin/Facebook'
+  pod 'GASocialLogin/Google'
 end
 ```
 Then, run the following command:
