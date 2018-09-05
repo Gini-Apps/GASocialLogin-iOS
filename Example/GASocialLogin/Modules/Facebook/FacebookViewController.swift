@@ -81,7 +81,7 @@ class FacebookViewController: UIViewController {
     
     @IBAction func permissionsDidTap(_ sender: Any)
     {
-        print(GASocialLogin.GAFacebookLoginService.shard.logInToken)
+        print(GASocialLogin.GAFacebookLoginService.shard.logInToken ?? "")
         guard let permissions = GASocialLogin.GAFacebookLoginService.shard.currentTokenPermissions else { return }
         print(permissions)
         

@@ -33,7 +33,7 @@ extension GASocialLogin
         
         public var currentGoogleUser            : GAGoogleUser?
         
-        public static var clientIdentifier     : String = ""
+        public static var clientIdentifier      : String = ""
         
         public static var shard = GAGoogleLoginService()
         
@@ -51,6 +51,8 @@ extension GASocialLogin
             parentViewController    = viewController
             googleCompletion        = successHandler
             googleWillDispatchBlock = willDispatchHandler
+            
+            GAGoogleLoginService.clientIdentifier = clientIdentifier
             
             let googleSignIn = GIDSignIn.sharedInstance()
             googleSignIn?.shouldFetchBasicProfile = true
@@ -124,20 +126,13 @@ extension GASocialLogin.GAGoogleLoginService: GIDSignInDelegate
         
         guard error == nil else
         {
-            print("Error      : \(error.localizedDescription)")
+            print("Error: \(error.localizedDescription)")
             googleCompletion?(.error(error))
             
             cleanBlocks()
             
             return
         }
-        
-//        logger.debug("UserId     : \(user.userID)")
-//        logger.debug("Token      : \(user.authentication.idToken)")
-//        logger.debug("FullName   : \(user.profile.name)")
-//        logger.debug("GivenName  : \(user.profile.givenName)")
-//        logger.debug("Family Name: \(user.profile.familyName)")
-//        logger.debug("EmailId    : \(user.profile.email)")
         
         currentGoogleUser = user
         googleCompletion?(.success(user))
