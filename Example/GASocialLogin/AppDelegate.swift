@@ -47,6 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
     {
+//        if url.scheme == "" {
+//            <#code#>
+//        }
         return GASocialLogin.GAFacebookLoginService.shard.handleApplication(app, open: url, options: options)
     }
 }

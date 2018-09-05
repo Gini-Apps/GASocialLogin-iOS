@@ -50,6 +50,19 @@ extension GASocialLogin
         public private(set) var currentFacebookProfile  : GAFacebookProfile? // the current Facebook user loged in Profile
         public var saveLastLoginToken                   : Bool // should auto save user token (default value is false)
         
+        public var facebookURLScheme : String
+        {
+            guard let url = Bundle.main.url(forResource: "Info", withExtension: "plist") else { return "" }
+            
+            guard let data = try? Data(contentsOf: url) else { return "" }
+            
+            guard let plist = try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) else { return "" }
+            
+            guard let dictArray = plist as? [String : Any] else { return "" }
+            
+            return ""
+            
+        }
         
         /// Facebook manager
         public let loginManager : FBSDKLoginManager = {

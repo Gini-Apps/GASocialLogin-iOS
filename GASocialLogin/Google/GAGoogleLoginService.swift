@@ -49,8 +49,16 @@ extension GASocialLogin
             super.init()
         }
         
-        // MARK: - Method
+        // MARK: - Public API Application Handler
+        public func handleApplication(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
+        {
+            let sourceApplicationValue = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String
+            let        annotationValue = options[UIApplicationOpenURLOptionsKey.annotation]
+            
+            return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplicationValue, annotation: annotationValue)
+        }
         
+        // MARK: - Public API Method
         /// Call to google signIn and implement the delagte and uiDelegate
         ///
         /// - Parameters:
