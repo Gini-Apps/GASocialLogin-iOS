@@ -56,8 +56,8 @@ $ pod install
 
 # Guides:
 
-* **[Facebook](https://github.com/rubygarage/authorize-me/wiki/Facebook-Provider)**
-* **[Google](https://github.com/rubygarage/authorize-me/wiki/Google-Provider)**
+* **[Facebook](https://github.com/shay-somech/GASocialLogin/wiki/Facebook)**
+* **[Google](https://github.com/shay-somech/GASocialLogin/wiki/Google)**
 
 
 
