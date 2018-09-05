@@ -11,5 +11,5 @@ import Foundation
 /// Interface struct
 public struct GASocialLogin
 {
-    public let version = "1.0.0"
+    public let version = "1.0.1"
 }
