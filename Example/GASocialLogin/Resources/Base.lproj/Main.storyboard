@@ -111,7 +111,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="93V-fM-tB0" secondAttribute="trailing" id="3V3-Fa-mB1"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="93V-fM-tB0" secondAttribute="trailing" constant="30" id="3V3-Fa-mB1"/>
                             <constraint firstItem="AWF-3h-hle" firstAttribute="centerY" secondItem="GqJ-gM-Ax3" secondAttribute="centerY" id="CCN-gb-VhK"/>
                             <constraint firstItem="93V-fM-tB0" firstAttribute="leading" secondItem="GqJ-gM-Ax3" secondAttribute="leading" constant="30" id="LQ3-e7-gQt"/>
                             <constraint firstItem="93V-fM-tB0" firstAttribute="top" secondItem="stG-eJ-CYT" secondAttribute="bottom" constant="30" id="Q1a-oM-QRv"/>

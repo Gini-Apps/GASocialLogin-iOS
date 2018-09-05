@@ -39,7 +39,7 @@ class GoogleViewController: UIViewController
                 switch result {
                 case .success(let user):
                     
-                    self?.resultLabel.text = "user.profile.email: \(user.profile.email ?? "") \nuser.authentication.clientID: \(user.authentication.clientID ?? "") \nuser.authentication.idToken: \(user.authentication.idToken ?? "")"
+                    self?.resultLabel.text = "user.profile.email: \(user.profile.email ?? "") \nuser.authentication.clientID: \(user.authentication.clientID ?? "") "
                     
                 case .error(let error):
                     

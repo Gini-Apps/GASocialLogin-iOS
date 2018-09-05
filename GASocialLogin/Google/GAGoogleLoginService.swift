@@ -12,6 +12,11 @@ import GoogleSignIn
 public typealias GAGoogleUser = GIDGoogleUser
 public typealias GAGoogleSignInMetaData = GIDSignIn
 
+
+/// The results of log in with google
+///
+/// - success: log in and get user data successd
+/// - error: the error from google
 public enum GAGoogleResult
 {
     case success(GAGoogleUser)
@@ -26,14 +31,14 @@ extension GASocialLogin
     public class GAGoogleLoginService: NSObject
     {
         // MARK: - Property
-        private weak var parentViewController   : UIViewController?
-        private var googleCompletion            : GAGoogleCompletion?
-        private var googleWillDispatchBlock     : GAGoogleWillDispatchBlock?
-        public var saveLastLoginUser            : Bool
+        private weak var parentViewController   : UIViewController? // the current present view controller
+        private var googleCompletion            : GAGoogleCompletion? // log in call back
+        private var googleWillDispatchBlock     : GAGoogleWillDispatchBlock? // block to handle signinWillDispatch
+        public var saveLastLoginUser            : Bool // allow auto save last loged in user
         
-        public var currentGoogleUser            : GAGoogleUser?
+        public var currentGoogleUser            : GAGoogleUser? // current Google user for log in with google
         
-        public static var clientIdentifier      : String = ""
+        public static var clientIdentifier      : String = "" // must e set with the client identifier in google developer web site
         
         public static var shard = GAGoogleLoginService()
         
@@ -45,6 +50,14 @@ extension GASocialLogin
         }
         
         // MARK: - Method
+        
+        /// Call to google signIn and implement the delagte and uiDelegate
+        ///
+        /// - Parameters:
+        ///   - clientIdentifier: the client identifier in google developer web site
+        ///   - viewController: the current present view controller
+        ///   - willDispatchHandler: block to handle signinWillDispatch
+        ///   - successHandler: log in results call back
         public func loginWithGmail(forClientIdentifier clientIdentifier: String = clientIdentifier, viewController: UIViewController, willDispatchHandler: GAGoogleWillDispatchBlock? = nil, successHandler:@escaping GAGoogleCompletion)
         {
             
@@ -82,6 +95,8 @@ extension GASocialLogin.GAGoogleLoginService
     }
     
     // MARK: - Properties
+    
+    /// Last saved log in user
     public var lastLoginUser: GAGoogleUser?
     {
         guard let data = UserDefaults.standard.data(forKey: UserDefaultsKeys.user.description) else { return nil }
@@ -90,6 +105,8 @@ extension GASocialLogin.GAGoogleLoginService
     }
     
     // MARK: - Method
+    
+    /// Remove the last saved login user
     public func cleanLastLogInToken()
     {
         let userDefaults = UserDefaults.standard
@@ -99,7 +116,7 @@ extension GASocialLogin.GAGoogleLoginService
         userDefaults.synchronize()
     }
     
-    func updateLastLoginUser(_ user: GAGoogleUser)
+    private func updateLastLoginUser(_ user: GAGoogleUser)
     {
         guard saveLastLoginUser else
         {
