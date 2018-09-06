@@ -64,6 +64,8 @@
 		2376B75BD5F297ADAF425BBB30131E6F /* FBSDKAppEventsUninstall.h in Headers */ = {isa = PBXBuildFile; fileRef = 620012ACE7E52485C1AF37725279D12B /* FBSDKAppEventsUninstall.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		23CA2C8D478F56FEFC436A8C52A3FCE0 /* FBSDKGraphErrorRecoveryProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4247E24F60364834AE2B58E397B23DCA /* FBSDKGraphErrorRecoveryProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2446FD9608A9C459CB0080E5A0256406 /* FBSDKLoginManagerLoginResult+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EB3110F6261E877D11FD2BF14D80E52 /* FBSDKLoginManagerLoginResult+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		27247FCE214136E900C5A8C1 /* GAFacebookLoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27247FCC214135AB00C5A8C1 /* GAFacebookLoginConfiguration.swift */; };
+		27247FD021413CE700C5A8C1 /* GAgoogleLoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27247FCF21413CE700C5A8C1 /* GAgoogleLoginConfiguration.swift */; };
 		284DAD724B1F35CAC77CC291567448A1 /* FBSDKBridgeAPIProtocolWebV2.h in Headers */ = {isa = PBXBuildFile; fileRef = 8001FBFB8A1BDF015271D24F1605A952 /* FBSDKBridgeAPIProtocolWebV2.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		28523FC9D0B141D4DA15E04AD71C2EB2 /* BFAppLink_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA325137034AF2D9D9439A408F0F106 /* BFAppLink_Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2A3F0F451C992CD580DD54EA1A42D0E3 /* FBSDKApplicationDelegate+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B7DCDC50177885F3ADC6189955D3CA3 /* FBSDKApplicationDelegate+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -428,6 +430,8 @@
 		230E7826F7BDA4BBC1B345A2DA270120 /* FBSDKBridgeAPIRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKBridgeAPIRequest.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIRequest.m; sourceTree = "<group>"; };
 		23BAEA529A7C690DE3081AA8FE86FF0E /* FBSDKWebDialogView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKWebDialogView.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialogView.h; sourceTree = "<group>"; };
 		2617BE34E290B45F453316223167F1D4 /* FBSDKGraphRequest+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKGraphRequest+Internal.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequest+Internal.h"; sourceTree = "<group>"; };
+		27247FCC214135AB00C5A8C1 /* GAFacebookLoginConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GAFacebookLoginConfiguration.swift; path = GASocialLogin/Facebook/GAFacebookLoginConfiguration.swift; sourceTree = "<group>"; };
+		27247FCF21413CE700C5A8C1 /* GAgoogleLoginConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GAgoogleLoginConfiguration.swift; path = GASocialLogin/Google/GAgoogleLoginConfiguration.swift; sourceTree = "<group>"; };
 		28F971EC5A3027659D7D944579D37EFD /* FBSDKDeviceRequestsHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKDeviceRequestsHelper.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKDeviceRequestsHelper.h; sourceTree = "<group>"; };
 		290BDB8C91C3DAF2FBD688B4DE2CE39A /* FBSDKLogo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLogo.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKLogo.h; sourceTree = "<group>"; };
 		292E7BC7BB56C417E5A029EABD78A461 /* FBSDKTestUsersManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKTestUsersManager.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKTestUsersManager.m; sourceTree = "<group>"; };
@@ -765,6 +769,7 @@
 			isa = PBXGroup;
 			children = (
 				BE836F32A92E1ED0F8BD7291497F88F2 /* GAGoogleLoginService.swift */,
+				27247FCF21413CE700C5A8C1 /* GAgoogleLoginConfiguration.swift */,
 				20976E116C2500C87976504C0EF66710 /* Frameworks */,
 				7610407CA6C130EA7E0B924F8056B7BC /* Resources */,
 			);
@@ -1215,6 +1220,7 @@
 			isa = PBXGroup;
 			children = (
 				7BBB0D719CD8963B6BD8A034B1A1C824 /* GAFacebookLoginService.swift */,
+				27247FCC214135AB00C5A8C1 /* GAFacebookLoginConfiguration.swift */,
 			);
 			name = Facebook;
 			sourceTree = "<group>";
@@ -1620,6 +1626,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0940;
+				TargetAttributes = {
+					531B78FD8AD31B542B8001A970D876EC = {
+						LastSwiftMigration = 0940;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1818,9 +1829,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27247FD021413CE700C5A8C1 /* GAgoogleLoginConfiguration.swift in Sources */,
 				B6BAA923780D4222C8728B95BE310BD8 /* GAFacebookLoginService.swift in Sources */,
 				BB923F2E19FB352EA9CE7E0F68F92F4B /* GAGoogleLoginService.swift in Sources */,
 				91D161530F9841C2D0540CBE8D237CFC /* GASocialLogin-dummy.m in Sources */,
+				27247FCE214136E900C5A8C1 /* GAFacebookLoginConfiguration.swift in Sources */,
 				E60B31660031943722E8C1253E9BFA70 /* GASocialLogin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1959,6 +1972,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7439221F0C7838E9E6865DA2F0E183EF /* Bolts.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2335,6 +2349,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7439221F0C7838E9E6865DA2F0E183EF /* Bolts.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2354,6 +2369,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";

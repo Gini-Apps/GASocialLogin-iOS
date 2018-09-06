@@ -43,26 +43,18 @@ extension GASocialLogin
 {
     public typealias GAFacebookCompletion = (GAFacebookResult) -> Void
     
+    public var facebookLoginService: GAFacebookLoginService?
+    {
+        return services[GAFacebookLoginService.serviceKey] as? GAFacebookLoginService
+    }
+    
     public class GAFacebookLoginService: NSObject
     {
         // MARK: - Properties
-        public static var shard                         = GAFacebookLoginService()
+        static let serviceKey                           = "GASocialLogin.GAFacebookLoginService"
         public private(set) var currentFacebookProfile  : GAFacebookProfile? // the current Facebook user loged in Profile
         public var saveLastLoginToken                   : Bool // should auto save user token (default value is false)
-        
-        public var facebookURLScheme : String
-        {
-            guard let url = Bundle.main.url(forResource: "Info", withExtension: "plist") else { return "" }
-            
-            guard let data = try? Data(contentsOf: url) else { return "" }
-            
-            guard let plist = try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) else { return "" }
-            
-            guard let dictArray = plist as? [String : Any] else { return "" }
-            
-            return ""
-            
-        }
+        public let facebookURLScheme                    : String
         
         /// Facebook manager
         public let loginManager : FBSDKLoginManager = {
@@ -97,43 +89,11 @@ extension GASocialLogin
         }
         
         // MARK: - Object life cycle
-        public override init()
+        public init(facebookURLScheme: String, saveLastLoginToken: Bool = false)
         {
-            self.saveLastLoginToken = false
+            self.saveLastLoginToken = saveLastLoginToken
+            self.facebookURLScheme  = facebookURLScheme
             super.init()
-        }
-        
-        
-        // MARK: - Public API Application Handler
-        
-        /// Call to facebook FBSDKApplicationDelegate.sharedInstance().application(, open:, sourceApplication:, annotation:).
-        /// need to call on application(_ app: , open url: , options: ) -> Bool
-        /// in the main app delegate.
-        ///
-        /// - Parameters:
-        ///   - application: UIApplication
-        ///   - url: url object
-        ///   - options: [UIApplicationOpenURLOptionsKey : Any]
-        /// - Returns: return the result from facebook
-        public func handleApplication(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
-        {
-            let sourceApplicationValue = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String
-            let        annotationValue = options[UIApplicationOpenURLOptionsKey.annotation]        as? String
-            
-            return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplicationValue, annotation: annotationValue)
-        }
-        
-        
-        /// Call to facebook FBSDKApplicationDelegate.sharedInstance().application(, didFinishLaunchingWithOptions:).
-        /// Need to call application(_ application:, didFinishLaunchingWithOptions launchOptions:) -> Bool
-        /// in the main app delegate
-        ///
-        /// - Parameters:
-        ///   - application: UIApplication
-        ///   - launchOptions: [UIApplicationLaunchOptionsKey: Any]?
-        public func handleApplication(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)
-        {
-            FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         }
         
         // MARK: - Public API Login
@@ -165,7 +125,7 @@ extension GASocialLogin
                 }
             }
         }
-
+        
         /// MARK: - Private
         
         /// Call to FBSDKGraphRequest.start by given fields
@@ -209,7 +169,7 @@ extension GASocialLogin
             
             print("FACEBOOK: GRAPH REQUEST: SUCCESS")
             let profile = GAFacebookProfile(facebookId: facebookId, facebookToken: facebookToken,
-                                             firstName: firstName, lastName: lastName, email: email)
+                                            firstName: firstName, lastName: lastName, email: email)
             
             currentFacebookProfile = profile
             
@@ -253,7 +213,7 @@ extension GASocialLogin.GAFacebookLoginService
         let object = NSKeyedUnarchiver.unarchiveObject(with: data)
         return  object as? GAFacebookToken
     }
-
+    
     /// Return the logInToken permissions
     public var currentTokenPermissions: Set<String>?
     {
@@ -289,5 +249,43 @@ extension GASocialLogin.GAFacebookLoginService
         userDefaults.set(data, forKey: UserDefaultsKeys.token.description)
         
         userDefaults.synchronize()
+    }
+}
+
+// MARK: -  GASocialLoginService
+extension GASocialLogin.GAFacebookLoginService: GASocialLoginService
+{
+    // MARK: - Public API Application Handler
+    
+    /// Call to facebook FBSDKApplicationDelegate.sharedInstance().application(, didFinishLaunchingWithOptions:).
+    /// Need to call application(_ application:, didFinishLaunchingWithOptions launchOptions:) -> Bool
+    /// in the main app delegate
+    ///
+    /// - Parameters:
+    ///   - application: UIApplication
+    ///   - launchOptions: [UIApplicationLaunchOptionsKey: Any]?
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool
+    {
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        return true
+    }
+    
+    /// Call to facebook FBSDKApplicationDelegate.sharedInstance().application(, open:, sourceApplication:, annotation:).
+    /// need to call on application(_ app: , open url: , options: ) -> Bool
+    /// in the main app delegate.
+    ///
+    /// - Parameters:
+    ///   - application: UIApplication
+    ///   - url: url object
+    ///   - options: [UIApplicationOpenURLOptionsKey : Any]
+    /// - Returns: return the result from facebook
+    public func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
+    {
+        let sourceApplicationValue = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String
+        let        annotationValue = options[UIApplicationOpenURLOptionsKey.annotation]        as? String
+        
+        guard url.scheme == facebookURLScheme else { return true }
+        
+        return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: sourceApplicationValue, annotation: annotationValue)
     }
 }

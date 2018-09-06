@@ -18,7 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        GASocialLogin.GAFacebookLoginService.shard.handleApplication(application, didFinishLaunchingWithOptions: launchOptions)
+        let facebookConfiguration = GAFacebookLoginConfiguration(facebookURLScheme: "fb1202253246595467")
+        let googleConfiguration = GAGoogleLoginConfiguration(clientIdentifier: "241630699163-uhj5kr61bpau24tgu86pr2ne2to30nef.apps.googleusercontent.com")
+        GASocialLogin.shard.configure(using: [facebookConfiguration, googleConfiguration])
+//        GASocialLogin.GAFacebookLoginService.shard.handleApplication(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        GASocialLogin.shard.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         return true
     }
@@ -47,10 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
     {
-//        if url.scheme == "" {
-//            <#code#>
-//        }
-        return GASocialLogin.GAFacebookLoginService.shard.handleApplication(app, open: url, options: options)
+        return GASocialLogin.shard.application(app, open: url, options: options)
     }
 }
 

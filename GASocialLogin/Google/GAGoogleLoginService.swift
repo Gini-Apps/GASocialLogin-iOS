@@ -28,9 +28,15 @@ extension GASocialLogin
     public typealias GAGoogleCompletion = (GAGoogleResult) -> Void
     public typealias GAGoogleWillDispatchBlock = (GAGoogleSignInMetaData?, Error?) -> Void
     
+    public var googleLoginService: GAGoogleLoginService?
+    {
+        return services[GAGoogleLoginService.serviceKey] as? GAGoogleLoginService
+    }
+    
     public class GAGoogleLoginService: NSObject
     {
         // MARK: - Property
+        static let serviceKey                   = "GASocialLogin.GAGoogleLoginService"
         private weak var parentViewController   : UIViewController? // the current present view controller
         private var googleCompletion            : GAGoogleCompletion? // log in call back
         private var googleWillDispatchBlock     : GAGoogleWillDispatchBlock? // block to handle signinWillDispatch
@@ -38,48 +44,35 @@ extension GASocialLogin
         
         public var currentGoogleUser            : GAGoogleUser? // current Google user for log in with google
         
-        public static var clientIdentifier      : String = "" // must e set with the client identifier in google developer web site
+        public var clientIdentifier      : String // must e set with the client identifier in google developer web site
         
-        public static var shard = GAGoogleLoginService()
         
         // MARK: - Object life cycle
-        public override init()
+        public init(clientIdentifier: String, saveLastLoginUser: Bool = false)
         {
-            self.saveLastLoginUser = false
+            self.saveLastLoginUser  = saveLastLoginUser
+            self.clientIdentifier   = clientIdentifier
             super.init()
-        }
-        
-        // MARK: - Public API Application Handler
-        public func handleApplication(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
-        {
-            let sourceApplicationValue = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String
-            let        annotationValue = options[UIApplicationOpenURLOptionsKey.annotation]
-            
-            return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplicationValue, annotation: annotationValue)
         }
         
         // MARK: - Public API Method
         /// Call to google signIn and implement the delagte and uiDelegate
         ///
         /// - Parameters:
-        ///   - clientIdentifier: the client identifier in google developer web site
         ///   - viewController: the current present view controller
         ///   - willDispatchHandler: block to handle signinWillDispatch
         ///   - successHandler: log in results call back
-        public func loginWithGmail(forClientIdentifier clientIdentifier: String = clientIdentifier, viewController: UIViewController, willDispatchHandler: GAGoogleWillDispatchBlock? = nil, successHandler:@escaping GAGoogleCompletion)
+        public func loginWithGmail(viewController: UIViewController, willDispatchHandler: GAGoogleWillDispatchBlock? = nil, successHandler:@escaping GAGoogleCompletion)
         {
             
             parentViewController    = viewController
             googleCompletion        = successHandler
             googleWillDispatchBlock = willDispatchHandler
             
-            GAGoogleLoginService.clientIdentifier = clientIdentifier
-            
             let googleSignIn = GIDSignIn.sharedInstance()
             googleSignIn?.shouldFetchBasicProfile = true
             googleSignIn?.delegate = self
             googleSignIn?.uiDelegate = self
-            googleSignIn?.clientID = clientIdentifier
             googleSignIn?.signIn()
         }
         
@@ -194,4 +187,24 @@ extension GASocialLogin.GAGoogleLoginService: GIDSignInUIDelegate
         
         googleWillDispatchBlock = nil
     }
+}
+
+// MARK: - GASocialLoginService
+extension GASocialLogin.GAGoogleLoginService: GASocialLoginService
+{
+    // MARK: - Public API Application Handler
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool
+    {
+        GIDSignIn.sharedInstance()?.clientID = clientIdentifier
+        return true
+    }
+    
+    public func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
+    {
+        let sourceApplicationValue = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String
+        let        annotationValue = options[UIApplicationOpenURLOptionsKey.annotation]
+        
+        return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplicationValue, annotation: annotationValue)
+    }
+
 }

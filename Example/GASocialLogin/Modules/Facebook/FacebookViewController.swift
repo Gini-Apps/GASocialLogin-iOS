@@ -25,24 +25,24 @@ class FacebookViewController: UIViewController {
 
     @IBAction func loginDidTap(_ sender: Any)
     {
-        GASocialLogin.GAFacebookLoginService.shard.loginUser(from: self) {  (result) in
-            
+        GASocialLogin.shard.facebookLoginService?.loginUser(from: self) {  (result) in
+
             DispatchQueue.main.async { [weak self] in
-              
+
                 switch result {
                 case .success(let user, let userData):
-                    
+
                     self?.resultLabel.text = "user.email: \(user.email ?? "") \nuser.facebookId: \(user.facebookId ?? "") \nuser.facebookToken: \(user.facebookToken ?? "")"
                     print("FacebookViewController userData: \(userData)")
-                    
+
                 case .cancelled:
-                    
+
                     self?.resultLabel.text = "cancelled"
-                    
+
                 default:
-                    
+
                     self?.resultLabel.text = "error"
-                    
+
                 }
             }
         }
@@ -53,38 +53,36 @@ class FacebookViewController: UIViewController {
         let fields = "cover,picture.type(large),id,name,first_name,last_name,gender,birthday,email,location,hometown"
         
         let permissions = ["email","public_profile"]
-        
-        GASocialLogin.GAFacebookLoginService.shard.loginUser(byPermissions: permissions, byFields: fields, from: self) {  (result) in
-            
+        GASocialLogin.shard.facebookLoginService?.loginUser(byPermissions: permissions, byFields: fields, from: self) {  (result) in
+
             DispatchQueue.main.async { [weak self] in
-                
+
                 switch result {
                 case .success(let user, let userData):
-                    
+
                     self?.resultLabel.text = "user.email: \(user.email ?? "") \nuser.facebookId: \(user.facebookId ?? "") \nuser.facebookToken: \(user.facebookToken ?? "")"
                     print("FacebookViewController userData: \(userData)")
-                    
+
                 case .cancelled:
-                    
+
                     self?.resultLabel.text = "cancelled"
-                    
+
                 default:
-                    
+
                     self?.resultLabel.text = "error"
-                    
+
                 }
             }
-            
+
         }
     }
     
     @IBAction func permissionsDidTap(_ sender: Any)
     {
-        GASocialLogin.GAFacebookLoginService.shard.facebookURLScheme
-        print(GASocialLogin.GAFacebookLoginService.shard.logInToken ?? "")
-        guard let permissions = GASocialLogin.GAFacebookLoginService.shard.currentTokenPermissions else { return }
+        print(GASocialLogin.shard.facebookLoginService?.logInToken ?? "")
+        guard let permissions = GASocialLogin.shard.facebookLoginService?.currentTokenPermissions else { return }
         print(permissions)
-        
+//
     }
     
     

@@ -20,7 +20,7 @@ class GoogleViewController: UIViewController
 
         // Do any additional setup after loading the view.
         
-        GASocialLogin.GAGoogleLoginService.clientIdentifier = "241630699163-uhj5kr61bpau24tgu86pr2ne2to30nef.apps.googleusercontent.com"
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +32,7 @@ class GoogleViewController: UIViewController
     @IBAction func loginDidTap(_ sender: Any)
     {
         
-        GASocialLogin.GAGoogleLoginService.shard.loginWithGmail(forClientIdentifier: "241630699163-uhj5kr61bpau24tgu86pr2ne2to30nef.apps.googleusercontent.com",viewController: self) { (result) in
+        GASocialLogin.shard.googleLoginService?.loginWithGmail(viewController: self) { (result) in
             
             DispatchQueue.main.async { [weak self] in
                 
