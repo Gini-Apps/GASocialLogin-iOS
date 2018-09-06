@@ -25,13 +25,16 @@ public enum GAGoogleResult
 
 extension GASocialLogin
 {
-    public typealias GAGoogleCompletion = (GAGoogleResult) -> Void
-    public typealias GAGoogleWillDispatchBlock = (GAGoogleSignInMetaData?, Error?) -> Void
-    
     public var googleLoginService: GAGoogleLoginService?
     {
         return services[GAGoogleLoginService.serviceKey] as? GAGoogleLoginService
     }
+}
+
+extension GASocialLogin
+{
+    public typealias GAGoogleCompletion = (GAGoogleResult) -> Void
+    public typealias GAGoogleWillDispatchBlock = (GAGoogleSignInMetaData?, Error?) -> Void
     
     public class GAGoogleLoginService: NSObject
     {

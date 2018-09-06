@@ -41,12 +41,15 @@ public struct GAFacebookProfile
 
 extension GASocialLogin
 {
-    public typealias GAFacebookCompletion = (GAFacebookResult) -> Void
-    
     public var facebookLoginService: GAFacebookLoginService?
     {
         return services[GAFacebookLoginService.serviceKey] as? GAFacebookLoginService
     }
+}
+
+extension GASocialLogin
+{
+    public typealias GAFacebookCompletion = (GAFacebookResult) -> Void
     
     public class GAFacebookLoginService: NSObject
     {
