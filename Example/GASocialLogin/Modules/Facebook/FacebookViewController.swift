@@ -85,6 +85,13 @@ class FacebookViewController: UIViewController {
 //
     }
     
+    @IBAction func accessTokenValidationDidTap(_ sender: Any)
+    {
+        GASocialLogin.shard.facebookLoginService?.checkAccessTokenValidation(completion: { (result, error) in
+            
+            print("result: \(result), error: \(String(describing: error))")
+        })
+    }
     
 }
 

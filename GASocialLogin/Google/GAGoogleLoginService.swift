@@ -27,7 +27,13 @@ extension GASocialLogin
 {
     public var googleLoginService: GAGoogleLoginService?
     {
-        return services[GAGoogleLoginService.serviceKey] as? GAGoogleLoginService
+        guard let service = services[GAGoogleLoginService.serviceKey] as? GAGoogleLoginService else
+        {
+            assertionFailure("You did not pass GAGoogleLoginConfiguration in the GASocialLogin configure method")
+            debugPrint("you did not pass GAGoogleLoginConfiguration in the GASocialLogin configure method")
+            return nil
+        }
+        return service
     }
 }
 
@@ -47,7 +53,7 @@ extension GASocialLogin
         
         public var currentGoogleUser            : GAGoogleUser? // current Google user for log in with google
         
-        public var clientIdentifier      : String // must e set with the client identifier in google developer web site
+        public var clientIdentifier             : String // must e set with the client identifier in google developer web site
         
         
         // MARK: - Object life cycle
@@ -93,7 +99,7 @@ extension GASocialLogin.GAGoogleLoginService
     // MARK: - Enum
     private enum UserDefaultsKeys: String, CustomStringConvertible
     {
-        case user = "come.GASocialLogin.GAGoogleLoginService.user"
+        case user = "com.GASocialLogin.GAGoogleLoginService.user"
         
         var description : String { return rawValue }
     }

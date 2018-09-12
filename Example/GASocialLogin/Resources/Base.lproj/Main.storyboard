@@ -181,9 +181,18 @@
                                     <action selector="permissionsDidTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qAz-tK-eKv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njv-C8-Fr1">
+                                <rect key="frame" x="104" y="478" width="166" height="30"/>
+                                <state key="normal" title="Access Token Validation"/>
+                                <connections>
+                                    <action selector="accessTokenValidationDidTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="6FQ-sQ-r16"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="njv-C8-Fr1" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="HSh-CI-kXl"/>
+                            <constraint firstItem="njv-C8-Fr1" firstAttribute="top" secondItem="s9a-j7-2Gg" secondAttribute="bottom" constant="20" id="L3C-zL-SOr"/>
                             <constraint firstItem="s9a-j7-2Gg" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="NCu-72-ZMv"/>
                             <constraint firstItem="uKD-L2-gpE" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="NWj-9g-DD9"/>
                             <constraint firstItem="cNo-wY-oMd" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="30" id="XBQ-UR-ncH"/>

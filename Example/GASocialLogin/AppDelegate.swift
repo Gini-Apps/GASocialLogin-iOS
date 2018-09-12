@@ -14,16 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         let facebookConfiguration = GAFacebookLoginConfiguration(facebookURLScheme: "fb1202253246595467")
         let googleConfiguration = GAGoogleLoginConfiguration(clientIdentifier: "241630699163-uhj5kr61bpau24tgu86pr2ne2to30nef.apps.googleusercontent.com")
-        GASocialLogin.shard.configure(using: [facebookConfiguration, googleConfiguration])
-//        GASocialLogin.GAFacebookLoginService.shard.handleApplication(application, didFinishLaunchingWithOptions: launchOptions)
+
         
-        GASocialLogin.shard.application(application, didFinishLaunchingWithOptions: launchOptions)
+        GASocialLogin.shard.configure(using: [facebookConfiguration, googleConfiguration], application: application, didFinishLaunchingWithOptions: launchOptions)
         
         return true
     }

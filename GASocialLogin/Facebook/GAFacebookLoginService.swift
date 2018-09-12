@@ -43,13 +43,21 @@ extension GASocialLogin
 {
     public var facebookLoginService: GAFacebookLoginService?
     {
-        return services[GAFacebookLoginService.serviceKey] as? GAFacebookLoginService
+        guard let service = services[GAFacebookLoginService.serviceKey] as? GAFacebookLoginService else
+        {
+            assertionFailure("You did not pass GAFacebookLoginConfiguration in the GASocialLogin configure method")
+            debugPrint("you did not pass GAFacebookLoginConfiguration in the GASocialLogin configure method")
+            return nil
+        }
+        
+        return service
     }
 }
 
 extension GASocialLogin
 {
     public typealias GAFacebookCompletion = (GAFacebookResult) -> Void
+    public typealias GAFacebookAccessTokenValidationCompletion = (Bool, Error?) -> Void
     
     public class GAFacebookLoginService: NSObject
     {
@@ -129,6 +137,37 @@ extension GASocialLogin
             }
         }
         
+        
+        /// Check ig given token is validate using facebook graph request
+        /// GET https://graph.accountkit.com/v1.3/me/?access_token=<access_token>.
+        ///
+        /// - Parameters:
+        ///   - token: the token to check (default value is FBSDKAccessToken.current().tokenString)
+        ///   - completion: the completion handler return true if get data from facebook
+        public func checkAccessTokenValidation(token: String = FBSDKAccessToken.current().tokenString, completion: GAFacebookAccessTokenValidationCompletion?)
+        {
+            let params = ["access_token" : token]
+            let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: params)
+            
+            _ = graphRequest?.start(completionHandler: { (connection, result, error) in
+                
+                if let error = error
+                {
+                    completion?(false, error)
+                    return
+                }
+                
+                guard result != nil else
+                {
+                    completion?(false, nil)
+                    return
+                    
+                }
+                
+                completion?(true, nil)
+            })
+        }
+        
         /// MARK: - Private
         
         /// Call to FBSDKGraphRequest.start by given fields
@@ -145,8 +184,6 @@ extension GASocialLogin
                 completion(.unknownError)
                 return
             }
-            
-            updateLastLoginToken(FBSDKAccessToken.current())
             
             let params = ["fields" : fields]
             let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: params)
@@ -191,30 +228,14 @@ extension GASocialLogin
 // MARK: - Login Token
 extension GASocialLogin.GAFacebookLoginService
 {
-    // MARK: - Enum
-    private enum UserDefaultsKeys: String, CustomStringConvertible
-    {
-        case token = "come.GASocialLogin.GAFacebookLoginService.token"
-        
-        var description : String { return rawValue }
-    }
-    
     // MARK: - Properties
     
     /// Return the current FBSDKAccessToken if nil return the lastLogInToken
     public var logInToken: GAFacebookToken?
     {
-        guard let currentToken  = FBSDKAccessToken.current() else { return lastLogInToken }
+        guard let currentToken = FBSDKAccessToken.current() else { return nil }
         
         return currentToken
-    }
-    
-    /// Return the last save user token (to save token you need to set saveLastLoginToken to true before call to log in)
-    public var lastLogInToken: GAFacebookToken?
-    {
-        guard let data = UserDefaults.standard.data(forKey: UserDefaultsKeys.token.description) else { return nil }
-        let object = NSKeyedUnarchiver.unarchiveObject(with: data)
-        return  object as? GAFacebookToken
     }
     
     /// Return the logInToken permissions
@@ -223,35 +244,6 @@ extension GASocialLogin.GAFacebookLoginService
         guard let currentToken  = logInToken                                else { return nil }
         guard let permissions   = currentToken.permissions as? Set<String>  else { return nil }
         return  permissions
-    }
-    
-    // MARK: - Method
-    
-    /// Remove the last saveed login token
-    public func cleanLastLogInToken()
-    {
-        let userDefaults = UserDefaults.standard
-        
-        userDefaults.set(nil, forKey: UserDefaultsKeys.token.description)
-        
-        userDefaults.synchronize()
-    }
-    
-    private func updateLastLoginToken(_ token: GAFacebookToken)
-    {
-        guard saveLastLoginToken else
-        {
-            cleanLastLogInToken()
-            return
-        }
-        
-        let userDefaults = UserDefaults.standard
-        
-        let data = NSKeyedArchiver.archivedData(withRootObject: token)
-        
-        userDefaults.set(data, forKey: UserDefaultsKeys.token.description)
-        
-        userDefaults.synchronize()
     }
 }
 

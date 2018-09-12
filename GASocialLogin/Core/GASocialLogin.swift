@@ -43,12 +43,26 @@ public class GASocialLogin: NSObject
             services[configuration.serviceName] = configuration.service
         }
     }
+    
+    @discardableResult public func configure(using configurations: [GASocialLoginConfiguration], application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool
+    {
+        configure(using: configurations)
+        return self.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
 }
 
 
 // MARK: - Static functions
 extension GASocialLogin
 {
+    
+    /// Static API for GASocialLoginService configure(using configurations:, application:, didFinishLaunchingWithOptions launchOptions:) -> Bool
+    @discardableResult public static func configure(using configurations: [GASocialLoginConfiguration], application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool
+    {
+        shard.configure(using: configurations)
+        return shard.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
     /// Static API for GASocialLoginService application(: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool
     @discardableResult public static func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool
     {
