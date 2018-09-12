@@ -18,7 +18,9 @@
 #### Table of Contents  
 1. [Requirements](#requirements)
 2. [Installation](#installation)
-3. [Guides](#guides) 
+3. [How to Use](#howToUse)
+4. [Guides](#guides) 
+ 
 
 <a name="requirements"/>
 
@@ -51,6 +53,36 @@ Then, run the following command:
 ```
 $ pod install
 ```
+<a name = "howToUse"/>
+
+# How to Use:
+
+Call to configure with the servises configuration you want at the application didFinishLaunchingWithOptions,
+Than call to GASocialLogin.shard.application(application, didFinishLaunchingWithOptions: launchOptions).
+
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool 
+{
+        // Override point for customization after application launch.
+        
+        let facebookConfiguration = GAFacebookLoginConfiguration(facebookURLScheme: "facebookURLScheme")
+        GASocialLogin.shard.configure(using: [facebookConfiguration])
+        
+        GASocialLogin.shard.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        return true
+}
+```
+
+implement "func application(_ app:, open url: , options: ) -> Bool" and call to GASocialLogin.shard.application(app, open: url, options: options)
+
+```swift
+func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
+{
+        return GASocialLogin.shard.application(app, open: url, options: options)
+}
+```
+
 
 <a name="guides"/>
 
