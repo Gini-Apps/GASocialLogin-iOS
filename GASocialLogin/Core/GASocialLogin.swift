@@ -60,6 +60,18 @@ extension GASocialLogin
     {
         return shard.application(app, open: url, options: options)
     }
+    
+    /// Static API for shard.configure(using: configurations)
+    public static func configure(using configurations: GASocialLoginConfiguration...)
+    {
+        shard.configure(using: configurations)
+    }
+    
+    /// Static API for shard.configure(using: configurations)
+    public static func configure(using configurations: [GASocialLoginConfiguration])
+    {
+        shard.configure(using: configurations)
+    }
 }
 
 // MARK: - GASocialLoginService
