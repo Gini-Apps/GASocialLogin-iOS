@@ -16,11 +16,19 @@
 </p>
 
 #### Table of Contents  
-1. [Requirements](#requirements)
-2. [Installation](#installation)
-3. [How to Use](#howToUse)
-4. [Guides](#guides) 
- 
+1. [Support](#support) 
+2. [Requirements](#requirements)
+3. [Installation](#installation)
+4. [How to Use](#howToUse)
+5. [Guides](#guides) 
+
+<a name="support"/>
+
+# Support
+
+GASocialLogin support the following social login:
+* Facebook
+* Google
 
 <a name="requirements"/>
 
