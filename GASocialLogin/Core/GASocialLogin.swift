@@ -7,31 +7,35 @@
 
 import Foundation
 
-public protocol GASocialLoginConfiguration
-{
-    var service     : GASocialLoginService { get }
-    var serviceName : String { get }
-}
-
-public protocol GASocialLoginService: UIApplicationDelegate
-{
-}
-
+/// GASocialLoginService is a protocol that every login service need to implement
+/// to initialize the social dependency framework
+public protocol GASocialLoginService: UIApplicationDelegate { }
 
 /// Interface struct
 public class GASocialLogin: NSObject
 {
-    public let version = "1.0.1"
     
+    /// Shard instance
     public static let shard = GASocialLogin()
     
+    /// The list of available services by the given GASocialLoginConfiguration
     var services = [String : GASocialLoginService]()
     
+    /// Create services by given GASocialLoginConfiguration
+    /// (example: if you give GAFacebookLoginConfiguration this will create facebook login service).
+    /// Must be call in the application main delegate object (or call to configure(using configurations: [GASocialLoginConfiguration])).
+    ///
+    /// - Parameter configurations: list of GASocialLoginConfiguration
     public func configure(using configurations: GASocialLoginConfiguration...)
     {
         configure(using: configurations)
     }
     
+    /// Create services by given GASocialLoginConfiguration
+    /// (example: if you give GAFacebookLoginConfiguration this will create facebook login service).
+    /// Must be call in the application main delegate object (or call to configure(using configurations: GASocialLoginConfiguration...)).
+    ///
+    /// - Parameter configurations: list of GASocialLoginConfiguration
     public func configure(using configurations: [GASocialLoginConfiguration])
     {
         configurations.forEach { (configuration) in
@@ -41,10 +45,34 @@ public class GASocialLogin: NSObject
     }
 }
 
+
+// MARK: - Static functions
+extension GASocialLogin
+{
+    /// Static API for GASocialLoginService application(: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool
+    @discardableResult public static func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool
+    {
+        return shard.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    /// Static API for GASocialLoginService application(:, open: , options:) -> Bool
+    @discardableResult public static func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool
+    {
+        return shard.application(app, open: url, options: options)
+    }
+}
+
 // MARK: - GASocialLoginService
 extension GASocialLogin: GASocialLoginService
 {
-    @discardableResult public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool
+    
+    /// Pass the call to every to all services and return false if one of them return false
+    ///
+    /// - Parameters:
+    ///   - application: UIApplication object
+    ///   - launchOptions: [UIApplicationLaunchOptionsKey : Any]?
+    /// - Returns: return false only if one of services return false
+    @discardableResult public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool
     {
         var returnValue = true
         services.keys.forEach { (key) in
@@ -65,6 +93,14 @@ extension GASocialLogin: GASocialLoginService
         return returnValue
     }
     
+    
+    /// Pss the call to every to all services and return false if one of them return false
+    ///
+    /// - Parameters:
+    ///   - app: UIApplication object
+    ///   - url: URL
+    ///   - options: [UIApplicationOpenURLOptionsKey : Any]
+    /// - Returns: return false only if one of services return false
     @discardableResult public func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool
     {
         var returnValue = true
