@@ -46,7 +46,7 @@ CocoaPods is a dependency manager for Cocoa projects. You can install it with th
 ```
 $ gem install cocoapods
 ```
-To integrate GABiometricAuthentication into your Xcode project using CocoaPods, specify it in your Podfile:
+To integrate GASocialLogin into your Xcode project using CocoaPods, specify it in your Podfile:
 ```
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '10.0'
