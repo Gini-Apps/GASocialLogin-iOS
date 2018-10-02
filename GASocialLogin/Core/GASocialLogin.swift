@@ -44,7 +44,7 @@ public class GASocialLogin: NSObject
         }
     }
     
-    @discardableResult public func configure(using configurations: [GASocialLoginConfiguration], application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool
+    @discardableResult public func configure(using configurations: [GASocialLoginConfiguration], application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool
     {
         configure(using: configurations)
         return self.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -57,20 +57,20 @@ extension GASocialLogin
 {
     
     /// Static API for GASocialLoginService configure(using configurations:, application:, didFinishLaunchingWithOptions launchOptions:) -> Bool
-    @discardableResult public static func configure(using configurations: [GASocialLoginConfiguration], application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool
+    @discardableResult public static func configure(using configurations: [GASocialLoginConfiguration], application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool
     {
         shard.configure(using: configurations)
         return shard.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     /// Static API for GASocialLoginService application(: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool
-    @discardableResult public static func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool
+    @discardableResult public static func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool
     {
         return shard.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     /// Static API for GASocialLoginService application(:, open: , options:) -> Bool
-    @discardableResult public static func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool
+    @discardableResult public static func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool
     {
         return shard.application(app, open: url, options: options)
     }
@@ -98,7 +98,7 @@ extension GASocialLogin: GASocialLoginService
     ///   - application: UIApplication object
     ///   - launchOptions: [UIApplicationLaunchOptionsKey : Any]?
     /// - Returns: return false only if one of services return false
-    @discardableResult public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool
+    @discardableResult public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool
     {
         var returnValue = true
         services.keys.forEach { (key) in
@@ -127,7 +127,7 @@ extension GASocialLogin: GASocialLoginService
     ///   - url: URL
     ///   - options: [UIApplicationOpenURLOptionsKey : Any]
     /// - Returns: return false only if one of services return false
-    @discardableResult public func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool
+    @discardableResult public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool
     {
         var returnValue = true
         services.keys.forEach { (key) in

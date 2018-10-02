@@ -130,7 +130,7 @@ extension GASocialLogin
                     completion(.cancelled)
                     
                 case false:
-                    print("FACEBOOK LOGIN: SUCCESS - PERMISSIONS: \(result.grantedPermissions)")
+                    print("FACEBOOK LOGIN: SUCCESS - PERMISSIONS: \(String(describing: result.grantedPermissions))")
                     
                     strongSelf.getUserInfo(byFields: fields, loginResult: result, completion: completion)
                 }
@@ -259,7 +259,7 @@ extension GASocialLogin.GAFacebookLoginService: GASocialLoginService
     /// - Parameters:
     ///   - application: UIApplication
     ///   - launchOptions: [UIApplicationLaunchOptionsKey: Any]?
-    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool
     {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
@@ -274,10 +274,10 @@ extension GASocialLogin.GAFacebookLoginService: GASocialLoginService
     ///   - url: url object
     ///   - options: [UIApplicationOpenURLOptionsKey : Any]
     /// - Returns: return the result from facebook
-    public func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
+    public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
     {
-        let sourceApplicationValue = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String
-        let        annotationValue = options[UIApplicationOpenURLOptionsKey.annotation]        as? String
+        let sourceApplicationValue = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String
+        let        annotationValue = options[UIApplication.OpenURLOptionsKey.annotation]        as? String
         
         guard url.scheme == facebookURLScheme else { return true }
         

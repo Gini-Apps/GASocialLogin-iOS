@@ -202,16 +202,16 @@ extension GASocialLogin.GAGoogleLoginService: GIDSignInUIDelegate
 extension GASocialLogin.GAGoogleLoginService: GASocialLoginService
 {
     // MARK: - Public API Application Handler
-    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool
     {
         GIDSignIn.sharedInstance()?.clientID = clientIdentifier
         return true
     }
     
-    public func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
+    public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
     {
-        let sourceApplicationValue = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String
-        let        annotationValue = options[UIApplicationOpenURLOptionsKey.annotation]
+        let sourceApplicationValue = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String
+        let        annotationValue = options[UIApplication.OpenURLOptionsKey.annotation]
         
         return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplicationValue, annotation: annotationValue)
     }
