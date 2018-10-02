@@ -85,6 +85,50 @@ extension GASocialLogin
             googleSignIn?.signIn()
         }
         
+        // MARK: - Public API Method
+        
+        /// Call to google signInSilently and implement the delagte and uiDelegate,
+        /// Attempts to sign in a previously authenticated user without interaction.  The delegate will be
+        /// called at the end of this process indicating success or failure.
+        ///
+        /// - Parameters:
+        ///   - viewController: the current present view controller
+        ///   - willDispatchHandler: block to handle signinWillDispatch
+        ///   - successHandler: log in results call back
+        public func silentLoginWithGmail(viewController: UIViewController, willDispatchHandler: GAGoogleWillDispatchBlock? = nil, successHandler:@escaping GAGoogleCompletion)
+        {
+            parentViewController    = viewController
+            googleCompletion        = successHandler
+            googleWillDispatchBlock = willDispatchHandler
+            
+            let googleSignIn = GIDSignIn.sharedInstance()
+            googleSignIn?.shouldFetchBasicProfile = true
+            googleSignIn?.delegate = self
+            googleSignIn?.uiDelegate = self
+            googleSignIn?.signInSilently()
+        }
+        
+        /// Call to google signOut, marks current user as being in the signed out state.
+        public func signOut()
+        {
+            let googleSignIn = GIDSignIn.sharedInstance()
+            googleSignIn?.shouldFetchBasicProfile = true
+            googleSignIn?.delegate = self
+            googleSignIn?.uiDelegate = self
+            googleSignIn?.signOut()
+        }
+        
+        /// Call to google disconnect, disconnects the current user from the app and revokes previous authentication. If the operation
+        /// succeeds, the OAuth 2.0 token is also removed from keychain.
+        public func disconnect()
+        {
+            let googleSignIn = GIDSignIn.sharedInstance()
+            googleSignIn?.shouldFetchBasicProfile = true
+            googleSignIn?.delegate = self
+            googleSignIn?.uiDelegate = self
+            googleSignIn?.disconnect()
+        }
+        
         private func cleanBlocks()
         {
             googleCompletion        = nil

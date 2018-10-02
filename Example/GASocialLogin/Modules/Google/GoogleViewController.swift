@@ -17,12 +17,12 @@ class GoogleViewController: UIViewController
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -49,15 +49,40 @@ class GoogleViewController: UIViewController
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func silentLoginWithGmail(_ sender: Any)
+    {
+        GASocialLogin.shard.googleLoginService?.silentLoginWithGmail(viewController: self, successHandler: { (result) in
+            
+            DispatchQueue.main.async { [weak self] in
+                
+                switch result {
+                case .success(let user):
+                    
+                    self?.resultLabel.text = "user.profile.email: \(user.profile.email ?? "") \nuser.authentication.clientID: \(user.authentication.clientID ?? "") "
+                    
+                case .error(let error):
+                    
+                    self?.resultLabel.text = error.localizedDescription
+                    
+                }
+            }
+        })
     }
-    */
-
+    
+    @IBAction func signOut(_ sender: Any)
+    {
+        GASocialLogin.shard.googleLoginService?.signOut()
+    }
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Icc-p2-iBh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Icc-p2-iBh">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -108,14 +107,32 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6rK-TO-6oI">
+                                <rect key="frame" x="160.5" y="373" width="54" height="30"/>
+                                <state key="normal" title="signOut"/>
+                                <connections>
+                                    <action selector="signOut:" destination="2OF-SF-n5x" eventType="touchUpInside" id="kS5-W3-AlC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2VF-pE-U8t">
+                                <rect key="frame" x="115.5" y="427" width="144" height="30"/>
+                                <state key="normal" title="silentLoginWithGmail"/>
+                                <connections>
+                                    <action selector="silentLoginWithGmail:" destination="2OF-SF-n5x" eventType="touchUpInside" id="Zhx-NH-rS6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="93V-fM-tB0" secondAttribute="trailing" constant="30" id="3V3-Fa-mB1"/>
                             <constraint firstItem="AWF-3h-hle" firstAttribute="centerY" secondItem="GqJ-gM-Ax3" secondAttribute="centerY" id="CCN-gb-VhK"/>
                             <constraint firstItem="93V-fM-tB0" firstAttribute="leading" secondItem="GqJ-gM-Ax3" secondAttribute="leading" constant="30" id="LQ3-e7-gQt"/>
+                            <constraint firstItem="6rK-TO-6oI" firstAttribute="top" secondItem="AWF-3h-hle" secondAttribute="bottom" constant="24.5" id="P9m-Gh-PxG"/>
                             <constraint firstItem="93V-fM-tB0" firstAttribute="top" secondItem="stG-eJ-CYT" secondAttribute="bottom" constant="30" id="Q1a-oM-QRv"/>
+                            <constraint firstItem="6rK-TO-6oI" firstAttribute="centerX" secondItem="GqJ-gM-Ax3" secondAttribute="centerX" id="W2h-xb-H7w"/>
                             <constraint firstItem="AWF-3h-hle" firstAttribute="centerX" secondItem="GqJ-gM-Ax3" secondAttribute="centerX" id="dVn-JN-Ocj"/>
+                            <constraint firstItem="2VF-pE-U8t" firstAttribute="centerX" secondItem="GqJ-gM-Ax3" secondAttribute="centerX" id="xt4-mv-ZD1"/>
+                            <constraint firstItem="2VF-pE-U8t" firstAttribute="top" secondItem="6rK-TO-6oI" secondAttribute="bottom" constant="24" id="zUd-7M-FEe"/>
                         </constraints>
                     </view>
                     <connections>
@@ -155,7 +172,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKD-L2-gpE">
-                                <rect key="frame" x="120" y="318" width="134" height="30"/>
+                                <rect key="frame" x="120.5" y="318.5" width="134" height="30"/>
                                 <state key="normal" title="login with facebook"/>
                                 <connections>
                                     <action selector="loginDidTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tCm-Ec-Bvt"/>
@@ -168,21 +185,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5L-Q5-6Xj">
-                                <rect key="frame" x="18" y="366" width="339" height="30"/>
+                                <rect key="frame" x="18" y="366.5" width="339" height="30"/>
                                 <state key="normal" title="login with facebook customFieldsAndPermissions"/>
                                 <connections>
                                     <action selector="customFieldsAndPermissionsLoginDidTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZAr-Js-CRk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9a-j7-2Gg">
-                                <rect key="frame" x="145.5" y="428" width="83" height="30"/>
+                                <rect key="frame" x="146" y="428.5" width="83" height="30"/>
                                 <state key="normal" title="permissions"/>
                                 <connections>
                                     <action selector="permissionsDidTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qAz-tK-eKv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njv-C8-Fr1">
-                                <rect key="frame" x="104" y="478" width="166" height="30"/>
+                                <rect key="frame" x="104.5" y="478.5" width="166" height="30"/>
                                 <state key="normal" title="Access Token Validation"/>
                                 <connections>
                                     <action selector="accessTokenValidationDidTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="6FQ-sQ-r16"/>
