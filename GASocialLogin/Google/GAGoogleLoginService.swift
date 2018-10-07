@@ -51,7 +51,11 @@ extension GASocialLogin
         private var googleWillDispatchBlock     : GAGoogleWillDispatchBlock? // block to handle signinWillDispatch
         public var saveLastLoginUser            : Bool // allow auto save last loged in user
         
-        public var currentGoogleUser            : GAGoogleUser? // current Google user for log in with google
+        // current Google user for log in with google
+        public var currentGoogleUser            : GAGoogleUser?
+        {
+            return GIDSignIn.sharedInstance()?.currentUser
+        }
         
         public var clientIdentifier             : String // must e set with the client identifier in google developer web site
         
@@ -137,57 +141,6 @@ extension GASocialLogin
     }
 }
 
-// MARK: Token
-extension GASocialLogin.GAGoogleLoginService
-{
-    // MARK: - Enum
-    private enum UserDefaultsKeys: String, CustomStringConvertible
-    {
-        case user = "com.GASocialLogin.GAGoogleLoginService.user"
-        
-        var description : String { return rawValue }
-    }
-    
-    // MARK: - Properties
-    
-    /// Last saved log in user
-    public var lastLoginUser: GAGoogleUser?
-    {
-        guard let data = UserDefaults.standard.data(forKey: UserDefaultsKeys.user.description) else { return nil }
-        let object = NSKeyedUnarchiver.unarchiveObject(with: data)
-        return  object as? GAGoogleUser
-    }
-    
-    // MARK: - Method
-    
-    /// Remove the last saved login user
-    public func cleanLastLogInToken()
-    {
-        let userDefaults = UserDefaults.standard
-        
-        userDefaults.set(nil, forKey: UserDefaultsKeys.user.description)
-        
-        userDefaults.synchronize()
-    }
-    
-    private func updateLastLoginUser(_ user: GAGoogleUser)
-    {
-        guard saveLastLoginUser else
-        {
-            cleanLastLogInToken()
-            return
-        }
-        
-        let userDefaults = UserDefaults.standard
-        
-        let data = NSKeyedArchiver.archivedData(withRootObject: user)
-        
-        userDefaults.set(data, forKey: UserDefaultsKeys.user.description)
-        
-        userDefaults.synchronize()
-    }
-}
-
 // MARK: - GIDSignInDelegate
 extension GASocialLogin.GAGoogleLoginService: GIDSignInDelegate
 {
@@ -205,7 +158,6 @@ extension GASocialLogin.GAGoogleLoginService: GIDSignInDelegate
             return
         }
         
-        currentGoogleUser = user
         googleCompletion?(.success(user))
         
         cleanBlocks()
