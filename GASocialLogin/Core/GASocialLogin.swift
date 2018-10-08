@@ -15,8 +15,8 @@ public protocol GASocialLoginService: UIApplicationDelegate { }
 public class GASocialLogin: NSObject
 {
     
-    /// Shard instance
-    public static let shard = GASocialLogin()
+    /// Shared instance
+    public static let shared = GASocialLogin()
     
     /// The list of available services by the given GASocialLoginConfiguration
     var services = [String : GASocialLoginService]()
@@ -59,32 +59,32 @@ extension GASocialLogin
     /// Static API for GASocialLoginService configure(using configurations:, application:, didFinishLaunchingWithOptions launchOptions:) -> Bool
     @discardableResult public static func configure(using configurations: [GASocialLoginConfiguration], application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool
     {
-        shard.configure(using: configurations)
-        return shard.application(application, didFinishLaunchingWithOptions: launchOptions)
+        shared.configure(using: configurations)
+        return shared.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     /// Static API for GASocialLoginService application(: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool
     @discardableResult public static func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool
     {
-        return shard.application(application, didFinishLaunchingWithOptions: launchOptions)
+        return shared.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     /// Static API for GASocialLoginService application(:, open: , options:) -> Bool
     @discardableResult public static func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool
     {
-        return shard.application(app, open: url, options: options)
+        return shared.application(app, open: url, options: options)
     }
     
-    /// Static API for shard.configure(using: configurations)
+    /// Static API for shared.configure(using: configurations)
     public static func configure(using configurations: GASocialLoginConfiguration...)
     {
-        shard.configure(using: configurations)
+        shared.configure(using: configurations)
     }
     
-    /// Static API for shard.configure(using: configurations)
+    /// Static API for shared.configure(using: configurations)
     public static func configure(using configurations: [GASocialLoginConfiguration])
     {
-        shard.configure(using: configurations)
+        shared.configure(using: configurations)
     }
 }
 
