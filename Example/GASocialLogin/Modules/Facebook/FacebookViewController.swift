@@ -93,5 +93,10 @@ class FacebookViewController: UIViewController {
         })
     }
     
+     @IBAction func logoutDidTap(_ sender: Any)
+     {
+        GASocialLogin.shared.facebookLoginService?.logOut()
+    }
+    
 }
 

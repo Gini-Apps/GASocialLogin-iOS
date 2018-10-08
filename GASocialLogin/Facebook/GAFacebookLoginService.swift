@@ -109,7 +109,7 @@ extension GASocialLogin
         
         // MARK: - Public API Login
         
-        /// imaplate facebook logIn withReadPermissions and then call to use FBSDKGraphRequest to get user base data
+        /// Impalement facebook logIn withReadPermissions and then call to use FBSDKGraphRequest to get user base data
         ///
         /// - Parameters:
         ///   - permissions: the permissions for faacebook log in (default value is defaultPermissionsKeys)
@@ -166,6 +166,13 @@ extension GASocialLogin
                 
                 completion?(true, nil)
             })
+        }
+        
+        
+        /// Impalement facebook logOut
+        public func logOut()
+        {
+            loginManager.logOut()
         }
         
         /// MARK: - Private

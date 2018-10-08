@@ -120,7 +120,7 @@ extension GASocialLogin: GASocialLoginService
     }
     
     
-    /// Pss the call to every to all services and return false if one of them return false
+    /// Pass the call to every to all services and return false if one of them return false
     ///
     /// - Parameters:
     ///   - app: UIApplication object

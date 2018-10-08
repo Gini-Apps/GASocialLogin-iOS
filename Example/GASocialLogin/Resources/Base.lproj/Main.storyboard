@@ -205,6 +205,13 @@
                                     <action selector="accessTokenValidationDidTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="6FQ-sQ-r16"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ryM-9A-5hc">
+                                <rect key="frame" x="160" y="266" width="55" height="30"/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="logoutDidTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PSE-ZP-Bk6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -213,11 +220,13 @@
                             <constraint firstItem="s9a-j7-2Gg" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="NCu-72-ZMv"/>
                             <constraint firstItem="uKD-L2-gpE" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="NWj-9g-DD9"/>
                             <constraint firstItem="cNo-wY-oMd" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="30" id="XBQ-UR-ncH"/>
+                            <constraint firstItem="uKD-L2-gpE" firstAttribute="top" secondItem="ryM-9A-5hc" secondAttribute="bottom" constant="22.5" id="bfQ-14-u5G"/>
                             <constraint firstItem="o5L-Q5-6Xj" firstAttribute="top" secondItem="uKD-L2-gpE" secondAttribute="bottom" constant="18" id="c94-e8-9E5"/>
                             <constraint firstItem="s9a-j7-2Gg" firstAttribute="top" secondItem="o5L-Q5-6Xj" secondAttribute="bottom" constant="32" id="dlI-j1-yyZ"/>
                             <constraint firstItem="uKD-L2-gpE" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="rVP-D8-OpH"/>
                             <constraint firstItem="o5L-Q5-6Xj" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="rvW-DN-N5W"/>
                             <constraint firstItem="cNo-wY-oMd" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="30" id="weu-zE-52Q"/>
+                            <constraint firstItem="ryM-9A-5hc" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="yf0-Oq-5cC"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cNo-wY-oMd" secondAttribute="trailing" constant="30" id="zYu-ty-3ka"/>
                         </constraints>
                     </view>
