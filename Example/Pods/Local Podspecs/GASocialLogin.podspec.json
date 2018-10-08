@@ -1,6 +1,6 @@
 {
   "name": "GASocialLogin",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "summary": "A short description of GASocialLogin.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/shay-somech/GASocialLogin",
@@ -13,9 +13,9 @@
   },
   "source": {
     "git": "https://github.com/shay-somech/GASocialLogin.git",
-    "tag": "2.1.0"
+    "tag": "2.1.2"
   },
-  "swift_version": "4.1",
+  "swift_version": "4.2",
   "platforms": {
     "ios": "9.0"
   },

@@ -1640,7 +1640,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1000;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1981,6 +1981,39 @@
 			};
 			name = Release;
 		};
+		0D39D07AE63153C63B45D2A88C81CE14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EC7563E74262568190EC541E6FED69D /* GASocialLogin.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GASocialLogin/GASocialLogin-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GASocialLogin/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GASocialLogin/GASocialLogin.modulemap";
+				PRODUCT_MODULE_NAME = GASocialLogin;
+				PRODUCT_NAME = GASocialLogin;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		15D2C4AE0679BCE596269F0711200467 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7439221F0C7838E9E6865DA2F0E183EF /* Bolts.xcconfig */;
@@ -2044,6 +2077,38 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		2E66449EE7E1F24150D8BE332CB42688 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EC7563E74262568190EC541E6FED69D /* GASocialLogin.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GASocialLogin/GASocialLogin-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GASocialLogin/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GASocialLogin/GASocialLogin.modulemap";
+				PRODUCT_MODULE_NAME = GASocialLogin;
+				PRODUCT_NAME = GASocialLogin;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		31605A7F31414211C1BAC55F21E7084A /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2131,6 +2196,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
@@ -2203,38 +2269,6 @@
 			};
 			name = Debug;
 		};
-		96494045B5A4692B8F47E9329AC47141 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EC7563E74262568190EC541E6FED69D /* GASocialLogin.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/GASocialLogin/GASocialLogin-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/GASocialLogin/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/GASocialLogin/GASocialLogin.modulemap";
-				PRODUCT_MODULE_NAME = GASocialLogin;
-				PRODUCT_NAME = GASocialLogin;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		9C98AA0F5B5ED5E89F886D61845C62B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7439221F0C7838E9E6865DA2F0E183EF /* Bolts.xcconfig */;
@@ -2296,39 +2330,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		A2FDAB58EC00E0DEFBBB5480F8D18502 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EC7563E74262568190EC541E6FED69D /* GASocialLogin.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/GASocialLogin/GASocialLogin-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/GASocialLogin/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/GASocialLogin/GASocialLogin.modulemap";
-				PRODUCT_MODULE_NAME = GASocialLogin;
-				PRODUCT_NAME = GASocialLogin;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		AD0D3607F16C1D42E9F9E9BD0437ADE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2469,8 +2470,8 @@
 		22F57404576B4941D8190177C32134A5 /* Build configuration list for PBXNativeTarget "GASocialLogin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				96494045B5A4692B8F47E9329AC47141 /* Debug */,
-				A2FDAB58EC00E0DEFBBB5480F8D18502 /* Release */,
+				2E66449EE7E1F24150D8BE332CB42688 /* Debug */,
+				0D39D07AE63153C63B45D2A88C81CE14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

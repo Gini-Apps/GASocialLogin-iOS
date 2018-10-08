@@ -32,7 +32,7 @@ class GoogleViewController: UIViewController
     @IBAction func loginDidTap(_ sender: Any)
     {
         
-        GASocialLogin.shard.googleLoginService?.loginWithGmail(viewController: self) { (result) in
+        GASocialLogin.shared.googleLoginService?.loginWithGmail(viewController: self) { (result) in
             
             DispatchQueue.main.async { [weak self] in
                 
@@ -52,7 +52,7 @@ class GoogleViewController: UIViewController
     
     @IBAction func silentLoginWithGmail(_ sender: Any)
     {
-        GASocialLogin.shard.googleLoginService?.silentLoginWithGmail(viewController: self, successHandler: { (result) in
+        GASocialLogin.shared.googleLoginService?.silentLoginWithGmail(viewController: self, successHandler: { (result) in
             
             DispatchQueue.main.async { [weak self] in
                 
@@ -72,7 +72,7 @@ class GoogleViewController: UIViewController
     
     @IBAction func signOut(_ sender: Any)
     {
-        GASocialLogin.shard.googleLoginService?.signOut()
+        GASocialLogin.shared.googleLoginService?.signOut()
     }
     
     /*

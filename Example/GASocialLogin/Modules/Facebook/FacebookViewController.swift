@@ -25,7 +25,7 @@ class FacebookViewController: UIViewController {
 
     @IBAction func loginDidTap(_ sender: Any)
     {
-        GASocialLogin.shard.facebookLoginService?.loginUser(from: self) {  (result) in
+        GASocialLogin.shared.facebookLoginService?.loginUser(from: self) {  (result) in
 
             DispatchQueue.main.async { [weak self] in
 
@@ -53,7 +53,7 @@ class FacebookViewController: UIViewController {
         let fields = "cover,picture.type(large),id,name,first_name,last_name,gender,birthday,email,location,hometown"
         
         let permissions = ["email","public_profile"]
-        GASocialLogin.shard.facebookLoginService?.loginUser(byPermissions: permissions, byFields: fields, from: self) {  (result) in
+        GASocialLogin.shared.facebookLoginService?.loginUser(byPermissions: permissions, byFields: fields, from: self) {  (result) in
 
             DispatchQueue.main.async { [weak self] in
 
@@ -79,15 +79,15 @@ class FacebookViewController: UIViewController {
     
     @IBAction func permissionsDidTap(_ sender: Any)
     {
-        print(GASocialLogin.shard.facebookLoginService?.logInToken ?? "")
-        guard let permissions = GASocialLogin.shard.facebookLoginService?.currentTokenPermissions else { return }
+        print(GASocialLogin.shared.facebookLoginService?.logInToken ?? "")
+        guard let permissions = GASocialLogin.shared.facebookLoginService?.currentTokenPermissions else { return }
         print(permissions)
 //
     }
     
     @IBAction func accessTokenValidationDidTap(_ sender: Any)
     {
-        GASocialLogin.shard.facebookLoginService?.checkAccessTokenValidation(completion: { (result, error) in
+        GASocialLogin.shared.facebookLoginService?.checkAccessTokenValidation(completion: { (result, error) in
             
             print("result: \(result), error: \(String(describing: error))")
         })

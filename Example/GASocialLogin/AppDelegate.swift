@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let googleConfiguration = GAGoogleLoginConfiguration(clientIdentifier: "241630699163-uhj5kr61bpau24tgu86pr2ne2to30nef.apps.googleusercontent.com")
 
         
-        GASocialLogin.shard.configure(using: [facebookConfiguration, googleConfiguration], application: application, didFinishLaunchingWithOptions: launchOptions)
+        GASocialLogin.shared.configure(using: [facebookConfiguration, googleConfiguration], application: application, didFinishLaunchingWithOptions: launchOptions)
         
         return true
     }
@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
     {
-        return GASocialLogin.shard.application(app, open: url, options: options)
+        return GASocialLogin.shared.application(app, open: url, options: options)
     }
 }
 
