@@ -182,8 +182,7 @@ extension GASocialLogin.GAGoogleLoginService: GIDSignInUIDelegate
     
     public func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!)
     {
-        parentViewController?.dismiss(animated: false, completion: nil)
-        parentViewController = nil
+        viewController?.dismiss(animated: false, completion: nil)
     }
     
     public func sign(inWillDispatch signIn: GIDSignIn!, error: Error!)
