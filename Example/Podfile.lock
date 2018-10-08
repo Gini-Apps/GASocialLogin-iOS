@@ -9,11 +9,11 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.36.0):
     - FBSDKCoreKit
-  - GASocialLogin/Core (2.1.2)
-  - GASocialLogin/Facebook (2.1.2):
+  - GASocialLogin/Core (2.1.4)
+  - GASocialLogin/Facebook (2.1.4):
     - FBSDKLoginKit (~> 4.36.0)
     - GASocialLogin/Core
-  - GASocialLogin/Google (2.1.2):
+  - GASocialLogin/Google (2.1.4):
     - GASocialLogin/Core
 
 DEPENDENCIES:
@@ -34,7 +34,7 @@ SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   FBSDKCoreKit: 3b8e6570eedb443f9fc4af196a7bf39f18e3a3d8
   FBSDKLoginKit: 8bccb6064708ab2f4251a7fc4e3b6d8d00ad91ba
-  GASocialLogin: 728ac39cdb36e184736d01dc1e70f67d8f715b66
+  GASocialLogin: 3690601efe115187a7e8efbd018700a6b7f17ade
 
 PODFILE CHECKSUM: ad42fd97ec2d1df26d96b0136fe0952bf1cb7692
 

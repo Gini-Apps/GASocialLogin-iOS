@@ -1,9 +1,9 @@
 {
   "name": "GASocialLogin",
-  "version": "2.1.2",
-  "summary": "A short description of GASocialLogin.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/shay-somech/GASocialLogin",
+  "version": "2.1.4",
+  "summary": "Easy social media log in",
+  "description": "Easy social media log in.",
+  "homepage": "https://github.com/Gini-Apps/GASocialLogin",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,8 +12,8 @@
     "idoMeirov": "idom@gini-apps.com"
   },
   "source": {
-    "git": "https://github.com/shay-somech/GASocialLogin.git",
-    "tag": "2.1.2"
+    "git": "https://github.com/Gini-Apps/GASocialLogin.git",
+    "tag": "2.1.4"
   },
   "swift_version": "4.2",
   "platforms": {

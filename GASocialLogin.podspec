@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GASocialLogin'
-  s.version          = '2.1.3'
-  s.summary          = 'A short description of GASocialLogin.'
+  s.version          = '2.1.4'
+  s.summary          = 'Easy social media log in'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,14 +18,14 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+Easy social media log in.
                        DESC
 
-  s.homepage         = 'https://github.com/shay-somech/GASocialLogin'
+  s.homepage         = 'https://github.com/Gini-Apps/GASocialLogin'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'idoMeirov' => 'idom@gini-apps.com' }
-  s.source           = { :git => 'https://github.com/shay-somech/GASocialLogin.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/Gini-Apps/GASocialLogin.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.swift_version    = '4.2'
