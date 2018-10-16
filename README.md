@@ -34,8 +34,8 @@ GASocialLogin support the following social login:
 
 # Requirements:
 * iOS 9.0+ 
-* Xcode 9.4+
-* Swift 4.1+
+* Xcode 10.0+
+* Swift 4.2+
 
 <a name="installation"/>
 
