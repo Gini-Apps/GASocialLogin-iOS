@@ -16,36 +16,26 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "FBSDKAppLinkTarget.h"
 
-@class FBSDKURLConnection;
+@interface FBSDKAppLinkTarget ()
 
-typedef void (^FBSDKURLConnectionHandler)(FBSDKURLConnection *connection,
-                                          NSError *error,
-                                          NSURLResponse *response,
-                                          NSData *responseData);
-
-@protocol FBSDKURLConnectionDelegate <NSObject>
-
-@optional
-
-- (void)facebookURLConnection:(FBSDKURLConnection *)connection
-              didSendBodyData:(NSInteger)bytesWritten
-            totalBytesWritten:(NSInteger)totalBytesWritten
-    totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite;
+@property (nonatomic, strong) NSURL *URL;
+@property (nonatomic, copy) NSString *appStoreId;
+@property (nonatomic, copy) NSString *appName;
 
 @end
 
-@interface FBSDKURLConnection : NSObject
+@implementation FBSDKAppLinkTarget
 
-- (FBSDKURLConnection *)initWithRequest:(NSURLRequest *)request
-                      completionHandler:(FBSDKURLConnectionHandler)handler
-NS_DESIGNATED_INITIALIZER;
-
-@property (nonatomic, weak) id<FBSDKURLConnectionDelegate> delegate;
-
-- (void)cancel;
-- (void)start;
-- (void)setDelegateQueue:(NSOperationQueue *)queue;
++ (instancetype)appLinkTargetWithURL:(NSURL *)url
+                          appStoreId:(NSString *)appStoreId
+                             appName:(NSString *)appName {
+    FBSDKAppLinkTarget *target = [[self alloc] init];
+    target.URL = url;
+    target.appStoreId = appStoreId;
+    target.appName = appName;
+    return target;
+}
 
 @end

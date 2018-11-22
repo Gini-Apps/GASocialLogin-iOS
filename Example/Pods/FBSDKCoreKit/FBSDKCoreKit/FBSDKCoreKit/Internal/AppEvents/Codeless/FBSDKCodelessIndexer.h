@@ -18,12 +18,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FBSDKCoreKit+Internal.h"
+@interface FBSDKCodelessIndexer : NSObject
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface FBSDKDeviceLoginError : FBSDKError
++ (NSString *)extInfo;
 
 @end
-
-NS_ASSUME_NONNULL_END

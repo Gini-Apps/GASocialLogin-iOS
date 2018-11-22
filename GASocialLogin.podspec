@@ -47,7 +47,7 @@ Easy social media log in.
       spec.source_files = 'GASocialLogin/Facebook/**/*'
       
       spec.dependency 'GASocialLogin/Core'
-      spec.dependency 'FBSDKLoginKit', '~> 4.36.0'
+      spec.dependency 'FBSDKLoginKit', '~> 4.38'
 
   end
   

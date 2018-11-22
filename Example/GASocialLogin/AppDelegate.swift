@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let facebookConfiguration = GAFacebookLoginConfiguration(facebookURLScheme: "fb1202253246595467")
-        let googleConfiguration = GAGoogleLoginConfiguration(clientIdentifier: "241630699163-uhj5kr61bpau24tgu86pr2ne2to30nef.apps.googleusercontent.com")
+        let facebookConfiguration = GAFacebookLoginConfiguration(facebookURLScheme: "fbID")
+        let googleConfiguration = GAGoogleLoginConfiguration(clientIdentifier: "id.apps.googleusercontent.com")
 
         
         GASocialLogin.shared.configure(using: [facebookConfiguration, googleConfiguration], application: application, didFinishLaunchingWithOptions: launchOptions)

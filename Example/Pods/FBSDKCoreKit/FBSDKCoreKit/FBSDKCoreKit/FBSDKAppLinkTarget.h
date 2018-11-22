@@ -16,15 +16,30 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "FBSDKDeviceLoginError.h"
+#import <Foundation/Foundation.h>
 
-#import "FBSDKLoginConstants.h"
+NS_ASSUME_NONNULL_BEGIN
 
-@implementation FBSDKDeviceLoginError
+/*!
+ Represents a target defined in App Link metadata, consisting of at least
+ a URL, and optionally an App Store ID and name.
+ */
+@interface FBSDKAppLinkTarget : NSObject
 
-+ (NSString *)errorDomain
-{
-  return FBSDKLoginErrorDomain;
-}
+/*! Creates a FBSDKAppLinkTarget with the given app site and target URL. */
++ (instancetype)appLinkTargetWithURL:(NSURL *)url
+                          appStoreId:(nullable NSString *)appStoreId
+                             appName:(NSString *)appName;
+
+/*! The URL prefix for this app link target */
+@property (nonatomic, strong, readonly) NSURL *URL;
+
+/*! The app ID for the app store */
+@property (nonatomic, copy, readonly, nullable) NSString *appStoreId;
+
+/*! The name of the app */
+@property (nonatomic, copy, readonly) NSString *appName;
 
 @end
+
+NS_ASSUME_NONNULL_END
