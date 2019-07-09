@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GASocialLogin'
-  s.version          = '2.3.1'
+  s.version          = '2.4'
   s.summary          = 'Easy social media log in'
 
 # This description is used to generate tags and improve search results.
@@ -47,7 +47,7 @@ Easy social media log in.
       spec.source_files = 'GASocialLogin/Facebook/**/*'
       
       spec.dependency 'GASocialLogin/Core'
-      spec.dependency 'FBSDKLoginKit', '~> 4.38'
+      spec.dependency 'FBSDKLoginKit', '~> 5.2'
 
   end
   
