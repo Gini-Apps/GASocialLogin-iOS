@@ -296,7 +296,7 @@ extension GASocialLogin.GAFacebookLoginService: GASocialLoginService
     /// - Returns: return the result from facebook
     public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
     {
-        let sourceApplicationValue = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String
+        let sourceApplicationValue = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String
         let        annotationValue = options[UIApplication.OpenURLOptionsKey.annotation]        as? String
         
         guard url.scheme == facebookURLScheme else { return true }
