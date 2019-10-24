@@ -131,7 +131,7 @@ extension GASocialLogin
                     
                 case false:
                     print("FACEBOOK LOGIN: SUCCESS - PERMISSIONS: \(String(describing: result.grantedPermissions))")
-                    
+                    guard result.grantedPermissions.count == permissions.count else { completion(.missingPermissions); return }
                     strongSelf.getUserInfo(byFields: fields, loginResult: result, completion: completion)
                 }
             }
