@@ -9,7 +9,7 @@ import Foundation
 import FBSDKLoginKit
 
 public typealias GAFacebookUserData = [String : Any]
-public typealias GAFacebookToken    = FBSDKAccessToken
+public typealias GAFacebookToken    = AccessToken
 
 
 /// Login result
@@ -68,9 +68,9 @@ extension GASocialLogin
         public let facebookURLScheme                    : String
         
         /// Facebook manager
-        public let loginManager : FBSDKLoginManager = {
+        public let loginManager : LoginManager = {
             
-            let manager = FBSDKLoginManager()
+            let manager = LoginManager()
             return manager
         }()
         
@@ -118,7 +118,7 @@ extension GASocialLogin
         ///   - completion: the call back with the results
         public func loginUser(byPermissions permissions: [String] = defaultPermissionsKeys, byFields fields: String = defaultUserFields,from viewController: UIViewController, with completion: @escaping GAFacebookCompletion)
         {
-            loginManager.logIn(withReadPermissions: permissions, from: viewController) { [weak self] (result, error) in
+            loginManager.logIn(permissions: permissions, from: viewController) { [weak self] (result, error) in
                 
                 guard let strongSelf = self else { return }
                 guard let result = result   else { strongSelf.handelError(for: error, with: completion) ; return }
@@ -131,7 +131,7 @@ extension GASocialLogin
                     
                 case false:
                     print("FACEBOOK LOGIN: SUCCESS - PERMISSIONS: \(String(describing: result.grantedPermissions))")
-                    
+                    guard result.grantedPermissions.count == permissions.count else { completion(.missingPermissions); return }
                     strongSelf.getUserInfo(byFields: fields, loginResult: result, completion: completion)
                 }
             }
@@ -144,12 +144,12 @@ extension GASocialLogin
         /// - Parameters:
         ///   - token: the token to check (default value is FBSDKAccessToken.current().tokenString)
         ///   - completion: the completion handler return true if get data from facebook
-        public func checkAccessTokenValidation(token: String = FBSDKAccessToken.current().tokenString, completion: GAFacebookAccessTokenValidationCompletion?)
+        public func checkAccessTokenValidation(token: String = AccessToken.current?.tokenString ?? "", completion: GAFacebookAccessTokenValidationCompletion?)
         {
             let params = ["access_token" : token]
-            let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: params)
+            let graphRequest = GraphRequest(graphPath: "me", parameters: params)
             
-            _ = graphRequest?.start(completionHandler: { (connection, result, error) in
+            _ = graphRequest.start(completionHandler: { (connection, result, error) in
                 
                 if let error = error
                 {
@@ -183,9 +183,9 @@ extension GASocialLogin
         ///   - fields: fields for facebook FBSDKGraphRequest
         ///   - loginResult: the result of the login as FBSDKLoginManagerLoginResult
         ///   - completion: the call back with the results
-        private func getUserInfo(byFields fields: String, loginResult: FBSDKLoginManagerLoginResult, completion: @escaping GAFacebookCompletion)
+        private func getUserInfo(byFields fields: String, loginResult: LoginManagerLoginResult, completion: @escaping GAFacebookCompletion)
         {
-            guard FBSDKAccessToken.current() != nil else {
+            guard AccessToken.current != nil else {
                 print("FACEBOOK: user not logged in: aborting action")
                 currentFacebookProfile = nil
                 completion(.unknownError)
@@ -193,9 +193,9 @@ extension GASocialLogin
             }
             
             let params = ["fields" : fields]
-            let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: params)
+            let graphRequest = GraphRequest(graphPath: "me", parameters: params)
             
-            _ = graphRequest?.start { [weak self] (connection, result, error) in
+            _ = graphRequest.start { [weak self] (connection, result, error) in
                 
                 guard let strongSelf = self else { return }
                 
@@ -205,14 +205,14 @@ extension GASocialLogin
             }
         }
         
-        private func generateFacebookProfile(with loginResult: FBSDKLoginManagerLoginResult, from userData: GAFacebookUserData, with completion: @escaping GAFacebookCompletion)
+        private func generateFacebookProfile(with loginResult: LoginManagerLoginResult, from userData: GAFacebookUserData, with completion: @escaping GAFacebookCompletion)
         {
             let facebookId  = userData[FacebookKeys.id.description] as? String
             let email       = userData[FacebookKeys.email.description] as? String
             let firstName   = userData[FacebookKeys.firstName.description] as? String
             let lastName    = userData[FacebookKeys.lastName.description] as? String
             
-            let facebookToken = loginResult.token.tokenString as String
+            let facebookToken = loginResult.token?.tokenString
             
             print("FACEBOOK: GRAPH REQUEST: SUCCESS")
             let profile = GAFacebookProfile(facebookId: facebookId, facebookToken: facebookToken,
@@ -238,9 +238,9 @@ extension GASocialLogin.GAFacebookLoginService
     // MARK: - Properties
     
     /// Return the current FBSDKAccessToken if nil return the lastLogInToken
-    public var logInToken: GAFacebookToken?
+    public var logInToken: AccessToken?
     {
-        guard let currentToken = FBSDKAccessToken.current() else { return nil }
+        guard let currentToken = AccessToken.current else { return nil }
         
         return currentToken
     }
@@ -248,11 +248,24 @@ extension GASocialLogin.GAFacebookLoginService
     /// Return the logInToken permissions
     public var currentTokenPermissions: Set<String>?
     {
-        guard let currentToken  = logInToken                                else { return nil }
-        guard let permissions   = currentToken.permissions as? Set<String>  else { return nil }
+        guard let currentToken = logInToken else { return nil }
+        let permissions = currentToken.permissions
+        guard !permissions.isEmpty  else { return nil }
         return  permissions
     }
 }
+
+// NS_REFINED_FOR_SWIFT https://github.com/facebook/facebook-objc-sdk/blob/master/CHANGELOG.md?fbclid=IwAR2b60RVH772cxH8CMuRZT55hrk1LjDB7cehUksPu3sFqd-mXf5VqyT6MtY#swift-developers
+// Certain values have been annotated with NS_REFINED_FOR_SWIFT and can be customized via either:
+// * The Facebook SDK in Swift (Beta)
+// * Implementing custom extensions
+// Custom extensions
+public extension AccessToken {
+    var permissions: Set<String> {
+        return Set(__permissions)
+    }
+}
+
 
 // MARK: -  GASocialLoginService
 extension GASocialLogin.GAFacebookLoginService: GASocialLoginService
@@ -268,7 +281,7 @@ extension GASocialLogin.GAFacebookLoginService: GASocialLoginService
     ///   - launchOptions: [UIApplicationLaunchOptionsKey: Any]?
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool
     {
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
     }
     
@@ -283,11 +296,11 @@ extension GASocialLogin.GAFacebookLoginService: GASocialLoginService
     /// - Returns: return the result from facebook
     public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
     {
-        let sourceApplicationValue = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String
+        let sourceApplicationValue = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String
         let        annotationValue = options[UIApplication.OpenURLOptionsKey.annotation]        as? String
         
         guard url.scheme == facebookURLScheme else { return true }
         
-        return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: sourceApplicationValue, annotation: annotationValue)
+        return ApplicationDelegate.shared.application(app, open: url, sourceApplication: sourceApplicationValue, annotation: annotationValue)
     }
 }

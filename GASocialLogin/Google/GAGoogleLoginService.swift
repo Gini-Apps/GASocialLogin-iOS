@@ -205,8 +205,8 @@ extension GASocialLogin.GAGoogleLoginService: GASocialLoginService
     
     public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
     {
-        let sourceApplicationValue = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String
-        let        annotationValue = options[UIApplication.OpenURLOptionsKey.annotation]
+        let sourceApplicationValue = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String
+        let        annotationValue = options[UIApplication.OpenURLOptionsKey.annotation] as? String
         
         return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplicationValue, annotation: annotationValue)
     }
