@@ -18,7 +18,11 @@
 
 #import <Foundation/Foundation.h>
 
+#if SWIFT_PACKAGE
+#import "FBSDKCopying.h"
+#else
 #import <FBSDKCoreKit/FBSDKCopying.h>
+#endif
 
 #import "FBSDKDialogConfiguration.h"
 #import "FBSDKErrorConfiguration.h"
@@ -43,6 +47,7 @@ typedef NS_OPTIONS(NSUInteger, FBSDKServerConfigurationSmartLoginOptions)
   FBSDKServerConfigurationSmartLoginOptionsRequireConfirmation  = 1 << 1,
 };
 
+NS_SWIFT_NAME(ServerConfiguration)
 @interface FBSDKServerConfiguration : NSObject <FBSDKCopying, NSSecureCoding>
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -72,7 +77,8 @@ implicitPurchaseLoggingEnabled:(BOOL)implicitPurchaseLoggingEnabled
         smartLoginMenuIconURL:(NSURL *)smartLoginMenuIconURL
                 updateMessage:(NSString *)updateMessage
                 eventBindings:(NSArray *)eventBindings
-         codelessSetupEnabled:(BOOL)codelessSetupEnabled
+            restrictiveParams:(NSDictionary<NSString *, id> *)restrictiveParams
+                     AAMRules:(NSDictionary<NSString *, id> *)AAMRules
 NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, assign, readonly, getter=isAdvertisingIDEnabled) BOOL advertisingIDEnabled;
@@ -97,7 +103,8 @@ NS_DESIGNATED_INITIALIZER;
 @property (nonatomic, copy, readonly) NSURL *smartLoginMenuIconURL;
 @property (nonatomic, copy, readonly) NSString *updateMessage;
 @property (nonatomic, copy, readonly) NSArray *eventBindings;
-@property (nonatomic, assign, readonly, getter=isCodelessSetupEnabled) BOOL codelessSetupEnabled;
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, id> *restrictiveParams;
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, id> *AAMRules;
 @property (nonatomic, readonly) NSInteger version;
 
 - (FBSDKDialogConfiguration *)dialogConfigurationForDialogName:(NSString *)dialogName;

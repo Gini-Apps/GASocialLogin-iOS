@@ -1,19 +1,19 @@
 PODS:
-  - Bolts (1.9.0):
-    - Bolts/AppLinks (= 1.9.0)
-    - Bolts/Tasks (= 1.9.0)
-  - Bolts/AppLinks (1.9.0):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.9.0)
-  - FBSDKCoreKit (4.38.1):
-    - Bolts (~> 1.9)
-  - FBSDKLoginKit (4.38.1):
-    - FBSDKCoreKit
-  - GASocialLogin/Core (2.3.0)
-  - GASocialLogin/Facebook (2.3.0):
-    - FBSDKLoginKit (~> 4.38)
+  - FBSDKCoreKit (5.10.0):
+    - FBSDKCoreKit/Basics (= 5.10.0)
+    - FBSDKCoreKit/Core (= 5.10.0)
+  - FBSDKCoreKit/Basics (5.10.0)
+  - FBSDKCoreKit/Core (5.10.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.10.0):
+    - FBSDKLoginKit/Login (= 5.10.0)
+  - FBSDKLoginKit/Login (5.10.0):
+    - FBSDKCoreKit (~> 5.0)
+  - GASocialLogin/Core (2.4.1)
+  - GASocialLogin/Facebook (2.4.1):
+    - FBSDKLoginKit (~> 5.2)
     - GASocialLogin/Core
-  - GASocialLogin/Google (2.3.0):
+  - GASocialLogin/Google (2.4.1):
     - GASocialLogin/Core
 
 DEPENDENCIES:
@@ -21,8 +21,7 @@ DEPENDENCIES:
   - GASocialLogin/Google (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Bolts
+  trunk:
     - FBSDKCoreKit
     - FBSDKLoginKit
 
@@ -31,11 +30,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  FBSDKCoreKit: 8d47857400e2f5bdea697a80daff882e91c84ef6
-  FBSDKLoginKit: 4621c690d9dd8628031a4791497062183ea34b0d
-  GASocialLogin: e1641a2ac348691cd01ada9ce49740e1756fef43
+  FBSDKCoreKit: f9bae468a078f20c05c73450825ccd54cfafbbb7
+  FBSDKLoginKit: 4ece964272a52c4e1363d5c048a545e33761491b
+  GASocialLogin: 0a99b1a87889a82264c31c87b0c9f36b55d4567d
 
 PODFILE CHECKSUM: ad42fd97ec2d1df26d96b0136fe0952bf1cb7692
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

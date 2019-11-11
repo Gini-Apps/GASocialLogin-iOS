@@ -20,7 +20,11 @@
 
 #import "FBSDKAppLinkTarget.h"
 #import "FBSDKAppLink_Internal.h"
+#import "FBSDKCoreKit+Internal.h"
 #import "FBSDKMeasurementEvent_Internal.h"
+#import "FBSDKSettings.h"
+
+NSString *const AutoAppLinkFlagKey = @"is_auto_applink";
 
 @implementation FBSDKURL
 
@@ -88,14 +92,14 @@
                 if (sourceApplication) {
                     logData[@"sourceApplication"] = sourceApplication;
                 }
-                if ([_targetURL absoluteString]) {
-                    logData[@"targetURL"] = [_targetURL absoluteString];
+                if (_targetURL.absoluteString) {
+                    logData[@"targetURL"] = _targetURL.absoluteString;
                 }
-                if ([_inputURL absoluteString]) {
-                    logData[@"inputURL"] = [_inputURL absoluteString];
+                if (_inputURL.absoluteString) {
+                    logData[@"inputURL"] = _inputURL.absoluteString;
                 }
-                if ([_inputURL scheme]) {
-                    logData[@"inputURLScheme"] = [_inputURL scheme];
+                if (_inputURL.scheme) {
+                    logData[@"inputURLScheme"] = _inputURL.scheme;
                 }
                 logData[@"forRenderBackToReferrerBar"] = forRenderBackToReferrerBar ? EVENT_YES_VAL : EVENT_NO_VAL;
                 logData[@"forOpenUrl"] = forOpenURLEvent ? EVENT_YES_VAL : EVENT_NO_VAL;
@@ -110,22 +114,25 @@
     return self;
 }
 
-+ (FBSDKURL *)URLWithURL:(NSURL *)url {
+- (BOOL)isAutoAppLink {
+  NSString *host = self.targetURL.host;
+  NSString *scheme = self.targetURL.scheme;
+  NSString *expectedHost = @"applinks";
+  NSString *expectedScheme = [NSString stringWithFormat:@"fb%@", FBSDKSettings.appID];
+  BOOL autoFlag = [self.appLinkData[AutoAppLinkFlagKey] boolValue];
+  return autoFlag && [expectedHost isEqual:host] && [expectedScheme isEqual:scheme];
+}
+
++ (instancetype)URLWithURL:(NSURL *)url {
     return [[FBSDKURL alloc] initWithURL:url forOpenInboundURL:NO sourceApplication:nil forRenderBackToReferrerBar:NO];
 }
 
-+ (FBSDKURL *)URLWithInboundURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication {
++ (instancetype)URLWithInboundURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication {
     return [[FBSDKURL alloc] initWithURL:url forOpenInboundURL:YES sourceApplication:sourceApplication forRenderBackToReferrerBar:NO];
 }
 
-+ (FBSDKURL *)URLForRenderBackToReferrerBarURL:(NSURL *)url {
++ (instancetype)URLForRenderBackToReferrerBarURL:(NSURL *)url {
     return [[FBSDKURL alloc] initWithURL:url forOpenInboundURL:NO sourceApplication:nil forRenderBackToReferrerBar:YES];
-}
-
-+ (NSString *)decodeURLString:(NSString *)string {
-    return (NSString *)CFBridgingRelease(CFURLCreateStringByReplacingPercentEscapes(NULL,
-                                                                                    (CFStringRef)string,
-                                                                                    CFSTR("")));
 }
 
 + (NSDictionary<NSString *, id> *)queryParametersForURL:(NSURL *)url {
@@ -139,10 +146,10 @@
         NSRange equalsLocation = [component rangeOfString:@"="];
         if (equalsLocation.location == NSNotFound) {
             // There's no equals, so associate the key with NSNull
-            parameters[[self decodeURLString:component]] = [NSNull null];
+            parameters[[FBSDKBasicUtility URLDecode:component]] = [NSNull null];
         } else {
-            NSString *key = [self decodeURLString:[component substringToIndex:equalsLocation.location]];
-            NSString *value = [self decodeURLString:[component substringFromIndex:equalsLocation.location + 1]];
+            NSString *key = [FBSDKBasicUtility URLDecode:[component substringToIndex:equalsLocation.location]];
+            NSString *value = [FBSDKBasicUtility URLDecode:[component substringFromIndex:equalsLocation.location + 1]];
             parameters[key] = value;
         }
     }

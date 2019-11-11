@@ -1,6 +1,6 @@
 {
   "name": "GASocialLogin",
-  "version": "2.3.0",
+  "version": "2.4.1",
   "summary": "Easy social media log in",
   "description": "Easy social media log in.",
   "homepage": "https://github.com/Gini-Apps/GASocialLogin",
@@ -13,9 +13,9 @@
   },
   "source": {
     "git": "https://github.com/Gini-Apps/GASocialLogin.git",
-    "tag": "2.3.0"
+    "tag": "2.4.1"
   },
-  "swift_version": "4.2",
+  "swift_versions": "5.0",
   "platforms": {
     "ios": "9.0"
   },
@@ -34,7 +34,7 @@
 
         ],
         "FBSDKLoginKit": [
-          "~> 4.38"
+          "~> 5.2"
         ]
       }
     },
@@ -63,5 +63,6 @@
         ]
       }
     }
-  ]
+  ],
+  "swift_version": "5.0"
 }
