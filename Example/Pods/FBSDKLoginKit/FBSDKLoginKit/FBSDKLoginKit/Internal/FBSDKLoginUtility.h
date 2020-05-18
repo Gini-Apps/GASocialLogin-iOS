@@ -18,8 +18,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import <FBSDKLoginKit/FBSDKLoginManager.h>
+#import "FBSDKLoginManager.h"
 
+NS_SWIFT_NAME(LoginUtility)
 @interface FBSDKLoginUtility : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
