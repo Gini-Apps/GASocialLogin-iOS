@@ -4,7 +4,7 @@
 //
 //  Created by ido meirov on 05/09/2018.
 //
-// GoogleSignIn version 4.2.0
+// GoogleSignIn version 5.0.2
 
 import Foundation
 import GoogleSignIn
@@ -85,7 +85,7 @@ extension GASocialLogin
             let googleSignIn = GIDSignIn.sharedInstance()
             googleSignIn?.shouldFetchBasicProfile = true
             googleSignIn?.delegate = self
-            googleSignIn?.uiDelegate = self
+            googleSignIn?.presentingViewController = viewController
             googleSignIn?.signIn()
         }
         
@@ -108,8 +108,8 @@ extension GASocialLogin
             let googleSignIn = GIDSignIn.sharedInstance()
             googleSignIn?.shouldFetchBasicProfile = true
             googleSignIn?.delegate = self
-            googleSignIn?.uiDelegate = self
-            googleSignIn?.signInSilently()
+            googleSignIn?.presentingViewController = viewController
+            googleSignIn?.restorePreviousSignIn()
         }
         
         /// Call to google signOut, marks current user as being in the signed out state.
@@ -118,7 +118,6 @@ extension GASocialLogin
             let googleSignIn = GIDSignIn.sharedInstance()
             googleSignIn?.shouldFetchBasicProfile = true
             googleSignIn?.delegate = self
-            googleSignIn?.uiDelegate = self
             googleSignIn?.signOut()
         }
         
@@ -129,7 +128,6 @@ extension GASocialLogin
             let googleSignIn = GIDSignIn.sharedInstance()
             googleSignIn?.shouldFetchBasicProfile = true
             googleSignIn?.delegate = self
-            googleSignIn?.uiDelegate = self
             googleSignIn?.disconnect()
         }
         
@@ -172,27 +170,6 @@ extension GASocialLogin.GAGoogleLoginService: GIDSignInDelegate
     }
 }
 
-// MARK: - GIDSignInUIDelegate
-extension GASocialLogin.GAGoogleLoginService: GIDSignInUIDelegate
-{
-    public func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!)
-    {
-        parentViewController?.present(viewController, animated: false, completion: nil)
-    }
-    
-    public func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!)
-    {
-        viewController?.dismiss(animated: false, completion: nil)
-    }
-    
-    public func sign(inWillDispatch signIn: GIDSignIn!, error: Error!)
-    {
-        googleWillDispatchBlock?(signIn, error)
-        
-        googleWillDispatchBlock = nil
-    }
-}
-
 // MARK: - GASocialLoginService
 extension GASocialLogin.GAGoogleLoginService: GASocialLoginService
 {
@@ -205,10 +182,7 @@ extension GASocialLogin.GAGoogleLoginService: GASocialLoginService
     
     public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
     {
-        let sourceApplicationValue = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String
-        let        annotationValue = options[UIApplication.OpenURLOptionsKey.annotation] as? String
-        
-        return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplicationValue, annotation: annotationValue)
+        return GIDSignIn.sharedInstance().handle(url)
     }
 
 }

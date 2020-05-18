@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GASocialLogin'
-  s.version          = '2.4.1'
+  s.version          = '2.5'
   s.summary          = 'Easy social media log in'
 
 # This description is used to generate tags and improve search results.
@@ -29,7 +29,7 @@ Easy social media log in.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.swift_version    = '4.2'
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '11.0'
   
   s.frameworks = 'UIKit'
 
