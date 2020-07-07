@@ -2,13 +2,18 @@ use_frameworks!
 
 target 'GASocialLogin_Example' do
   
+  # pod 'GoogleSignIn' , '~> 5.0.2'
+  # pod 'FBSDKLoginKit', '~> 7.1.1'
   pod 'GASocialLogin/Facebook', :path => '../'
-  pod 'GASocialLogin/Google', :path => '../'
+  pod 'GASocialLogin/Google'  , :path => '../'
   
-
+  # pod 'AppAuth'                , '~> 1.4.0'
+  # pod 'GTMAppAuth'             , '~> 1.0.0'
+  # pod 'GTMSessionFetcher/Core' , '~> 1.4.0'
+  
   target 'GASocialLogin_Tests' do
     inherit! :search_paths
-
+    
     
   end
 end

@@ -1,6 +1,6 @@
 {
   "name": "GASocialLogin",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "summary": "Easy social media log in",
   "description": "Easy social media log in.",
   "homepage": "https://github.com/Gini-Apps/GASocialLogin",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/Gini-Apps/GASocialLogin.git",
-    "tag": "2.4.1"
+    "tag": "2.5.0"
   },
   "swift_versions": "5.0",
   "platforms": {
@@ -34,7 +34,7 @@
 
         ],
         "FBSDKLoginKit": [
-          "~> 5.2"
+          "~> 7.1.1"
         ]
       }
     },
@@ -47,19 +47,29 @@
       },
       "resources": "GASocialLogin/Assets/Google/GoogleSignIn.bundle",
       "preserve_paths": "GASocialLogin/ExternalVendors/Google/*.framework",
-      "vendored_frameworks": [
-        "GASocialLogin/ExternalVendors/Google/GoogleSignIn.framework",
-        "GASocialLogin/ExternalVendors/Google/GoogleSignInDependencies.framework"
-      ],
+      "vendored_frameworks": "GASocialLogin/ExternalVendors/Google/GoogleSignIn.framework",
       "frameworks": [
         "UIKit",
+        "CoreGraphics",
+        "CoreText",
+        "Foundation",
         "LocalAuthentication",
-        "SafariServices",
-        "SystemConfiguration"
+        "Security",
+        "SystemConfiguration",
+        "SafariServices"
       ],
       "dependencies": {
         "GASocialLogin/Core": [
 
+        ],
+        "AppAuth": [
+          "~> 1.4.0"
+        ],
+        "GTMAppAuth": [
+          "~> 1.0.0"
+        ],
+        "GTMSessionFetcher/Core": [
+          "~> 1.4.0"
         ]
       }
     }

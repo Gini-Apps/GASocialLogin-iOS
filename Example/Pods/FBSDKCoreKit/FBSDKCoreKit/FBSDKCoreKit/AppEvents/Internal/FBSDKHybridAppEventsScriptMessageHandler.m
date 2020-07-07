@@ -16,6 +16,10 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#import "TargetConditionals.h"
+
+#if !TARGET_OS_TV
+
 #import "FBSDKHybridAppEventsScriptMessageHandler.h"
 
 #if SWIFT_PACKAGE
@@ -25,6 +29,7 @@
 #endif
 
 #import "FBSDKAppEvents+Internal.h"
+#import "FBSDKTypeUtility.h"
 
 NSString *const FBSDKAppEventsWKWebViewMessagesPixelReferralParamKey = @"_fb_pixel_referral_id";
 
@@ -41,7 +46,7 @@ NSString *const FBSDKAppEventsWKWebViewMessagesPixelReferralParamKey = @"_fb_pix
       NSMutableDictionary <NSString *, id> *params = nil;
       NSError *jsonParseError = nil;
       if ([stringedParams isKindOfClass:[NSString class]]) {
-        params = [NSJSONSerialization JSONObjectWithData:[stringedParams dataUsingEncoding:NSUTF8StringEncoding]
+        params = [FBSDKTypeUtility JSONObjectWithData:[stringedParams dataUsingEncoding:NSUTF8StringEncoding]
                                                                                     options:NSJSONReadingMutableContainers
                                                                                       error:&jsonParseError
                   ];
@@ -56,7 +61,7 @@ NSString *const FBSDKAppEventsWKWebViewMessagesPixelReferralParamKey = @"_fb_pix
         params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:pixelID, FBSDKAppEventsWKWebViewMessagesPixelReferralParamKey, nil];
       }
       else {
-        params[FBSDKAppEventsWKWebViewMessagesPixelReferralParamKey] = pixelID;
+        [FBSDKTypeUtility dictionary:params setObject:pixelID forKey:FBSDKAppEventsWKWebViewMessagesPixelReferralParamKey];
       }
       [FBSDKAppEvents logInternalEvent:event
                             parameters:params
@@ -66,3 +71,5 @@ NSString *const FBSDKAppEventsWKWebViewMessagesPixelReferralParamKey = @"_fb_pix
 }
 
 @end
+
+#endif

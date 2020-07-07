@@ -24,7 +24,11 @@
 
 static NSString *const FBSDKFeatureManagerPrefix = @"com.facebook.sdk:FBSDKFeatureManager.FBSDKFeature";
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation FBSDKFeatureManager
+
+#pragma mark - Public methods
 
 + (void)checkFeature:(FBSDKFeature)feature
      completionBlock:(FBSDKFeatureManagerBlock)completionBlock
@@ -61,6 +65,8 @@ static NSString *const FBSDKFeatureManagerPrefix = @"com.facebook.sdk:FBSDKFeatu
   [[NSUserDefaults standardUserDefaults] setObject:[FBSDKSettings sdkVersion] forKey:[FBSDKFeatureManagerPrefix stringByAppendingString:featureName]];
 }
 
+#pragma mark - Private methods
+
 + (FBSDKFeature)getParentFeature:(FBSDKFeature)feature
 {
   if ((feature & 0xFF) > 0) {
@@ -90,16 +96,22 @@ static NSString *const FBSDKFeatureManagerPrefix = @"com.facebook.sdk:FBSDKFeatu
     case FBSDKFeatureCodelessEvents: featureName = @"CodelessEvents"; break;
     case FBSDKFeatureRestrictiveDataFiltering: featureName = @"RestrictiveDataFiltering"; break;
     case FBSDKFeatureAAM: featureName = @"AAM"; break;
+    case FBSDKFeaturePrivacyProtection: featureName = @"PrivacyProtection"; break;
+    case FBSDKFeatureSuggestedEvents: featureName = @"SuggestedEvents"; break;
+    case FBSDKFeatureIntelligentIntegrity: featureName = @"IntelligentIntegrity"; break;
+    case FBSDKFeatureModelRequest: featureName = @"ModelRequest"; break;
+    case FBSDKFeatureEventDeactivation: featureName = @"EventDeactivation"; break;
     case FBSDKFeatureInstrument: featureName = @"Instrument"; break;
     case FBSDKFeatureCrashReport: featureName = @"CrashReport"; break;
     case FBSDKFeatureCrashShield: featureName = @"CrashShield"; break;
     case FBSDKFeatureErrorReport: featureName = @"ErrorReport"; break;
+    case FBSDKFeatureMonitoring: featureName = @"Monitoring"; break;
 
     case FBSDKFeatureLogin: featureName = @"LoginKit"; break;
 
     case FBDSDKFeatureShare: featureName = @"ShareKit"; break;
 
-    case FBSDKFeaturePlaces: featureName = @"PlacesKit"; break;
+    case FBDSDKFeatureGamingServices: featureName = @"GamingServicesKit"; break;
   }
 
   return featureName;
@@ -109,14 +121,28 @@ static NSString *const FBSDKFeatureManagerPrefix = @"com.facebook.sdk:FBSDKFeatu
 {
   switch (feature) {
     case FBSDKFeatureRestrictiveDataFiltering:
+    case FBSDKFeatureEventDeactivation:
     case FBSDKFeatureInstrument:
     case FBSDKFeatureCrashReport:
     case FBSDKFeatureCrashShield:
     case FBSDKFeatureErrorReport:
     case FBSDKFeatureAAM:
+    case FBSDKFeaturePrivacyProtection:
+    case FBSDKFeatureSuggestedEvents:
+    case FBSDKFeatureIntelligentIntegrity:
+    case FBSDKFeatureModelRequest:
+    case FBSDKFeatureMonitoring:
       return NO;
-    default: return YES;
+    case FBSDKFeatureLogin:
+    case FBDSDKFeatureShare:
+    case FBSDKFeatureCore:
+    case FBSDKFeatureAppEvents:
+    case FBSDKFeatureCodelessEvents:
+    case FBDSDKFeatureGamingServices:
+      return YES;
   }
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

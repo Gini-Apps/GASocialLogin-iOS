@@ -75,6 +75,10 @@ class GoogleViewController: UIViewController
         GASocialLogin.shared.googleLoginService?.signOut()
     }
     
+    @IBAction func disconnect(_ sender: Any)
+    {
+        GASocialLogin.shared.googleLoginService?.disconnect()
+    }
     /*
      // MARK: - Navigation
      

@@ -85,7 +85,7 @@ extension GASocialLogin
             let googleSignIn = GIDSignIn.sharedInstance()
             googleSignIn?.shouldFetchBasicProfile = true
             googleSignIn?.delegate = self
-            googleSignIn?.uiDelegate = self
+            googleSignIn?.presentingViewController = parentViewController
             googleSignIn?.signIn()
         }
         
@@ -108,8 +108,8 @@ extension GASocialLogin
             let googleSignIn = GIDSignIn.sharedInstance()
             googleSignIn?.shouldFetchBasicProfile = true
             googleSignIn?.delegate = self
-            googleSignIn?.uiDelegate = self
-            googleSignIn?.signInSilently()
+            googleSignIn?.presentingViewController = parentViewController
+            googleSignIn?.restorePreviousSignIn()
         }
         
         /// Call to google signOut, marks current user as being in the signed out state.
@@ -118,7 +118,7 @@ extension GASocialLogin
             let googleSignIn = GIDSignIn.sharedInstance()
             googleSignIn?.shouldFetchBasicProfile = true
             googleSignIn?.delegate = self
-            googleSignIn?.uiDelegate = self
+            googleSignIn?.presentingViewController = parentViewController
             googleSignIn?.signOut()
         }
         
@@ -129,7 +129,7 @@ extension GASocialLogin
             let googleSignIn = GIDSignIn.sharedInstance()
             googleSignIn?.shouldFetchBasicProfile = true
             googleSignIn?.delegate = self
-            googleSignIn?.uiDelegate = self
+            googleSignIn?.presentingViewController = parentViewController
             googleSignIn?.disconnect()
         }
         
@@ -166,30 +166,9 @@ extension GASocialLogin.GAGoogleLoginService: GIDSignInDelegate
     //Login Fail
     public func sign(_ signIn: GIDSignIn!, didDisconnectWith user:GIDGoogleUser!, withError error: Error!)
     {
-        print("Error: \(error.localizedDescription)")
+        print("Error: \(String(describing: error?.localizedDescription))")
         googleCompletion?(.error(error))
         cleanBlocks()
-    }
-}
-
-// MARK: - GIDSignInUIDelegate
-extension GASocialLogin.GAGoogleLoginService: GIDSignInUIDelegate
-{
-    public func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!)
-    {
-        parentViewController?.present(viewController, animated: false, completion: nil)
-    }
-    
-    public func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!)
-    {
-        viewController?.dismiss(animated: false, completion: nil)
-    }
-    
-    public func sign(inWillDispatch signIn: GIDSignIn!, error: Error!)
-    {
-        googleWillDispatchBlock?(signIn, error)
-        
-        googleWillDispatchBlock = nil
     }
 }
 
@@ -203,12 +182,15 @@ extension GASocialLogin.GAGoogleLoginService: GASocialLoginService
         return true
     }
     
+    public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool
+    {
+        let replay = GIDSignIn.sharedInstance().handle(url)
+        return replay
+    }
+    
     public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
     {
-        let sourceApplicationValue = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String
-        let        annotationValue = options[UIApplication.OpenURLOptionsKey.annotation] as? String
-        
-        return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplicationValue, annotation: annotationValue)
+        let replay = GIDSignIn.sharedInstance().handle(url)
+        return replay
     }
-
 }
