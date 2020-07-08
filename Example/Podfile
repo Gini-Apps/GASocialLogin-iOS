@@ -6,6 +6,7 @@ target 'GASocialLogin_Example' do
   # pod 'FBSDKLoginKit', '~> 7.1.1'
   pod 'GASocialLogin/Facebook', :path => '../'
   pod 'GASocialLogin/Google'  , :path => '../'
+  pod 'GASocialLogin/Apple'   , :path => '../'
   
   # pod 'AppAuth'                , '~> 1.4.0'
   # pod 'GTMAppAuth'             , '~> 1.0.0'

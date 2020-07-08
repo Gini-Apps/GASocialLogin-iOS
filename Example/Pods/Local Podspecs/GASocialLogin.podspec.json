@@ -72,6 +72,19 @@
           "~> 1.4.0"
         ]
       }
+    },
+    {
+      "name": "Apple",
+      "source_files": "GASocialLogin/Apple/**/*",
+      "platforms": {
+        "ios": "13.0"
+      },
+      "frameworks": "AuthenticationServices",
+      "dependencies": {
+        "GASocialLogin/Core": [
+
+        ]
+      }
     }
   ],
   "swift_version": "5.0"

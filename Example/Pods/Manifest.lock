@@ -14,6 +14,8 @@ PODS:
     - FBSDKLoginKit/Login (= 7.1.1)
   - FBSDKLoginKit/Login (7.1.1):
     - FBSDKCoreKit (~> 7.1.1)
+  - GASocialLogin/Apple (2.5.0):
+    - GASocialLogin/Core
   - GASocialLogin/Core (2.5.0)
   - GASocialLogin/Facebook (2.5.0):
     - FBSDKLoginKit (~> 7.1.1)
@@ -33,6 +35,7 @@ PODS:
     - GTMSessionFetcher/Core (= 1.4.0)
 
 DEPENDENCIES:
+  - GASocialLogin/Apple (from `../`)
   - GASocialLogin/Facebook (from `../`)
   - GASocialLogin/Google (from `../`)
 
@@ -52,10 +55,10 @@ SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
   FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
-  GASocialLogin: b4963b7ba6a05685cafdb366c5406e4e5f8af3e8
+  GASocialLogin: f7e9198f162886257757a843369737c5c2476e00
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
 
-PODFILE CHECKSUM: f885acaabc21ae87a2fba3fe1a54216f298959da
+PODFILE CHECKSUM: f6bd89e182b7164562b6c86dcd774b0d8ca59845
 
 COCOAPODS: 1.9.3
