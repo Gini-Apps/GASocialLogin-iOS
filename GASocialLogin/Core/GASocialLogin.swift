@@ -119,7 +119,26 @@ extension GASocialLogin: GASocialLoginService
         return returnValue
     }
     
-    
+    @discardableResult public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool
+    {
+        var returnValue = true
+        services.keys.forEach { (key) in
+            
+            guard let service = services[key] else { return }
+            
+            guard let value = service.application?(application, open: url, sourceApplication: sourceApplication, annotation: annotation) else
+            {
+                return
+            }
+            
+            guard !value else { return }
+            
+            returnValue = false
+            
+        }
+        
+        return returnValue
+    }
     /// Pass the call to every to all services and return false if one of them return false
     ///
     /// - Parameters:

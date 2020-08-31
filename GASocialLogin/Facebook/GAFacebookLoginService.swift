@@ -272,35 +272,55 @@ extension GASocialLogin.GAFacebookLoginService: GASocialLoginService
 {
     // MARK: - Public API Application Handler
     
-    /// Call to facebook FBSDKApplicationDelegate.sharedInstance().application(, didFinishLaunchingWithOptions:).
-    /// Need to call application(_ application:, didFinishLaunchingWithOptions launchOptions:) -> Bool
-    /// in the main app delegate
+    ///
+    /// Call this method from the [UIApplicationDelegate application:didFinishLaunchingWithOptions:] method
+    ///  of the AppDelegate for your app. It should be invoked for the proper use of the Facebook SDK.
+    ///  As part of SDK initialization basic auto logging of app events will occur, this can be
+    ///  controlled via 'FacebookAutoLogAppEventsEnabled' key in the project info plist file.
     ///
     /// - Parameters:
-    ///   - application: UIApplication
-    ///   - launchOptions: [UIApplicationLaunchOptionsKey: Any]?
+    ///   - application   The application as passed to [UIApplicationDelegate application:didFinishLaunchingWithOptions:].
+    ///   - launchOptions The launchOptions as passed to [UIApplicationDelegate application:didFinishLaunchingWithOptions:].
+    ///
+    /// - returns YES if the url was intended for the Facebook SDK, NO if not.
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool
     {
-        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-        return true
+        return ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
-    /// Call to facebook FBSDKApplicationDelegate.sharedInstance().application(, open:, sourceApplication:, annotation:).
-    /// need to call on application(_ app: , open url: , options: ) -> Bool
-    /// in the main app delegate.
+    /// Call this method from the [UIApplicationDelegate application:openURL:sourceApplication:annotation:] method
+    /// of the AppDelegate for your app. It should be invoked for the proper processing of responses during interaction
+    /// with the native Facebook app or Safari as part of SSO authorization flow or Facebook dialogs.
     ///
     /// - Parameters:
-    ///   - application: UIApplication
-    ///   - url: url object
-    ///   - options: [UIApplicationOpenURLOptionsKey : Any]
-    /// - Returns: return the result from facebook
-    public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
+    ///   - application The application as passed to [UIApplicationDelegate application:openURL:sourceApplication:annotation:].
+    ///   - url The URL as passed to [UIApplicationDelegate application:openURL:sourceApplication:annotation:].
+    ///   - sourceApplication The sourceApplication as passed to [UIApplicationDelegate application:openURL:sourceApplication:annotation:].
+    ///   - annotation The annotation as passed to [UIApplicationDelegate application:openURL:sourceApplication:annotation:].
+    ///
+    /// - returns YES if the url was intended for the Facebook SDK, NO if not.
+    public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool
+    {
+        return ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
+    /// Call this method from the [UIApplicationDelegate application:openURL:options:] method
+    /// of the AppDelegate for your app. It should be invoked for the proper processing of responses during interaction
+    /// with the native Facebook app or Safari as part of SSO authorization flow or Facebook dialogs.
+    ///
+    /// - Parameters:
+    ///   - application The application as passed to [UIApplicationDelegate application:openURL:options:].
+    ///   - url The URL as passed to [UIApplicationDelegate application:openURL:options:].
+    ///   - options The options dictionary as passed to [UIApplicationDelegate application:openURL:options:].
+    ///
+    /// - Returns: YES if the url was intended for the Facebook SDK, NO if not.
+    public func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
     {
         let sourceApplicationValue = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String
         let        annotationValue = options[UIApplication.OpenURLOptionsKey.annotation]        as? String
         
         guard url.scheme == facebookURLScheme else { return true }
         
-        return ApplicationDelegate.shared.application(app, open: url, sourceApplication: sourceApplicationValue, annotation: annotationValue)
+        return ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplicationValue, annotation: annotationValue)
     }
 }
