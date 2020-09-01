@@ -37,7 +37,7 @@ extension GASocialLogin
 
 extension GASocialLogin
 {
-    public typealias GAAppleCompletion = (GAAppleSignInResult) -> Void
+    public typealias GAAppleSignInCompletion = (GAAppleSignInResult) -> Void
     public typealias GAAppleAuthorizedCompletion = (Bool,Error?) -> Void
     
     public class GAAppleLoginService: NSObject
@@ -45,10 +45,12 @@ extension GASocialLogin
         // MARK: - Properties
         static let serviceKey       = "GASocialLogin.GAAppleLoginService"
         var presentingViewContoller : UIViewController?
-        var appleCompletion         : GAAppleCompletion?
+        var appleCompletion         : GAAppleSignInCompletion?
         var appleIDProvider         : ASAuthorizationAppleIDProvider
         var authorizationController : ASAuthorizationController?
         var currentUser             : GAAppleUserCredential?
+        
+        public private(set)var userIdentifier: String?
         
         
         /// Default permissions if user do not give any permissions
@@ -58,8 +60,9 @@ extension GASocialLogin
         ]
         
         // MARK: - Object life cycle
-        public override init()
+        public init(userIdentifier: String?)
         {
+            self.userIdentifier = userIdentifier
             self.appleIDProvider = ASAuthorizationAppleIDProvider()
             super.init()
         }
@@ -72,7 +75,7 @@ extension GASocialLogin
         ///   - authorizationScopeKeys: the Scope for apple log in (default value is defaultPermissionsKeys)
         ///   - viewController: the current present view controller
         ///   - completion: the call back with the results
-        public func loginWithApple(authorizationScopeKeys: [ASAuthorization.Scope], viewController: UIViewController? = nil, with completion: @escaping GAAppleCompletion)
+        public func loginWithApple(authorizationScopeKeys: [ASAuthorization.Scope] = defaultAuthorizationScopeKeys, viewController: UIViewController? = nil, with completion: @escaping GAAppleSignInCompletion)
         {
             authorizationController = nil
             presentingViewContoller = viewController
@@ -81,49 +84,61 @@ extension GASocialLogin
             let request = appleIDProvider.createRequest()
             request.requestedScopes = authorizationScopeKeys
             
-            let authorizationController         = ASAuthorizationController(authorizationRequests: [request])
-            authorizationController.delegate    = self
+            let controller         = ASAuthorizationController(authorizationRequests: [request])
+            controller.delegate    = self
             
             if viewController != nil {
                 
-                authorizationController.presentationContextProvider = self
+                controller.presentationContextProvider = self
             }
             
-            authorizationController.performRequests()
+            controller.performRequests()
             
-            self.authorizationController = authorizationController
+            authorizationController = controller
         }
         
+        /// Call to google signOut, marks current user as being in the signed out state.
+        public func signOut()
+        {
+            currentUser     = nil
+            userIdentifier  = nil
+        }
         
-        
-        public func checkForExistingAppleUser(viewController: UIViewController?, completion: @escaping GAAppleCompletion)
+        public func checkForExistingAppleUser(viewController: UIViewController?, completion: @escaping GAAppleSignInCompletion)
         {
             authorizationController = nil
             presentingViewContoller = viewController
             appleCompletion         = completion
             
-            let requests = [appleIDProvider.createRequest(),
-                            ASAuthorizationPasswordProvider().createRequest()]
-            
+            let requests = [
+                appleIDProvider.createRequest(),
+                ASAuthorizationPasswordProvider().createRequest()
+            ]
             
             // Create an authorization controller with the given requests.
-            let authorizationController = ASAuthorizationController(authorizationRequests: requests)
+            let controller = ASAuthorizationController(authorizationRequests: requests)
             
-            authorizationController.delegate = self
+            controller.delegate = self
             
             if viewController != nil {
                 
-                authorizationController.presentationContextProvider = self
+                controller.presentationContextProvider = self
             }
             
-            authorizationController.performRequests()
+            controller.performRequests()
             
-            self.authorizationController = authorizationController
+            self.authorizationController = controller
         }
         
         func checkForUserIsAuthorized(completion: @escaping GAAppleAuthorizedCompletion)  {
             
-            appleIDProvider.getCredentialState(forUserID: loadUserIdentifier()) { (credentialState, error) in
+            guard let userIdentifier = userIdentifier else
+            {
+                completion(false, nil)
+                return
+            }
+            
+            appleIDProvider.getCredentialState(forUserID: userIdentifier) { (credentialState, error) in
                 
                 guard error == nil else {
                     
@@ -144,15 +159,6 @@ extension GASocialLogin
         }
         
         // MARK: - Private
-        private func saveUserIdentifier(_ userIdentifier: String)
-        {
-            
-        }
-        
-        private func loadUserIdentifier() -> String
-        {
-            return "";
-        }
     }
 }
 
@@ -160,12 +166,12 @@ extension GASocialLogin
 extension GASocialLogin.GAAppleLoginService: ASAuthorizationControllerPresentationContextProviding {
     
     public func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-     
-        guard let window = presentingViewContoller?.view.window else {
-            
+        guard let vc = presentingViewContoller, vc.isViewLoaded else {
             fatalError("apple presentationContextProvider should not be assin to this class if ther are no view controller")
         }
-        
+        guard let window = vc.view.window else {
+            fatalError("apple presentationContextProvider should not be assin to this class if ther are no view controller")
+        }
         return window
     }
 }
@@ -179,7 +185,7 @@ extension GASocialLogin.GAAppleLoginService: ASAuthorizationControllerDelegate {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
                 
             currentUser = appleIDCredential
-            saveUserIdentifier(appleIDCredential.user)
+            userIdentifier = appleIDCredential.user
             appleCompletion?(.success(appleIDCredential))
             appleCompletion = nil
             
