@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(iOS 13.0, *)
 public struct GAAppleLoginConfiguration
 {
     let userIdentifier: String?
@@ -18,6 +19,7 @@ public struct GAAppleLoginConfiguration
 }
 
 //// MARK: - GASocialLoginConfiguration
+@available(iOS 13.0, *)
 extension GAAppleLoginConfiguration: GASocialLoginConfiguration
 {
     public var service: GASocialLoginService {
