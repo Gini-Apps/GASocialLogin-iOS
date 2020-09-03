@@ -29,7 +29,7 @@ class AppleViewController: UIViewController
         {
         case .success(let user):
             
-            self.resultLabel.text = "user.email: \(user.email ?? "") \nuser.userID: \(user.user) "
+            self.resultLabel.text = "user.email: \(user.email ?? "") \nuser.userID: \(user.user)"
 
             
         case .error(let error):
@@ -47,6 +47,26 @@ class AppleViewController: UIViewController
                 
                 guard let strongSelf = self else { return }
                 strongSelf.handleAppleResult(result)
+            }
+        })
+    }
+    
+    @IBAction func silentLoginWithApple(_ sender: Any)
+    {
+        GASocialLogin.shared.appleLoginService?.silentLoginWithApple(viewController: self, completion: { (result) in
+            
+            DispatchQueue.main.async { [weak self] in
+                
+                switch result {
+                case .success(let user):
+                    
+                    self?.resultLabel.text = "user.email: \(user.email ?? "") \nuser.userID: \(user.user)"
+                    
+                case .error(let error):
+                    
+                    self?.resultLabel.text = error.localizedDescription
+                    
+                }
             }
         })
     }

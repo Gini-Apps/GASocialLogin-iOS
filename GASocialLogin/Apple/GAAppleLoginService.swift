@@ -23,6 +23,12 @@ public enum GAAppleSignInResult
     case error(Error)
 }
 
+public enum GAAppleSignInError: Error
+{
+    case unknow
+    case unAuthorized
+}
+
 @available(iOS 13.0, *)
 extension GASocialLogin
 {
@@ -100,6 +106,33 @@ extension GASocialLogin
             controller.performRequests()
             
             authorizationController = controller
+        }
+        
+        public func silentLoginWithApple(viewController: UIViewController? = nil, completion: @escaping GAAppleSignInCompletion)
+        {
+
+            checkForUserIsAuthorized { [weak self] (isSucceed, error) in
+                
+                guard let strongSelf = self else
+                {
+                    completion(.error(GAAppleSignInError.unknow))
+                    return
+                }
+                
+                guard error == nil else
+                {
+                   completion(.error(error!))
+                    return
+                }
+                
+                guard isSucceed else
+                {
+                    completion(.error(GAAppleSignInError.unAuthorized))
+                    return
+                }
+                
+                strongSelf.checkForExistingAppleUser(viewController: viewController, completion: completion)
+            }
         }
         
         /// Call to signOut user, delete saved user data.
