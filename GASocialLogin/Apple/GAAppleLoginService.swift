@@ -10,6 +10,7 @@ import AuthenticationServices
 
 @available(iOS 13.0, *)
 public typealias GAAppleUserCredential  = ASAuthorizationAppleIDCredential
+@available(iOS 13.0, *)
 public typealias GAAuthorizationKeys    = ASAuthorization.Scope
 
 /// The results of log in with Apple
@@ -137,7 +138,7 @@ extension GASocialLogin
             
             controller.performRequests()
             
-            self.authorizationController = controller
+            authorizationController = controller
         }
         
         /// Check the current connetd user state and return it in the call back
