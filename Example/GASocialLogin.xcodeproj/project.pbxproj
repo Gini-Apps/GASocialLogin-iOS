@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2724D0E5250655FA0096D8BC /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724D0E4250655FA0096D8BC /* UserStorage.swift */; };
 		2760DDE324FE2A6800B651DB /* AppleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760DDE224FE2A6800B651DB /* AppleViewController.swift */; };
 		27D5F850213F938F00B70AB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27D5F84F213F938F00B70AB2 /* GoogleService-Info.plist */; };
 		27D5F854213F967C00B70AB2 /* GoogleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D5F853213F967C00B70AB2 /* GoogleViewController.swift */; };
@@ -37,6 +38,7 @@
 		150DCA37B46A9686180A98D4 /* Pods_GASocialLogin_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GASocialLogin_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		169F99B74E29C7307BBD8B81 /* Pods-GASocialLogin_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GASocialLogin_Tests.release.xcconfig"; path = "Target Support Files/Pods-GASocialLogin_Tests/Pods-GASocialLogin_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		1907E39DC29643A4B154F119 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		2724D0E4250655FA0096D8BC /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
 		2760DDE024FD31DC00B651DB /* GASocialLogin_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GASocialLogin_Example.entitlements; sourceTree = "<group>"; };
 		2760DDE224FE2A6800B651DB /* AppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleViewController.swift; sourceTree = "<group>"; };
 		27D5F84F213F938F00B70AB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				2760DDE224FE2A6800B651DB /* AppleViewController.swift */,
+				2724D0E4250655FA0096D8BC /* UserStorage.swift */,
 			);
 			path = Apple;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				2760DDE324FE2A6800B651DB /* AppleViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				27D5F854213F967C00B70AB2 /* GoogleViewController.swift in Sources */,
+				2724D0E5250655FA0096D8BC /* UserStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

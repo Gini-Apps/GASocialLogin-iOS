@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let facebookConfiguration = GAFacebookLoginConfiguration(facebookURLScheme: "fbID")
         let googleConfiguration = GAGoogleLoginConfiguration(clientIdentifier: "id.apps.googleusercontent.com")
 
-        let appleConfiguration = GAAppleLoginConfiguration()
+        let userIdentifier =  UserStorage.shared.bringAppleUser()
+        
+        let appleConfiguration = GAAppleLoginConfiguration(userIdentifier: userIdentifier?.user)
         
         GASocialLogin.shared.configure(using: [facebookConfiguration, googleConfiguration, appleConfiguration], application: application, didFinishLaunchingWithOptions: launchOptions)
         

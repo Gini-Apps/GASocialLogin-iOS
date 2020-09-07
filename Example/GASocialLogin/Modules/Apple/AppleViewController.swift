@@ -29,13 +29,20 @@ class AppleViewController: UIViewController
         {
         case .success(let user):
             
-            self.resultLabel.text = "user.email: \(user.email ?? "") \nuser.userID: \(user.user) "
+            UserStorage.shared.saveAppleUser(user)
+            self.resultLabel.text = "user.email: \(user.email ?? "") \nuser.userID: \(user.user)"
 
             
         case .error(let error):
                                 
             self.resultLabel.text = error.localizedDescription
         }
+    }
+    
+    func signOutAppleUser()
+    {
+        UserStorage.shared.cleanAppleUser()
+        GASocialLogin.shared.appleLoginService?.signOut()
     }
     
     // MARK: - IBActions
@@ -51,8 +58,33 @@ class AppleViewController: UIViewController
         })
     }
     
+    @IBAction func silentLoginWithApple(_ sender: Any)
+    {
+        GASocialLogin.shared.appleLoginService?.silentLoginWithApple(completion: { [weak self] (isLogIn, error) in
+            
+            DispatchQueue.main.async { [weak self] in
+                
+                guard let strongSelf = self else { return }
+                
+                guard error == nil else {
+                    
+                    strongSelf.resultLabel.text = error?.localizedDescription
+                    return
+                }
+                
+                guard isLogIn, let user = UserStorage.shared.bringAppleUser() else
+                {
+                    strongSelf.signOutAppleUser()
+                    return
+                }
+                
+                strongSelf.resultLabel.text = "user.email: \(user.email ?? "") \nuser.userID: \(user.user)"
+            }
+        })
+    }
+    
     @IBAction func signOut(_ sender: Any)
     {
-        GASocialLogin.shared.appleLoginService?.signOut()
+        signOutAppleUser()
     }
 }
