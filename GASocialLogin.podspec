@@ -75,4 +75,17 @@ Pod::Spec.new do |s|
         spec.dependency 'GTMSessionFetcher/Core' , '~> 1.4.0'
         
     end
+    
+    s.subspec 'Apple' do |spec|
+        
+        spec.source_files = 'GASocialLogin/Apple/**/*'
+        
+        spec.ios.deployment_target = '13.0'
+        
+        spec.frameworks = 'AuthenticationServices'
+        
+        spec.dependency 'GASocialLogin/Core'
+        
+    end
+
 end

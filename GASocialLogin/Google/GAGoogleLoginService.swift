@@ -4,7 +4,7 @@
 //
 //  Created by ido meirov on 05/09/2018.
 //
-// GoogleSignIn version 4.2.0
+// GoogleSignIn version 5.0.2
 
 import Foundation
 import GoogleSignIn

@@ -2,11 +2,75 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Icc-p2-iBh">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Apple View Controller-->
+        <scene sceneID="DNO-IM-xDT">
+            <objects>
+                <viewController id="anX-6O-JcG" customClass="AppleViewController" customModule="GASocialLogin_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BBr-xE-b45"/>
+                        <viewControllerLayoutGuide type="bottom" id="WIG-8z-VIh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9cp-2E-0Km">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="uEg-Ds-WrS">
+                                <rect key="frame" x="115" y="264.5" width="145" height="138"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sX-Oc-XSg">
+                                        <rect key="frame" x="13.5" y="0.0" width="118" height="30"/>
+                                        <state key="normal" title="Log in with Apple"/>
+                                        <connections>
+                                            <action selector="loginDidTap:" destination="2OF-SF-n5x" eventType="touchUpInside" id="5QF-ff-mFU"/>
+                                            <action selector="loginDidTap:" destination="anX-6O-JcG" eventType="touchUpInside" id="V4B-hF-1Sm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FyB-Qz-Sj9">
+                                        <rect key="frame" x="45.5" y="54" width="54" height="30"/>
+                                        <state key="normal" title="signOut"/>
+                                        <connections>
+                                            <action selector="signOut:" destination="2OF-SF-n5x" eventType="touchUpInside" id="jAU-ug-fxo"/>
+                                            <action selector="signOut:" destination="anX-6O-JcG" eventType="touchUpInside" id="nUO-zB-UCN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWT-u1-cg9">
+                                        <rect key="frame" x="0.0" y="108" width="145" height="30"/>
+                                        <state key="normal" title="silentLoginWithApple"/>
+                                        <connections>
+                                            <action selector="silentLoginWithGmail:" destination="2OF-SF-n5x" eventType="touchUpInside" id="I3n-gz-xVh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOS-cb-K0J">
+                                <rect key="frame" x="46" y="74" width="48" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="uEg-Ds-WrS" firstAttribute="centerX" secondItem="9cp-2E-0Km" secondAttribute="centerX" id="3j4-e8-Nuj"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="mOS-cb-K0J" secondAttribute="trailing" constant="30" id="5BY-Sp-p0t"/>
+                            <constraint firstItem="mOS-cb-K0J" firstAttribute="top" secondItem="BBr-xE-b45" secondAttribute="bottom" constant="30" id="XSo-DT-Ieb"/>
+                            <constraint firstItem="mOS-cb-K0J" firstAttribute="leading" secondItem="9cp-2E-0Km" secondAttribute="leadingMargin" constant="30" id="b31-0i-0qG"/>
+                            <constraint firstItem="uEg-Ds-WrS" firstAttribute="centerY" secondItem="9cp-2E-0Km" secondAttribute="centerY" id="kJf-bJ-jFT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="jgn-3w-dv7"/>
+                    <connections>
+                        <outlet property="resultLabel" destination="mOS-cb-K0J" id="i4Z-Pj-9PT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="td6-2w-cnQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-351" y="-697"/>
+        </scene>
         <!--Root View Controller-->
         <scene sceneID="0cL-MA-nsL">
             <objects>
@@ -64,6 +128,30 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="2OF-SF-n5x" kind="show" id="JWM-ug-Mb3"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="63" id="GgS-kf-2HC">
+                                        <rect key="frame" x="0.0" y="154" width="375" height="63"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GgS-kf-2HC" id="OLa-AA-wHQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3c-J7-9xt">
+                                                    <rect key="frame" x="16" y="21" width="343" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="F3c-J7-9xt" firstAttribute="centerY" secondItem="OLa-AA-wHQ" secondAttribute="centerY" id="df1-h8-4Z6"/>
+                                                <constraint firstItem="F3c-J7-9xt" firstAttribute="leading" secondItem="OLa-AA-wHQ" secondAttribute="leadingMargin" id="elT-EO-Et5"/>
+                                                <constraint firstItem="F3c-J7-9xt" firstAttribute="trailing" secondItem="OLa-AA-wHQ" secondAttribute="trailingMargin" id="sZn-eG-tvV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="anX-6O-JcG" kind="show" id="ZFW-jG-7uk"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
