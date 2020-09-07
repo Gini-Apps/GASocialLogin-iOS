@@ -29,6 +29,7 @@ class AppleViewController: UIViewController
         {
         case .success(let user):
             
+            UserStorage.shared.saveAppleUser(user)
             self.resultLabel.text = "user.email: \(user.email ?? "") \nuser.userID: \(user.user)"
 
             
@@ -36,6 +37,12 @@ class AppleViewController: UIViewController
                                 
             self.resultLabel.text = error.localizedDescription
         }
+    }
+    
+    func signOutAppleUser()
+    {
+        UserStorage.shared.cleanAppleUser()
+        GASocialLogin.shared.appleLoginService?.signOut()
     }
     
     // MARK: - IBActions
@@ -53,26 +60,31 @@ class AppleViewController: UIViewController
     
     @IBAction func silentLoginWithApple(_ sender: Any)
     {
-        GASocialLogin.shared.appleLoginService?.silentLoginWithApple(viewController: self, completion: { (result) in
+        GASocialLogin.shared.appleLoginService?.silentLoginWithApple(completion: { [weak self] (isLogIn, error) in
             
             DispatchQueue.main.async { [weak self] in
                 
-                switch result {
-                case .success(let user):
+                guard let strongSelf = self else { return }
+                
+                guard error == nil else {
                     
-                    self?.resultLabel.text = "user.email: \(user.email ?? "") \nuser.userID: \(user.user)"
-                    
-                case .error(let error):
-                    
-                    self?.resultLabel.text = error.localizedDescription
-                    
+                    strongSelf.resultLabel.text = error?.localizedDescription
+                    return
                 }
+                
+                guard isLogIn, let user = UserStorage.shared.bringAppleUser() else
+                {
+                    strongSelf.signOutAppleUser()
+                    return
+                }
+                
+                strongSelf.resultLabel.text = "user.email: \(user.email ?? "") \nuser.userID: \(user.user)"
             }
         })
     }
     
     @IBAction func signOut(_ sender: Any)
     {
-        GASocialLogin.shared.appleLoginService?.signOut()
+        signOutAppleUser()
     }
 }

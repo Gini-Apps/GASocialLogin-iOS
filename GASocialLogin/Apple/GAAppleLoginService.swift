@@ -109,33 +109,6 @@ extension GASocialLogin
             authorizationController = controller
         }
         
-        public func silentLoginWithApple(viewController: UIViewController? = nil, completion: @escaping GAAppleSignInCompletion)
-        {
-
-            checkForUserIsAuthorized { [weak self] (isSucceed, error) in
-                
-                guard let strongSelf = self else
-                {
-                    completion(.error(GAAppleSignInError.unknow))
-                    return
-                }
-                
-                guard error == nil else
-                {
-                   completion(.error(error!))
-                    return
-                }
-                
-                guard isSucceed else
-                {
-                    completion(.error(GAAppleSignInError.unAuthorized))
-                    return
-                }
-                
-                strongSelf.checkForExistingAppleUser(viewController: viewController, completion: completion)
-            }
-        }
-        
         /// Call to signOut user, delete saved user data.
         public func signOut()
         {
@@ -143,40 +116,9 @@ extension GASocialLogin
             userIdentifier  = nil
         }
         
-        
-        /// Check for signed in user and return the user info in the call back
-        /// - Parameters:
-        ///   - viewController: the current present view controller
-        ///   - completion: the call back with the results
-        public func checkForExistingAppleUser(viewController: UIViewController?, completion: @escaping GAAppleSignInCompletion)
-        {
-            authorizationController = nil
-            presentingViewContoller = viewController
-            appleCompletion         = completion
-            
-            let requests = [
-                appleIDProvider.createRequest(),
-                ASAuthorizationPasswordProvider().createRequest()
-            ]
-            
-            // Create an authorization controller with the given requests.
-            let controller = ASAuthorizationController(authorizationRequests: requests)
-            
-            controller.delegate = self
-            
-            if viewController != nil {
-                
-                controller.presentationContextProvider = self
-            }
-            
-            controller.performRequests()
-            
-            authorizationController = controller
-        }
-        
-        /// Check the current connetd user state and return it in the call back
+        /// Check if the given user id is authorized and return the result it in the call back
         /// - Parameter completion: the call back with the results
-        func checkForUserIsAuthorized(completion: @escaping GAAppleAuthorizedCompletion)
+        public func silentLoginWithApple(completion: @escaping GAAppleAuthorizedCompletion)
         {
             guard let userIdentifier = userIdentifier else
             {
@@ -210,7 +152,6 @@ extension GASocialLogin
 @available(iOS 13.0, *)
 extension GASocialLogin.GAAppleLoginService: ASAuthorizationControllerPresentationContextProviding
 {
-    
     public func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor
     {
         guard let vc = presentingViewContoller, vc.isViewLoaded else {
@@ -227,7 +168,6 @@ extension GASocialLogin.GAAppleLoginService: ASAuthorizationControllerPresentati
 @available(iOS 13.0, *)
 extension GASocialLogin.GAAppleLoginService: ASAuthorizationControllerDelegate
 {
- 
     public func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization)
     {
         switch authorization.credential {
