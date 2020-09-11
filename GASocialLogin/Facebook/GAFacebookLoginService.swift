@@ -85,7 +85,7 @@ extension GASocialLogin
         /// Default fields for graph request if user do not give any fields
         public static let defaultUserFields = "id, name, email, first_name, last_name"
         
-        // MARK: - Enume
+        // MARK: - Enum
         /// User base metadata keys
         private enum FacebookKeys : String , CustomStringConvertible
         {

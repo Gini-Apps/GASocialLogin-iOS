@@ -9,7 +9,7 @@
 import Foundation
 import GoogleSignIn
 
-public typealias GAGoogleUser = GIDGoogleUser
+public typealias GAGoogleUser           = GIDGoogleUser
 public typealias GAGoogleSignInMetaData = GIDSignIn
 
 
@@ -39,7 +39,7 @@ extension GASocialLogin
 
 extension GASocialLogin
 {
-    public typealias GAGoogleCompletion = (GAGoogleResult) -> Void
+    public typealias GAGoogleCompletion        = (GAGoogleResult) -> Void
     public typealias GAGoogleWillDispatchBlock = (GAGoogleSignInMetaData?, Error?) -> Void
     
     public class GAGoogleLoginService: NSObject
