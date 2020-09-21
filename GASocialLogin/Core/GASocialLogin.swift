@@ -119,6 +119,7 @@ extension GASocialLogin: GASocialLoginService
         return returnValue
     }
     
+    @available(iOS, introduced: 4.2, deprecated: 9.0)
     @discardableResult public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool
     {
         var returnValue = true

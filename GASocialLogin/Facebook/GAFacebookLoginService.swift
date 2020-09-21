@@ -299,6 +299,7 @@ extension GASocialLogin.GAFacebookLoginService: GASocialLoginService
     ///   - annotation The annotation as passed to [UIApplicationDelegate application:openURL:sourceApplication:annotation:].
     ///
     /// - returns YES if the url was intended for the Facebook SDK, NO if not.
+    @available(iOS, introduced: 4.2, deprecated: 9.0)
     public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool
     {
         return ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
