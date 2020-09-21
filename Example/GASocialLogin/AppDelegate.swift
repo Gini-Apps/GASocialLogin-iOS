@@ -20,11 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let facebookConfiguration = GAFacebookLoginConfiguration(facebookURLScheme: "fbID")
         let googleConfiguration = GAGoogleLoginConfiguration(clientIdentifier: "id.apps.googleusercontent.com")
 
-        let userIdentifier =  UserStorage.shared.bringAppleUser()
+        if #available(iOS 13.0, *) {
+            let userIdentifier =  UserStorage.shared.bringAppleUser()
+            let appleConfiguration = GAAppleLoginConfiguration(userIdentifier: userIdentifier?.user)
+            GASocialLogin.shared.configure(using: [facebookConfiguration, googleConfiguration, appleConfiguration], application: application, didFinishLaunchingWithOptions: launchOptions)
+        } else {
+            // Fallback on earlier versions
+            GASocialLogin.shared.configure(using: [facebookConfiguration, googleConfiguration], application: application, didFinishLaunchingWithOptions: launchOptions)
+        }
         
-        let appleConfiguration = GAAppleLoginConfiguration(userIdentifier: userIdentifier?.user)
         
-        GASocialLogin.shared.configure(using: [facebookConfiguration, googleConfiguration, appleConfiguration], application: application, didFinishLaunchingWithOptions: launchOptions)
         
         return true
     }

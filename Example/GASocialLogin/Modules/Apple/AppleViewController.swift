@@ -23,6 +23,7 @@ class AppleViewController: UIViewController
     }
     
     // MARK: - Methods
+    @available(iOS 13.0, *)
     func handleAppleResult(_ result: GAAppleSignInResult)
     {
         switch result
@@ -39,6 +40,7 @@ class AppleViewController: UIViewController
         }
     }
     
+    @available(iOS 13.0, *)
     func signOutAppleUser()
     {
         UserStorage.shared.cleanAppleUser()
@@ -48,43 +50,55 @@ class AppleViewController: UIViewController
     // MARK: - IBActions
     @IBAction func loginDidTap(_ sender: Any)
     {
-        GASocialLogin.shared.appleLoginService?.loginWithApple(with: { (result) in
-            
-            DispatchQueue.main.async { [weak self] in
+        if #available(iOS 13.0, *) {
+            GASocialLogin.shared.appleLoginService?.loginWithApple(with: { (result) in
                 
-                guard let strongSelf = self else { return }
-                strongSelf.handleAppleResult(result)
-            }
-        })
+                DispatchQueue.main.async { [weak self] in
+                    
+                    guard let strongSelf = self else { return }
+                    strongSelf.handleAppleResult(result)
+                }
+            })
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     @IBAction func silentLoginWithApple(_ sender: Any)
     {
-        GASocialLogin.shared.appleLoginService?.silentLoginWithApple(completion: { [weak self] (isLogIn, error) in
-            
-            DispatchQueue.main.async { [weak self] in
+        if #available(iOS 13.0, *) {
+            GASocialLogin.shared.appleLoginService?.silentLoginWithApple(completion: { [weak self] (isLogIn, error) in
                 
-                guard let strongSelf = self else { return }
-                
-                guard error == nil else {
+                DispatchQueue.main.async { [weak self] in
                     
-                    strongSelf.resultLabel.text = error?.localizedDescription
-                    return
+                    guard let strongSelf = self else { return }
+                    
+                    guard error == nil else {
+                        
+                        strongSelf.resultLabel.text = error?.localizedDescription
+                        return
+                    }
+                    
+                    guard isLogIn, let user = UserStorage.shared.bringAppleUser() else
+                    {
+                        strongSelf.signOutAppleUser()
+                        return
+                    }
+                    
+                    strongSelf.resultLabel.text = "user.email: \(user.email ?? "") \nuser.userID: \(user.user)"
                 }
-                
-                guard isLogIn, let user = UserStorage.shared.bringAppleUser() else
-                {
-                    strongSelf.signOutAppleUser()
-                    return
-                }
-                
-                strongSelf.resultLabel.text = "user.email: \(user.email ?? "") \nuser.userID: \(user.user)"
-            }
-        })
+            })
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     @IBAction func signOut(_ sender: Any)
     {
-        signOutAppleUser()
+        if #available(iOS 13.0, *) {
+            signOutAppleUser()
+        } else {
+            // Fallback on earlier versions
+        }
     }
 }

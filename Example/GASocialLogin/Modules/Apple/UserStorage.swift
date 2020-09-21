@@ -26,6 +26,7 @@ class UserStorage
     }
     
     // MARK: Methods
+    @available(iOS 13.0, *)
     func saveAppleUser(_ user: GAAppleUserCredential)
     {
         let data: Data?
@@ -43,6 +44,7 @@ class UserStorage
         userDefaults.synchronize()
     }
     
+    @available(iOS 13.0, *)
     func bringAppleUser() -> GAAppleUserCredential?
     {
         
