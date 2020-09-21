@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
         
         spec.source_files = 'GASocialLogin/Apple/**/*'
         
-        spec.ios.deployment_target = '13.0'
+        # spec.ios.deployment_target = '13.0'
         
         spec.frameworks = 'AuthenticationServices'
         
