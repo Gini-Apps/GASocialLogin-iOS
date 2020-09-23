@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'GASocialLogin'
-    s.version          = '2.6.2'
+    s.version          = '2.6.3'
     s.summary          = 'Easy social media log in'
     
     # This description is used to generate tags and improve search results.
@@ -57,7 +57,11 @@ Pod::Spec.new do |s|
         
         spec.pod_target_xcconfig = {
             'OTHER_SWIFT_FLAGS' => '$(inherited) -DSYNCSERVER_GOOGLE_SIGNIN',
-            'OTHER_LDFLAGS' => '$(inherited) -ObjC'
+            'OTHER_LDFLAGS' => '$(inherited) -ObjC',
+            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s'
+        }
+        spec.user_target_xcconfig = {
+            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s'
         }
         
         spec.resource =
