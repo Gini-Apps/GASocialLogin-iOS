@@ -125,13 +125,14 @@ extension GASocialLogin
                 
                 switch result.isCancelled {
                 case true:
-                    print("FACEBOOK LOGIN: CANCELLED")
+                    debugPrint("FACEBOOK LOGIN: CANCELLED")
                     self?.currentFacebookProfile = nil
                     completion(.cancelled)
                     
                 case false:
-                    print("FACEBOOK LOGIN: SUCCESS - PERMISSIONS: \(String(describing: result.grantedPermissions))")
-                    guard result.grantedPermissions.count == permissions.count else { completion(.missingPermissions); return }
+                    debugPrint("FACEBOOK LOGIN: SUCCESS - PERMISSIONS: \(String(describing: result.grantedPermissions))")
+                    
+                    guard result.grantedPermissions.isSubset(of: Set(permissions)) else { completion(.missingPermissions); return }
                     strongSelf.getUserInfo(byFields: fields, loginResult: result, completion: completion)
                 }
             }
@@ -186,7 +187,7 @@ extension GASocialLogin
         private func getUserInfo(byFields fields: String, loginResult: LoginManagerLoginResult, completion: @escaping GAFacebookCompletion)
         {
             guard AccessToken.current != nil else {
-                print("FACEBOOK: user not logged in: aborting action")
+                debugPrint("FACEBOOK: user not logged in: aborting action")
                 currentFacebookProfile = nil
                 completion(.unknownError)
                 return
@@ -214,7 +215,7 @@ extension GASocialLogin
             
             let facebookToken = loginResult.token?.tokenString
             
-            print("FACEBOOK: GRAPH REQUEST: SUCCESS")
+            debugPrint("FACEBOOK: GRAPH REQUEST: SUCCESS")
             let profile = GAFacebookProfile(facebookId: facebookId, facebookToken: facebookToken,
                                             firstName: firstName, lastName: lastName, email: email)
             

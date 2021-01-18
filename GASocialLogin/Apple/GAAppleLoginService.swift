@@ -183,7 +183,7 @@ extension GASocialLogin.GAAppleLoginService: ASAuthorizationControllerDelegate
         case let passwordCredential as ASPasswordCredential:
         
             // TODO: find when this case is return from apple
-            print("passwordCredential = \(passwordCredential)")
+            debugPrint("passwordCredential = \(passwordCredential)")
             break;
             
         default:

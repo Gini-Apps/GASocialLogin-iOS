@@ -150,7 +150,7 @@ extension GASocialLogin.GAGoogleLoginService: GIDSignInDelegate
         
         guard error == nil else
         {
-            print("Error: \(error.localizedDescription)")
+            debugPrint("Error: \(error.localizedDescription)")
             googleCompletion?(.error(error))
             
             cleanBlocks()
@@ -166,7 +166,7 @@ extension GASocialLogin.GAGoogleLoginService: GIDSignInDelegate
     //Login Fail
     public func sign(_ signIn: GIDSignIn!, didDisconnectWith user:GIDGoogleUser!, withError error: Error!)
     {
-        print("Error: \(String(describing: error?.localizedDescription))")
+        debugPrint("Error: \(String(describing: error?.localizedDescription))")
         googleCompletion?(.error(error))
         cleanBlocks()
     }
