@@ -18,8 +18,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		BA098D62D10F078710B430D5 /* Pods_GASocialLogin_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 150DCA37B46A9686180A98D4 /* Pods_GASocialLogin_Example.framework */; };
-		FD549680A76C775624DBCDA6 /* Pods_GASocialLogin_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52271901C921FCE06C6FA8D /* Pods_GASocialLogin_Tests.framework */; };
+		650AE3B3313DEB41D02CEF3C /* Pods_GASocialLogin_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9347572309063CA4939374 /* Pods_GASocialLogin_Tests.framework */; };
+		BE56EDD73FEF78003487F4B4 /* Pods_GASocialLogin_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B29F1EBFFD3456C35896B524 /* Pods_GASocialLogin_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,17 +33,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		099A94991169777B9B93D3A1 /* Pods-GASocialLogin_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GASocialLogin_Example.release.xcconfig"; path = "Target Support Files/Pods-GASocialLogin_Example/Pods-GASocialLogin_Example.release.xcconfig"; sourceTree = "<group>"; };
-		13EE81468C9D619B538CDF9D /* Pods-GASocialLogin_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GASocialLogin_Tests.debug.xcconfig"; path = "Target Support Files/Pods-GASocialLogin_Tests/Pods-GASocialLogin_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		150DCA37B46A9686180A98D4 /* Pods_GASocialLogin_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GASocialLogin_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		169F99B74E29C7307BBD8B81 /* Pods-GASocialLogin_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GASocialLogin_Tests.release.xcconfig"; path = "Target Support Files/Pods-GASocialLogin_Tests/Pods-GASocialLogin_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		1907E39DC29643A4B154F119 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		1D137631A7217B842D1E1DA1 /* Pods-GASocialLogin_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GASocialLogin_Example.release.xcconfig"; path = "Target Support Files/Pods-GASocialLogin_Example/Pods-GASocialLogin_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2724D0E4250655FA0096D8BC /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
 		2760DDE024FD31DC00B651DB /* GASocialLogin_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GASocialLogin_Example.entitlements; sourceTree = "<group>"; };
 		2760DDE224FE2A6800B651DB /* AppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleViewController.swift; sourceTree = "<group>"; };
 		27D5F84F213F938F00B70AB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27D5F853213F967C00B70AB2 /* GoogleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleViewController.swift; sourceTree = "<group>"; };
 		27D5F855213FAA1D00B70AB2 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		41705188D6DE673464A932D4 /* Pods-GASocialLogin_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GASocialLogin_Tests.debug.xcconfig"; path = "Target Support Files/Pods-GASocialLogin_Tests/Pods-GASocialLogin_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		5146266F982C3E344FC68189 /* Pods-GASocialLogin_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GASocialLogin_Tests.release.xcconfig"; path = "Target Support Files/Pods-GASocialLogin_Tests/Pods-GASocialLogin_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* GASocialLogin_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GASocialLogin_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,10 +53,11 @@
 		607FACE51AFB9204008FA782 /* GASocialLogin_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GASocialLogin_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		7326F0A267F9919C592EF686 /* Pods-GASocialLogin_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GASocialLogin_Example.debug.xcconfig"; path = "Target Support Files/Pods-GASocialLogin_Example/Pods-GASocialLogin_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		9FEED699B854FE7A25DFC43C /* GASocialLogin.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GASocialLogin.podspec; path = ../GASocialLogin.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		C52271901C921FCE06C6FA8D /* Pods_GASocialLogin_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GASocialLogin_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B29F1EBFFD3456C35896B524 /* Pods_GASocialLogin_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GASocialLogin_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5C46DB16DA2AAADDDA0A6E1 /* Pods-GASocialLogin_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GASocialLogin_Example.debug.xcconfig"; path = "Target Support Files/Pods-GASocialLogin_Example/Pods-GASocialLogin_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D952452E0186B6CDF1A1309A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		ED9347572309063CA4939374 /* Pods_GASocialLogin_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GASocialLogin_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +66,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D5F85B213FB1E800B70AB2 /* libz.tbd in Frameworks */,
-				BA098D62D10F078710B430D5 /* Pods_GASocialLogin_Example.framework in Frameworks */,
+				BE56EDD73FEF78003487F4B4 /* Pods_GASocialLogin_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD549680A76C775624DBCDA6 /* Pods_GASocialLogin_Tests.framework in Frameworks */,
+				650AE3B3313DEB41D02CEF3C /* Pods_GASocialLogin_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,10 +199,10 @@
 		886295F89FB15E652967D2C1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7326F0A267F9919C592EF686 /* Pods-GASocialLogin_Example.debug.xcconfig */,
-				099A94991169777B9B93D3A1 /* Pods-GASocialLogin_Example.release.xcconfig */,
-				13EE81468C9D619B538CDF9D /* Pods-GASocialLogin_Tests.debug.xcconfig */,
-				169F99B74E29C7307BBD8B81 /* Pods-GASocialLogin_Tests.release.xcconfig */,
+				B5C46DB16DA2AAADDDA0A6E1 /* Pods-GASocialLogin_Example.debug.xcconfig */,
+				1D137631A7217B842D1E1DA1 /* Pods-GASocialLogin_Example.release.xcconfig */,
+				41705188D6DE673464A932D4 /* Pods-GASocialLogin_Tests.debug.xcconfig */,
+				5146266F982C3E344FC68189 /* Pods-GASocialLogin_Tests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -211,8 +211,8 @@
 			isa = PBXGroup;
 			children = (
 				27D5F855213FAA1D00B70AB2 /* libz.tbd */,
-				150DCA37B46A9686180A98D4 /* Pods_GASocialLogin_Example.framework */,
-				C52271901C921FCE06C6FA8D /* Pods_GASocialLogin_Tests.framework */,
+				B29F1EBFFD3456C35896B524 /* Pods_GASocialLogin_Example.framework */,
+				ED9347572309063CA4939374 /* Pods_GASocialLogin_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -224,11 +224,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GASocialLogin_Example" */;
 			buildPhases = (
-				A8F82B6D4F245F451FA5D41A /* [CP] Check Pods Manifest.lock */,
+				CC882881B174EDB474A87875 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				905883114370546A8AAB0FCB /* [CP] Embed Pods Frameworks */,
+				93F65F4E44AAD76B58EDFD3D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -243,7 +243,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GASocialLogin_Tests" */;
 			buildPhases = (
-				0D4ABD5C31C7A53229BCFBAD /* [CP] Check Pods Manifest.lock */,
+				990AB79E24BBEBDF8BB648ED /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
@@ -322,7 +322,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0D4ABD5C31C7A53229BCFBAD /* [CP] Check Pods Manifest.lock */ = {
+		93F65F4E44AAD76B58EDFD3D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GASocialLogin_Example/Pods-GASocialLogin_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GASocialLogin/GASocialLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMAppAuth/GTMAppAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleSignIn/GoogleSignIn.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GASocialLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMAppAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleSignIn.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GASocialLogin_Example/Pods-GASocialLogin_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		990AB79E24BBEBDF8BB648ED /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -344,35 +374,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		905883114370546A8AAB0FCB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GASocialLogin_Example/Pods-GASocialLogin_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/GASocialLogin/GASocialLogin.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMAppAuth/GTMAppAuth.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GASocialLogin.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMAppAuth.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GASocialLogin_Example/Pods-GASocialLogin_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A8F82B6D4F245F451FA5D41A /* [CP] Check Pods Manifest.lock */ = {
+		CC882881B174EDB474A87875 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -556,7 +558,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7326F0A267F9919C592EF686 /* Pods-GASocialLogin_Example.debug.xcconfig */;
+			baseConfigurationReference = B5C46DB16DA2AAADDDA0A6E1 /* Pods-GASocialLogin_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GASocialLogin_Example.entitlements;
@@ -572,7 +574,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 099A94991169777B9B93D3A1 /* Pods-GASocialLogin_Example.release.xcconfig */;
+			baseConfigurationReference = 1D137631A7217B842D1E1DA1 /* Pods-GASocialLogin_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GASocialLogin_Example.entitlements;
@@ -588,7 +590,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13EE81468C9D619B538CDF9D /* Pods-GASocialLogin_Tests.debug.xcconfig */;
+			baseConfigurationReference = 41705188D6DE673464A932D4 /* Pods-GASocialLogin_Tests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = LWXCT592NE;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -610,7 +612,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 169F99B74E29C7307BBD8B81 /* Pods-GASocialLogin_Tests.release.xcconfig */;
+			baseConfigurationReference = 5146266F982C3E344FC68189 /* Pods-GASocialLogin_Tests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = LWXCT592NE;
 				FRAMEWORK_SEARCH_PATHS = (

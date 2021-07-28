@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'GASocialLogin'
-    s.version          = '2.6.4'
+    s.version          = '2.6.5'
     s.summary          = 'Easy social media log in'
     
     # This description is used to generate tags and improve search results.
@@ -52,39 +52,16 @@ Pod::Spec.new do |s|
     
     s.subspec 'Google' do |spec|
         
-        
         spec.source_files = 'GASocialLogin/Google/**/*'
-        
-        spec.pod_target_xcconfig = {
-            'OTHER_SWIFT_FLAGS' => '$(inherited) -DSYNCSERVER_GOOGLE_SIGNIN',
-            'OTHER_LDFLAGS' => '$(inherited) -ObjC',
-            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s'
-        }
-        spec.user_target_xcconfig = {
-            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s'
-        }
-        
-        spec.resource =
-        'GASocialLogin/Assets/Google/GoogleSignIn.bundle'
-        
-        spec.preserve_paths      = 'GASocialLogin/ExternalVendors/Google/*.framework'
-        spec.vendored_frameworks = 'GASocialLogin/ExternalVendors/Google/GoogleSignIn.framework'
-        
-        spec.frameworks = 'UIKit', 'CoreGraphics', 'CoreText', 'Foundation', 'LocalAuthentication', 'Security', 'SystemConfiguration', 'SafariServices'
         
         spec.dependency 'GASocialLogin/Core'
         
-        spec.dependency 'AppAuth'                , '~> 1.4.0'
-        spec.dependency 'GTMAppAuth'             , '~> 1.0.0'
-        spec.dependency 'GTMSessionFetcher/Core' , '~> 1.4.0'
-        
+        spec.dependency 'GoogleSignIn' , '~> 6.0.1'
     end
     
     s.subspec 'Apple' do |spec|
         
         spec.source_files = 'GASocialLogin/Apple/**/*'
-        
-        # spec.ios.deployment_target = '13.0'
         
         spec.frameworks = 'AuthenticationServices'
         

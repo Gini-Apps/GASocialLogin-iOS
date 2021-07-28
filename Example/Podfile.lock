@@ -14,27 +14,28 @@ PODS:
     - FBSDKLoginKit/Login (= 7.1.1)
   - FBSDKLoginKit/Login (7.1.1):
     - FBSDKCoreKit (~> 7.1.1)
-  - GASocialLogin/Apple (2.6.2):
+  - GASocialLogin (2.6.4):
+    - GASocialLogin/Core (= 2.6.4)
+  - GASocialLogin/Apple (2.6.4):
     - GASocialLogin/Core
-  - GASocialLogin/Core (2.6.2)
-  - GASocialLogin/Facebook (2.6.2):
+  - GASocialLogin/Core (2.6.4)
+  - GASocialLogin/Facebook (2.6.4):
     - FBSDKLoginKit (~> 7.1.1)
     - GASocialLogin/Core
-  - GASocialLogin/Google (2.6.2):
-    - AppAuth (~> 1.4.0)
+  - GASocialLogin/Google (2.6.4):
     - GASocialLogin/Core
-    - GTMAppAuth (~> 1.0.0)
-    - GTMSessionFetcher/Core (~> 1.4.0)
-  - GTMAppAuth (1.0.0):
-    - AppAuth/Core (~> 1.0)
-    - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.4.0):
-    - GTMSessionFetcher/Full (= 1.4.0)
-  - GTMSessionFetcher/Core (1.4.0)
-  - GTMSessionFetcher/Full (1.4.0):
-    - GTMSessionFetcher/Core (= 1.4.0)
+    - GoogleSignIn (~> 6.0.1)
+  - GoogleSignIn (6.0.1):
+    - AppAuth (~> 1.4)
+    - GTMAppAuth (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GTMAppAuth (1.2.2):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - GTMSessionFetcher/Core (1.6.1)
 
 DEPENDENCIES:
+  - GASocialLogin (from `../`)
   - GASocialLogin/Apple (from `../`)
   - GASocialLogin/Facebook (from `../`)
   - GASocialLogin/Google (from `../`)
@@ -44,6 +45,7 @@ SPEC REPOS:
     - AppAuth
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
 
@@ -55,10 +57,11 @@ SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
   FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
-  GASocialLogin: a8fdfe8f194fdddc64367e9f0681a1dfc7f71be3
-  GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
-  GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  GASocialLogin: 2cc7c449c77765a442c6556e938c7b896c6a9b4a
+  GoogleSignIn: 1b0c4ec33a6fe282f4fa35d8ac64263230ddaf36
+  GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
+  GTMSessionFetcher: 36689134877faeb055b27dfa4ccc9ceaa42e029e
 
-PODFILE CHECKSUM: f6bd89e182b7164562b6c86dcd774b0d8ca59845
+PODFILE CHECKSUM: 928646db20affc1fae32f50e2c5ca7e2b290a28a
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1
