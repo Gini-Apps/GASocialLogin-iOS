@@ -1,10 +1,10 @@
-//
-//  GoogleViewController.swift
-//  GASocialLogin_Example
-//
-//  Created by ido meirov on 05/09/2018.
-//  Copyright © 2018 CocoaPods. All rights reserved.
-//
+////
+////  GoogleViewController.swift
+////  GASocialLogin_Example
+////
+////  Created by ido meirov on 05/09/2018.
+////  Copyright © 2018 CocoaPods. All rights reserved.
+////
 
 import UIKit
 import GASocialLogin
@@ -32,34 +32,34 @@ class GoogleViewController: UIViewController
     @IBAction func loginDidTap(_ sender: Any)
     {
         
-        GASocialLogin.shared.googleLoginService?.loginWithGmail(viewController: self) { (result) in
-            
-            DispatchQueue.main.async { [weak self] in
-                
-                switch result {
-                case .success(let user):
+        GASocialLogin.shared.googleLoginService?
+            .logInWithGmail(viewController: self, completion: { result in
+                DispatchQueue.main.async { [weak self] in
                     
-                    self?.resultLabel.text = "user.profile.email: \(user.profile.email ?? "") \nuser.authentication.clientID: \(user.authentication.clientID ?? "") "
-                    
-                case .error(let error):
-                    
-                    self?.resultLabel.text = error.localizedDescription
-                    
+                    switch result {
+                    case .success(let user):
+                        
+                        self?.resultLabel.text = "user.profile.email: \(user.profile?.email ?? "") \nuser.authentication.clientID: \(user.authentication.clientID ?? "") "
+                        
+                    case .error(let error):
+                        
+                        self?.resultLabel.text = error.localizedDescription
+                        
+                    }
                 }
-            }
-        }
+            })
     }
     
     @IBAction func silentLoginWithGmail(_ sender: Any)
     {
-        GASocialLogin.shared.googleLoginService?.silentLoginWithGmail(viewController: self, successHandler: { (result) in
+        GASocialLogin.shared.googleLoginService?.silentLoginWithGmail(viewController: self, completion: { (result) in
             
             DispatchQueue.main.async { [weak self] in
                 
                 switch result {
                 case .success(let user):
                     
-                    self?.resultLabel.text = "user.profile.email: \(user.profile.email ?? "") \nuser.authentication.clientID: \(user.authentication.clientID ?? "") "
+                    self?.resultLabel.text = "user.profile.email: \(user.profile?.email ?? "") \nuser.authentication.clientID: \(user.authentication.clientID ?? "") "
                     
                 case .error(let error):
                     
