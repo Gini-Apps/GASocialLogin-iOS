@@ -17,20 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let facebookConfiguration = GAFacebookLoginConfiguration(facebookURLScheme: "fbID")
-        let googleConfiguration = GAGoogleLoginConfiguration(clientIdentifier: "id.apps.googleusercontent.com")
+        let facebookConfiguration   = GAFacebookLoginConfiguration(facebookURLScheme: "fbID")
+        let googleConfiguration     = GAGoogleLoginConfiguration(clientIdentifier: "id.apps.googleusercontent.com")
 
         if #available(iOS 13.0, *) {
-            let userIdentifier =  UserStorage.shared.bringAppleUser()
+            let userIdentifier     =  UserStorage.shared.bringAppleUser()
             let appleConfiguration = GAAppleLoginConfiguration(userIdentifier: userIdentifier?.user)
             GASocialLogin.shared.configure(using: [facebookConfiguration, googleConfiguration, appleConfiguration], application: application, didFinishLaunchingWithOptions: launchOptions)
         } else {
             // Fallback on earlier versions
-            GASocialLogin.shared.configure(using: [facebookConfiguration, googleConfiguration], application: application, didFinishLaunchingWithOptions: launchOptions)
+            GASocialLogin.shared.configure(using: [facebookConfiguration,googleConfiguration], application: application, didFinishLaunchingWithOptions: launchOptions)
         }
-        
-        
-        
         return true
     }
 

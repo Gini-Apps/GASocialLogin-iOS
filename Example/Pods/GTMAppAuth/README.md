@@ -1,11 +1,17 @@
-# GTMAppAuth for iOS and macOS
+[![Version](https://img.shields.io/cocoapods/v/GTMAppAuth.svg?style=flat)](https://cocoapods.org/pods/GTMAppAuth)
+[![Platform](https://img.shields.io/cocoapods/p/GTMAppAuth.svg?style=flat)](https://cocoapods.org/pods/GTMAppAuth)
+[![License](https://img.shields.io/cocoapods/l/GTMAppAuth.svg?style=flat)](https://cocoapods.org/pods/GTMAppAuth)
+[![tests](https://github.com/google/GTMAppAuth/actions/workflows/tests.yml/badge.svg?event=push)](https://github.com/google/GTMAppAuth/actions/workflows/tests.yml)
 
-GTMAppAuth enables you to use [AppAuth](http://openid.github.io/AppAuth-iOS)
+# GTMAppAuth for Apple Platforms
+
+GTMAppAuth enables you to use [AppAuth](https://github.com/openid/AppAuth-iOS)
 with the
 [Google Toolbox for Mac - Session Fetcher](https://github.com/google/gtm-session-fetcher)
 and
 [Google APIs Client Library for Objective-C For REST](https://github.com/google/google-api-objectivec-client-for-rest)
-libraries by providing an implementation of `GTMFetcherAuthorizationProtocol`
+libraries on iOS, macOS, tvOS, and watchOS by providing an implementation of
+[`GTMFetcherAuthorizationProtocol`](https://github.com/google/gtm-session-fetcher/blob/2a3b5264108e80d62003b770ff02eb7364ff1365/Source/GTMSessionFetcher.h#L660)
 for authorizing requests with AppAuth.
 
 GTMAppAuth is an alternative authorizer to GTMOAuth2. The key differentiator is

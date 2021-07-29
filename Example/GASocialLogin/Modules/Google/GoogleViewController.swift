@@ -17,10 +17,7 @@ class GoogleViewController: UIViewController
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,15 +28,33 @@ class GoogleViewController: UIViewController
     // MARK: - IBActions
     @IBAction func loginDidTap(_ sender: Any)
     {
-        
-        GASocialLogin.shared.googleLoginService?.loginWithGmail(viewController: self) { (result) in
+        GASocialLogin.shared.googleLoginService?.logInWithGmail(viewController: self) { result in
+                DispatchQueue.main.async { [weak self] in
+                    
+                    switch result {
+                    case .success(let user):
+                        
+                        self?.resultLabel.text = "user.profile.email: \(user.profile?.email ?? "") \nuser.authentication.clientID: \(user.authentication.clientID ?? "") "
+                        
+                    case .error(let error):
+                        
+                        self?.resultLabel.text = error.localizedDescription
+                        
+                    }
+                }
+            }
+    }
+    
+    @IBAction func silentLoginWithGmail(_ sender: Any)
+    {
+        GASocialLogin.shared.googleLoginService?.silentLoginWithGmail(viewController: self) { (result) in
             
             DispatchQueue.main.async { [weak self] in
                 
                 switch result {
                 case .success(let user):
                     
-                    self?.resultLabel.text = "user.profile.email: \(user.profile.email ?? "") \nuser.authentication.clientID: \(user.authentication.clientID ?? "") "
+                    self?.resultLabel.text = "user.profile.email: \(user.profile?.email ?? "") \nuser.authentication.clientID: \(user.authentication.clientID ?? "") "
                     
                 case .error(let error):
                     
@@ -48,26 +63,6 @@ class GoogleViewController: UIViewController
                 }
             }
         }
-    }
-    
-    @IBAction func silentLoginWithGmail(_ sender: Any)
-    {
-        GASocialLogin.shared.googleLoginService?.silentLoginWithGmail(viewController: self, successHandler: { (result) in
-            
-            DispatchQueue.main.async { [weak self] in
-                
-                switch result {
-                case .success(let user):
-                    
-                    self?.resultLabel.text = "user.profile.email: \(user.profile.email ?? "") \nuser.authentication.clientID: \(user.authentication.clientID ?? "") "
-                    
-                case .error(let error):
-                    
-                    self?.resultLabel.text = error.localizedDescription
-                    
-                }
-            }
-        })
     }
     
     @IBAction func signOut(_ sender: Any)

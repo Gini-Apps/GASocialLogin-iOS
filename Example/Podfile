@@ -1,9 +1,12 @@
+platform :ios, '9.0'
 use_frameworks!
 
 target 'GASocialLogin_Example' do
   
   # pod 'GoogleSignIn' , '~> 5.0.2'
   # pod 'FBSDKLoginKit', '~> 7.1.1'
+  
+  pod 'GASocialLogin', :path => '../'
   pod 'GASocialLogin/Facebook', :path => '../'
   pod 'GASocialLogin/Google'  , :path => '../'
   pod 'GASocialLogin/Apple'   , :path => '../'
