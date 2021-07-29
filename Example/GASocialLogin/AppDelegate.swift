@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             GASocialLogin.shared.configure(using: [facebookConfiguration, googleConfiguration, appleConfiguration], application: application, didFinishLaunchingWithOptions: launchOptions)
         } else {
             // Fallback on earlier versions
-            GASocialLogin.shared.configure(using: [facebookConfiguration], application: application, didFinishLaunchingWithOptions: launchOptions)
+            GASocialLogin.shared.configure(using: [facebookConfiguration,googleConfiguration], application: application, didFinishLaunchingWithOptions: launchOptions)
         }
         return true
     }

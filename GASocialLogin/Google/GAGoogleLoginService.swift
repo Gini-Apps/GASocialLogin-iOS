@@ -50,14 +50,14 @@ extension GASocialLogin
     public class GAGoogleLoginService: NSObject
     {
         // MARK: - Property
-        static let serviceKey                       = "GASocialLogin.GAGoogleLoginService"
+        static let serviceKey                        = "GASocialLogin.GAGoogleLoginService"
         
         // MARK: - Property
-        private var googleCompletion                : GAGoogleCompletion? // log in call back
-        private var googleWillDispatchBlock         : GAGoogleWillDispatchBlock? // block to handle signinWillDispatch
-        private weak var parentViewController       : UIViewController? // the current present view controller
-        public  let saveLastLoginUser               : Bool // allow auto save last loged in user
-        private var googleSignIn                    : GIDSignIn // GIDSignIn singleton retriver
+        private var googleCompletion                 : GAGoogleCompletion? // log in call back
+        private var googleWillDispatchBlock          : GAGoogleWillDispatchBlock? // block to handle signinWillDispatch
+        private weak var parentViewController        : UIViewController? // the current present view controller
+        public  let saveLastLoginUser                : Bool // allow auto save last loged in user
+        private var googleSignIn                     : GIDSignIn // GIDSignIn singleton retriver
         {
             return GIDSignIn.sharedInstance
         }
@@ -216,8 +216,6 @@ extension GASocialLogin.GAGoogleLoginService: GASocialLoginService
     // MARK: - Public API Application Handler
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool
     {
-        // Is relevent?
-        //        GIDSignIn.sharedInstance. //= clientIdentifier
         return true
     }
     

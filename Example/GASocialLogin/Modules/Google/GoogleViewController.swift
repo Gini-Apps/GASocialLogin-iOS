@@ -1,10 +1,10 @@
-////
-////  GoogleViewController.swift
-////  GASocialLogin_Example
-////
-////  Created by ido meirov on 05/09/2018.
-////  Copyright © 2018 CocoaPods. All rights reserved.
-////
+//
+//  GoogleViewController.swift
+//  GASocialLogin_Example
+//
+//  Created by ido meirov on 05/09/2018.
+//  Copyright © 2018 CocoaPods. All rights reserved.
+//
 
 import UIKit
 import GASocialLogin
@@ -17,10 +17,7 @@ class GoogleViewController: UIViewController
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,9 +28,7 @@ class GoogleViewController: UIViewController
     // MARK: - IBActions
     @IBAction func loginDidTap(_ sender: Any)
     {
-        
-        GASocialLogin.shared.googleLoginService?
-            .logInWithGmail(viewController: self, completion: { result in
+        GASocialLogin.shared.googleLoginService?.logInWithGmail(viewController: self) { result in
                 DispatchQueue.main.async { [weak self] in
                     
                     switch result {
@@ -47,12 +42,12 @@ class GoogleViewController: UIViewController
                         
                     }
                 }
-            })
+            }
     }
     
     @IBAction func silentLoginWithGmail(_ sender: Any)
     {
-        GASocialLogin.shared.googleLoginService?.silentLoginWithGmail(viewController: self, completion: { (result) in
+        GASocialLogin.shared.googleLoginService?.silentLoginWithGmail(viewController: self) { (result) in
             
             DispatchQueue.main.async { [weak self] in
                 
@@ -67,7 +62,7 @@ class GoogleViewController: UIViewController
                     
                 }
             }
-        })
+        }
     }
     
     @IBAction func signOut(_ sender: Any)
